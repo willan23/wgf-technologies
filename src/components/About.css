@@ -1,0 +1,204 @@
+.about-section {
+  padding: 6rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Left Side: Photo Frame with Cyber Aesthetics
+   ========================================================================== */
+
+.about-photo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.photo-frame {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 3 / 4;
+  padding: 12px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-frame:hover .profile-photo {
+  transform: scale(1.03);
+}
+
+/* Cyber corner decors */
+.frame-border-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--accent-cyan);
+  z-index: 10;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.frame-border-corner.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+.frame-border-corner.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+.frame-border-corner.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+.frame-border-corner.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.photo-frame:hover .frame-border-corner {
+  width: 25px;
+  height: 25px;
+  border-color: var(--accent-green);
+  box-shadow: 0 0 10px var(--accent-green);
+}
+
+/* Glow behind the photo frame */
+.frame-overlay-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; height: 90%;
+  background: radial-gradient(circle, var(--glow-cyan) 0%, rgba(0,0,0,0) 80%);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.photo-frame:hover .frame-overlay-glow {
+  opacity: 1;
+}
+
+/* Badges below the image */
+.photo-badges {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 380px;
+}
+
+.photo-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Right Side: Biography Details
+   ========================================================================== */
+
+.about-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-tagline {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-cyan);
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+
+.about-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.about-text-content p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.lead-paragraph {
+  font-size: 1.15rem !important;
+  color: var(--text-main) !important;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.highlight-paragraph {
+  border-left: 3px solid var(--accent-cyan);
+  padding-left: 1.2rem;
+  font-style: italic;
+  background: rgba(0, 242, 254, 0.02);
+  border-radius: 0 8px 8px 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.about-actions {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .about-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .about-photo-wrapper {
+    margin: 0 auto;
+  }
+  
+  .about-details {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .highlight-paragraph {
+    border-left: none;
+    border-top: 3px solid var(--accent-cyan);
+    padding-left: 0;
+    padding-top: 1rem;
+    border-radius: 0;
+  }
+  
+  .about-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 4rem 1.5rem;
+  }
+}

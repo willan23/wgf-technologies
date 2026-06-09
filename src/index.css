@@ -1,0 +1,351 @@
+/* ==========================================================================
+   WGF Technologies Design System - Portfólio Premium
+   ========================================================================== */
+
+/* Padrão: Cybersecurity Dark Theme */
+:root {
+  --bg-main: #060913;      /* Deep space dark */
+  --bg-card: #0d1222;      /* Deep navy card */
+  --bg-input: #080b15;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent-cyan: #00f2fe;  /* Neon Cyber Cyan */
+  --accent-blue: #3b82f6;  /* Electric Blue */
+  --accent-green: #10b981; /* Cyber green */
+  --accent-gold: #f59e0b;  /* Warm Gold */
+  --text-main: #f3f4f6;    /* High contrast white */
+  --text-muted: #9ca3af;   /* Muted gray */
+  --glass-bg: rgba(13, 18, 34, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --glow-cyan: rgba(0, 242, 254, 0.2);
+  --terminal-bg: #03050a;
+  
+  --transition-speed: 0.4s;
+  --transition-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Elegant Light Theme (Active when .light-mode class is present on root/body) */
+:root.light-mode {
+  --bg-main: #f0f4f8;      /* Clean slate light blue */
+  --bg-card: #ffffff;      /* White card */
+  --bg-input: #f8fafc;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --accent-cyan: #0ea5e9;  /* Deep sky cyan */
+  --accent-blue: #1d4ed8;  /* Deep blue */
+  --accent-green: #15803d; /* Dark green */
+  --accent-gold: #d97706;  /* Dark gold */
+  --text-main: #1e293b;    /* Charcoal dark */
+  --text-muted: #64748b;   /* Slate gray */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --shadow-color: rgba(148, 163, 184, 0.15);
+  --glow-cyan: rgba(14, 165, 233, 0.15);
+  --terminal-bg: #0f172a; /* Terminal stays dark for professional contrast */
+}
+
+/* Global Reset & Transition Config */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+  /* Smooth theme transitions */
+  transition: background-color var(--transition-speed) var(--transition-bezier),
+              color var(--transition-speed) var(--transition-bezier),
+              border-color var(--transition-speed) var(--transition-bezier),
+              box-shadow var(--transition-speed) var(--transition-bezier);
+}
+
+h1, h2, h3, h4, .logo-text, .section-title {
+  font-family: 'Outfit', sans-serif;
+  transition: color var(--transition-speed) var(--transition-bezier);
+}
+
+/* ==========================================================================
+   Background Patterns & Glows
+   ========================================================================== */
+
+/* Technical Grid Pattern Overlay */
+.bg-grid {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  opacity: 0.25;
+  transition: opacity var(--transition-speed);
+}
+
+:root.light-mode .bg-grid {
+  opacity: 0.15;
+}
+
+/* Glowing Orbs */
+.bg-glow {
+  position: fixed;
+  top: -10%; left: -5%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, var(--glow-cyan) 0%, rgba(0,0,0,0) 70%);
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.bg-glow-2 {
+  position: fixed;
+  bottom: -15%; right: -5%;
+  width: 65vw; height: 65vw;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(0,0,0,0) 70%);
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* ==========================================================================
+   Global Classes & Glassmorphism
+   ========================================================================== */
+
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  transition: background-color var(--transition-speed), 
+              border-color var(--transition-speed), 
+              box-shadow var(--transition-speed);
+}
+
+/* Primary Button with Neon Glow */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  color: #ffffff !important;
+  padding: 0.8rem 2.2rem;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Secondary Tech Button */
+.btn-secondary {
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.8rem 2.2rem;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.15);
+  color: var(--accent-cyan);
+}
+
+/* App Container & Main Layout */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+
+.main-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  padding: 1rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.logo-accent {
+  color: var(--accent-cyan);
+  position: relative;
+}
+
+.logo-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; width: 100%; height: 2px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.main-nav {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.main-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.main-nav a:not(.btn-primary):hover {
+  color: var(--accent-cyan);
+}
+
+.main-nav a:not(.btn-primary)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; width: 0%; height: 2px;
+  background: var(--accent-cyan);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px var(--accent-cyan);
+}
+
+.main-nav a:not(.btn-primary):hover::after {
+  width: 100%;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+  color: var(--accent-cyan);
+  transform: rotate(15deg);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.main-footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: auto;
+  background: var(--bg-card);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.footer-social-link {
+  color: var(--text-muted);
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social-link:hover {
+  color: var(--accent-cyan);
+  transform: translateY(-3px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border: 2px solid var(--bg-main);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   Responsividade Global
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 1rem 2rem;
+  }
+  .main-nav {
+    display: none; /* Poderíamos adicionar um menu hambúrguer, ou simplificar links no topo */
+  }
+  .main-header {
+    justify-content: space-between;
+  }
+  .logo-text {
+    font-size: 1.3rem;
+  }
+}
