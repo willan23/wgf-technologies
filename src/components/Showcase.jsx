@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, X, ExternalLink, Cpu, Shield, Smartphone, Globe, BarChart } from 'lucide-react';
 import './Showcase.css';
+import TiltCard from './TiltCard.jsx';
 
 const projects = [
   {
@@ -167,40 +168,41 @@ function Showcase() {
           {filteredProjects.map((project) => {
             const IconComponent = project.icon;
             return (
-              <motion.div
-                layout
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="project-card"
-                onClick={() => setSelectedProject(project)}
-                style={{ "--card-accent-color": project.color }}
-              >
-                <div className="project-header-icon" style={{ backgroundColor: `${project.color}15`, color: project.color }}>
-                  <IconComponent size={28} />
-                </div>
-                
-                <span className="project-category" style={{ color: project.color }}>{project.category}</span>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.desc}</p>
-                
-                <div className="project-tech">
-                  {project.tech.slice(0, 3).map((t, i) => (
-                    <span key={i} className="tech-tag">{t}</span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="tech-tag-more">+{project.tech.length - 3}</span>
-                  )}
-                </div>
+              <TiltCard key={project.id} maxTilt={10}>
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="project-card"
+                  onClick={() => setSelectedProject(project)}
+                  style={{ "--card-accent-color": project.color }}
+                >
+                  <div className="project-header-icon" style={{ backgroundColor: `${project.color}15`, color: project.color }}>
+                    <IconComponent size={28} />
+                  </div>
+                  
+                  <span className="project-category" style={{ color: project.color }}>{project.category}</span>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-desc">{project.desc}</p>
+                  
+                  <div className="project-tech">
+                    {project.tech.slice(0, 3).map((t, i) => (
+                      <span key={i} className="tech-tag">{t}</span>
+                    ))}
+                    {project.tech.length > 3 && (
+                      <span className="tech-tag-more">+{project.tech.length - 3}</span>
+                    )}
+                  </div>
 
-                <div className="project-card-footer">
-                  <button className="btn-read-more" style={{ color: project.color }}>
-                    Saber Mais <span className="arrow-icon">→</span>
-                  </button>
-                </div>
-              </motion.div>
+                  <div className="project-card-footer">
+                    <button className="btn-read-more" style={{ color: project.color }}>
+                      Saber Mais <span className="arrow-icon">→</span>
+                    </button>
+                  </div>
+                </motion.div>
+              </TiltCard>
             );
           })}
         </AnimatePresence>

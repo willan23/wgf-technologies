@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Terminal, MessageSquare, Briefcase, ChevronRight } from 'lucide-react';
 import './Hero.css';
+import TiltCard from './TiltCard.jsx';
+import ThreeDHeroObject from './ThreeDHeroObject.jsx';
 
 function Hero() {
   const [terminalHistory, setTerminalHistory] = useState([
@@ -107,6 +109,11 @@ function Hero() {
 
   return (
     <section id="hero" className="hero-section">
+      {/* Holograma 3D Cibernético */}
+      <div className="hero-3d-container">
+        <ThreeDHeroObject />
+      </div>
+
       <div className="hero-grid-layout">
         {/* Left Side: Copywriting */}
         <motion.div 
@@ -161,47 +168,49 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="terminal-window" onClick={focusTerminalInput}>
-            <div className="terminal-header">
-              <div className="terminal-buttons">
-                <span className="t-btn close"></span>
-                <span className="t-btn minimize"></span>
-                <span className="t-btn maximize"></span>
+          <TiltCard maxTilt={6}>
+            <div className="terminal-window" onClick={focusTerminalInput}>
+              <div className="terminal-header">
+                <div className="terminal-buttons">
+                  <span className="t-btn close"></span>
+                  <span className="t-btn minimize"></span>
+                  <span className="t-btn maximize"></span>
+                </div>
+                <div className="terminal-title">
+                  <Terminal size={14} className="terminal-title-icon" /> wgf-security-terminal.sh
+                </div>
+                <div className="terminal-status-light">
+                  <Shield size={14} className="shield-icon" /> Secure
+                </div>
               </div>
-              <div className="terminal-title">
-                <Terminal size={14} className="terminal-title-icon" /> wgf-security-terminal.sh
-              </div>
-              <div className="terminal-status-light">
-                <Shield size={14} className="shield-icon" /> Secure
+              <div className="terminal-body">
+                <div className="terminal-output">
+                  {terminalHistory.map((line, index) => (
+                    <div key={index} className="terminal-line">
+                      {line}
+                    </div>
+                  ))}
+                  <div ref={terminalEndRef} />
+                </div>
+                <form onSubmit={handleTerminalSubmit} className="terminal-prompt-form">
+                  <span className="terminal-prompt">willan@wgf-tech:~$&nbsp;</span>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
+                    className="terminal-input"
+                    placeholder="Digita um comando..."
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
+                  />
+                  <button type="submit" style={{ display: 'none' }}>Enviar</button>
+                </form>
               </div>
             </div>
-            <div className="terminal-body">
-              <div className="terminal-output">
-                {terminalHistory.map((line, index) => (
-                  <div key={index} className="terminal-line">
-                    {line}
-                  </div>
-                ))}
-                <div ref={terminalEndRef} />
-              </div>
-              <form onSubmit={handleTerminalSubmit} className="terminal-prompt-form">
-                <span className="terminal-prompt">willan@wgf-tech:~$&nbsp;</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  className="terminal-input"
-                  placeholder="Digita um comando..."
-                  autoComplete="off"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  spellCheck="false"
-                />
-                <button type="submit" style={{ display: 'none' }}>Enviar</button>
-              </form>
-            </div>
-          </div>
+          </TiltCard>
           <div className="terminal-hint">
             Dica: Experimenta digitar <span className="hint-code">scan</span> ou <span className="hint-code">projects</span> e pressiona Enter!
           </div>

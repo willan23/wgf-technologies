@@ -4,6 +4,7 @@ import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Showcase from './components/Showcase.jsx';
 import Contact from './components/Contact.jsx';
+import ThreeBackground from './components/ThreeBackground.jsx';
 
 function App() {
   // Inicializar o tema a partir do localStorage ou padrão 'dark'
@@ -41,6 +42,9 @@ function App() {
       {/* Glow Orbs */}
       <div className="bg-glow"></div>
       <div className="bg-glow-2"></div>
+
+      {/* Interactive 3D Particles Background */}
+      <ThreeBackground />
 
       <header className="main-header glass-effect">
         <div className="logo-container">

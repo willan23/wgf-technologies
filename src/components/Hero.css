@@ -319,3 +319,50 @@
     height: 350px;
   }
 }
+
+/* ==========================================================================
+   3D Hologram Container
+   ========================================================================== */
+.hero-3d-container {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 550px;
+  height: 550px;
+  z-index: 1;
+  pointer-events: auto; /* Permite arrastar o objeto 3D */
+  opacity: 0.8;
+  filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.15));
+  transition: opacity 0.5s ease;
+}
+
+@media (max-width: 1200px) {
+  .hero-3d-container {
+    width: 450px;
+    height: 450px;
+    right: -2%;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Em ecrãs empilhados, o holograma flutua no fundo central */
+  .hero-3d-container {
+    top: 60%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    opacity: 0.35;
+    pointer-events: none; /* Desativa interação em mobile para não impedir scroll */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-3d-container {
+    width: 320px;
+    height: 320px;
+    top: 65%;
+  }
+}
