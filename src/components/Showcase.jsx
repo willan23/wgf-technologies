@@ -9,6 +9,7 @@ const projects = [
     id: 1,
     title: "Sistema NGAV & EDR Enterprise",
     category: "Cibersegurança",
+    metric: "< 1ms Latência",
     desc: "Plataforma avançada de segurança endpoint. Agente Linux eBPF em Rust, painel SOC e telemetria Windows via Driver Ring-0.",
     tech: ["Rust", "eBPF", "C", "Kernel Driver", "AI Engine"],
     color: "#3b82f6",
@@ -22,6 +23,7 @@ const projects = [
     id: 2,
     title: "AI Site Shield",
     category: "Cibersegurança",
+    metric: "Scan em < 10s",
     desc: "SaaS MVP para revisão defensiva e varredura automática de segurança em sites e pequenos aplicativos gerados por inteligência artificial.",
     tech: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Dramatiq"],
     color: "#00f2fe",
@@ -35,6 +37,7 @@ const projects = [
     id: 3,
     title: "WGF SenseOS",
     category: "Sistemas & IoT",
+    metric: "98.4% Precisão",
     desc: "SaaS inovador de monitoramento ambiental e indoor localization usando sinais Wi-Fi. 100% livre de câmaras ou vestíveis.",
     tech: ["Wi-Fi Sensing", "FastAPI", "ZKP", "Gait Analysis", "Firebase"],
     color: "#10b981",
@@ -48,6 +51,7 @@ const projects = [
     id: 4,
     title: "WGF Note",
     category: "Sistemas & IoT",
+    metric: "100% Offline AI",
     desc: "Editor de código local-first híbrido desktop de alta performance com assistente de IA offline integrado via Ollama.",
     tech: ["Electron", "Expo", "React Native", "Ollama", "Hermes AI"],
     color: "#f59e0b",
@@ -61,6 +65,7 @@ const projects = [
     id: 5,
     title: "Connect CPLP & STPway",
     category: "Mobile",
+    metric: "FinTech 2FA / OTP",
     desc: "Aplicações de pagamentos digitais móveis com dupla autenticação de segurança para o mercado de São Tomé e Príncipe.",
     tech: ["React Native", "Firebase Auth", "reCAPTCHA", "OTP Delivery"],
     color: "#a855f7",
@@ -74,6 +79,7 @@ const projects = [
     id: 6,
     title: "SUPER CKDO",
     category: "Web Apps",
+    metric: "Lighthouse 99/100",
     desc: "Plataforma web de comércio eletrónico premium para o supermercado de referência em São Tomé e Príncipe.",
     tech: ["Next.js 16", "TypeScript", "TailwindCSS", "shadcn/ui"],
     color: "#ec4899",
@@ -87,6 +93,7 @@ const projects = [
     id: 7,
     title: "CLMA - Engenharia",
     category: "Web Apps",
+    metric: "-40% Rejeição",
     desc: "Website institucional premium de alta fidelidade visual com micro-interações elegantes para construtora renomada.",
     tech: ["React", "Vite", "Framer Motion", "Radix UI"],
     color: "#6366f1",
@@ -100,6 +107,7 @@ const projects = [
     id: 8,
     title: "EcoSEO Acquisition",
     category: "Digital Growth",
+    metric: "Playwright Auto",
     desc: "Checklist operacional, automação de testes de tráfego com Playwright e painel analítico para crescimento orgânico.",
     tech: ["Playwright", "SEO Strategy", "Digital Marketing", "Analytics"],
     color: "#22c55e",
@@ -179,8 +187,15 @@ function Showcase() {
                   onClick={() => setSelectedProject(project)}
                   style={{ "--card-accent-color": project.color }}
                 >
-                  <div className="project-header-icon" style={{ backgroundColor: `${project.color}15`, color: project.color }}>
-                    <IconComponent size={28} />
+                  <div className="project-top-row">
+                    <div className="project-header-icon" style={{ backgroundColor: `${project.color}15`, color: project.color }}>
+                      <IconComponent size={24} />
+                    </div>
+                    {project.metric && (
+                      <span className="project-metric-pill" style={{ borderColor: `${project.color}40`, color: project.color, backgroundColor: `${project.color}10` }}>
+                        ⚡ {project.metric}
+                      </span>
+                    )}
                   </div>
                   
                   <span className="project-category" style={{ color: project.color }}>{project.category}</span>

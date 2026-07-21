@@ -1,23 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Terminal, MessageSquare, Briefcase, ChevronRight } from 'lucide-react';
+import { Shield, Terminal, MessageSquare, Briefcase, FileText, Activity } from 'lucide-react';
 import './Hero.css';
 import TiltCard from './TiltCard.jsx';
 import ThreeDHeroObject from './ThreeDHeroObject.jsx';
 
 function Hero() {
   const [terminalHistory, setTerminalHistory] = useState([
-    "WGF OS v2.0.6 (Porto, Portugal)",
-    "Initializing eBPF Kernel telemetry... ACTIVE",
-    "Loading AI Security Threat detection engine... ACTIVE",
-    "Type 'help' to see list of available commands.",
+    "WGF OS v2.0.6 (Porto, Portugal) - Cyber-Security Kernel Console",
+    "Initializing eBPF Kernel telemetry... [OK]",
+    "Loading AI Security Threat Detection Engine... [ACTIVE]",
+    "Zero-Fault Aeronautical Process Integration... [ONLINE]",
+    "Digite 'help' para ver a lista completa de comandos.",
     ""
   ]);
   const [inputVal, setInputVal] = useState("");
   const terminalEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Auto-scroll terminal to bottom
+  // Auto-scroll terminal ao atualizar histórico
   useEffect(() => {
     if (terminalEndRef.current) {
       terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -34,10 +35,14 @@ function Hero() {
       case 'help':
         response = [
           `> ${inputVal}`,
-          "Comandos disponíveis:",
-          "  scan      - Executa varredura de segurança simulada no sistema",
-          "  projects  - Lista a stack tecnológica dos projetos da WGF",
-          "  contact   - Mostra informações de contacto direto",
+          "Comandos disponíveis na consola WGF OS:",
+          "  scan      - Executa varredura de segurança defensiva em tempo real",
+          "  projects  - Lista o ecossistema de projetos & produtos WGF",
+          "  skills    - Exibe a matriz tecnológica (Rust, eBPF, Next.js, Cisco)",
+          "  timeline  - Mostra a jornada 'Zero-Fault' do fundador William Fernandes",
+          "  cv        - Abrir/Descarregar o Currículo / Biografia (PDF)",
+          "  status    - Exibe a telemetria do sistema e estado do Kernel",
+          "  contact   - Mostra contactos diretos (WhatsApp, E-mail, LinkedIn)",
           "  clear     - Limpa o ecrã do terminal"
         ];
         break;
@@ -45,44 +50,86 @@ function Hero() {
         setTerminalHistory([]);
         setInputVal("");
         return;
+      case 'cv':
+        response = [
+          `> ${inputVal}`,
+          "[+] A abrir Currículo / Biografia de William Fernandes (PDF)...",
+          "[✓] Ficheiro pronto: /Biografia.pdf"
+        ];
+        window.open('/Biografia.pdf', '_blank');
+        break;
+      case 'status':
+        response = [
+          `> ${inputVal}`,
+          "┌───────────────────────────────────────────────────────────┐",
+          "│ WGF OS TELEMETRY & KERNEL STATUS                          │",
+          "├───────────────────────────────────────────────────────────┤",
+          "│ System State      : ONLINE (Zero-Fault Mode)              │",
+          "│ Location          : Porto, Portugal                       │",
+          "│ eBPF Probes       : 12 Active Ring-0 Probes               │",
+          "│ AI Threat Latency : < 0.8ms                               │",
+          "│ Defense Matrix    : 100% Cisco Certified Compliance       │",
+          "└───────────────────────────────────────────────────────────┘"
+        ];
+        break;
+      case 'skills':
+        response = [
+          `> ${inputVal}`,
+          "Matriz Principal de Tecnologias WGF:",
+          "  [Kernel/Security] Rust, eBPF (Linux), Windows Ring-0, Cisco Security",
+          "  [Full-Stack Web]  Next.js 16, TypeScript, React, Vite, TailwindCSS",
+          "  [Backend/Cloud]   FastAPI, Python, Redis, Dramatiq, PostgreSQL",
+          "  [Mobile/FinTech]  React Native, Firebase Auth, reCAPTCHA, STPway API",
+          "  [IoT / AI]        Wi-Fi Sensing (CSI 3D Z-Axis), ZKP, Ollama Offline"
+        ];
+        break;
+      case 'timeline':
+        response = [
+          `> ${inputVal}`,
+          "Jornada 'Zero-Fault' — William Fernandes:",
+          "  • 2018-2021 | Engenharia Informática (Base de Arquitetura & Redes)",
+          "  • 2022-2024 | Técnico de Produção Aeronáutica em Portugal (Rigor Absoluto)",
+          "  • 2024-2026 | Gestão de Redes & Certificação Cisco Cybersecurity",
+          "  • 2026+     | Fundador WGF Technologies & Ecossistema de Produtos"
+        ];
+        break;
       case 'contact':
         response = [
           `> ${inputVal}`,
           "Contactos Diretos da WGF Technologies:",
-          "  - WhatsApp: +351 939 060 342",
-          "  - E-mail: wgftechnologies@gmail.com",
-          "  - LinkedIn: linkedin.com/in/william-fernandes-152506244",
-          "  - Localização: Porto, Portugal"
+          "  - WhatsApp : +351 939 060 342",
+          "  - E-mail   : wgftechnologies@gmail.com",
+          "  - LinkedIn : linkedin.com/in/william-fernandes-152506244",
+          "  - Sede     : Porto, Portugal"
         ];
         break;
       case 'projects':
         response = [
           `> ${inputVal}`,
-          "Stack de Projetos Principais:",
-          "  [1] NGAV & EDR Core: Rust, eBPF Kernel, Driver Ring-0, AI",
-          "  [2] AI Site Shield: Next.js, FastAPI, Redis, Dramatiq, PostgreSQL",
-          "  [3] WGF SenseOS: Wi-Fi Sensing, Gait Analysis, Coordenadas 3D (Z-axis)",
-          "  [4] WGF Note IDE: Electron, React Native, Ollama AI, Python Sandbox",
-          "  [5] Connect CPLP/STPway: React Native, Firebase Auth, reCAPTCHA Enterprise",
-          "  [6] SUPER CKDO: Next.js 16, TypeScript, TailwindCSS, LCP Optimization",
-          "  [7] CLMA Engenharia: React, Vite, Framer Motion, Radix UI",
-          "  [8] EcoSEO Acquisition: Growth Strategy, Product Hunt launch automation"
+          "Ecossistema de Soluções WGF Technologies:",
+          "  [1] Sistema NGAV & EDR Enterprise (Rust + eBPF Kernel Driver)",
+          "  [2] AI Site Shield (SaaS de Varredura Defensiva de Código IA)",
+          "  [3] WGF SenseOS (Sensoriamento Indoor 3D Wi-Fi sem Câmaras)",
+          "  [4] WGF Note (IDE Local-First com Ollama AI Offline)",
+          "  [5] Connect CPLP / STPway (App Mobile FinTech & Gateway Bancário)",
+          "  [6] SUPER CKDO (Web E-commerce Next.js 16 de Alta Performance)",
+          "  [7] CLMA Engenharia (Web Design Premium para Construção Civil)"
         ];
         break;
       case 'scan':
         response = [
           `> ${inputVal}`,
-          "[~] A iniciar varredura de segurança em WGF-Core...",
-          "[~] A analisar ficheiros expostos e chaves privadas...",
-          "[!] Alerta: Detetado NEXT_PUBLIC_API_KEY no frontend! (Corrigindo via Git Hook)",
-          "[~] A validar assinaturas SHA de pacotes CI/CD...",
-          "[+] Varredura concluída. 100% dos pacotes fixados. 0 vulnerabilidades ativas."
+          "[~] A iniciar varredura defensiva em WGF-Kernel Subsystem...",
+          "[~] A analisar chamadas eBPF e integridade de pacotes...",
+          "[✓] Telemetria de memória: 0 fuga de dados detetada.",
+          "[✓] Chaves de criptografia e assinaturas SHA256: 100% VÁLIDAS.",
+          "[+] Varredura concluída com sucesso! 0 vulnerabilidades encontradas."
         ];
         break;
       default:
         response = [
           `> ${inputVal}`,
-          `Comando não reconhecido: '${cmd}'. Digite 'help' para ajuda.`
+          `Comando '${cmd}' não reconhecido. Digite 'help' para ver os comandos válidos.`
         ];
     }
 
@@ -124,7 +171,7 @@ function Hero() {
         >
           <motion.div variants={itemVariants} className="hero-badge glass-effect">
             <span className="badge-dot"></span>
-            Disponível para Projetos Globais
+            <Activity size={14} className="pulse-icon" /> Disponível para Projetos Globais & Consultoria
           </motion.div>
           
           <motion.h1 variants={itemVariants} className="hero-title">
@@ -133,26 +180,29 @@ function Hero() {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="hero-subtitle">
-            Aplico o rigor "Zero-Fault" da aviação no desenvolvimento de software de alta performance. De drivers de kernel eBPF em Rust a aplicações mobile FinTech e plataformas Web escaláveis.
+            Aplico o rigor <strong>"Zero-Fault"</strong> da aviação no desenvolvimento de software de alta performance. De drivers de kernel eBPF em Rust a aplicações mobile FinTech e plataformas Web de grande escala.
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-actions">
             <a href="#projects" className="btn-primary">
               <Briefcase size={18} /> Ver Projetos
             </a>
-            <a href="https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary">
-              <MessageSquare size={18} /> Conversar no WhatsApp
+            <a href="/Biografia.pdf" target="_blank" rel="noreferrer" className="btn-secondary">
+              <FileText size={18} /> Ver Currículo (PDF)
+            </a>
+            <a href="https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary whatsapp-btn">
+              <MessageSquare size={18} /> WhatsApp
             </a>
           </motion.div>
 
           <motion.div variants={itemVariants} className="quick-stats-row glass-effect">
             <div className="stat-box">
-              <h3>Rust & C</h3>
-              <p>Kernel/Drivers</p>
+              <h3>Rust & eBPF</h3>
+              <p>Kernel & Security</p>
             </div>
             <div className="stat-box">
-              <h3>Next.js / TS</h3>
-              <p>Web Premium</p>
+              <h3>Next.js 16</h3>
+              <p>Web High-Speed</p>
             </div>
             <div className="stat-box">
               <h3>React Native</h3>
@@ -180,7 +230,7 @@ function Hero() {
                   <Terminal size={14} className="terminal-title-icon" /> wgf-security-terminal.sh
                 </div>
                 <div className="terminal-status-light">
-                  <Shield size={14} className="shield-icon" /> Secure
+                  <Shield size={14} className="shield-icon" /> Secure OS
                 </div>
               </div>
               <div className="terminal-body">
@@ -200,7 +250,7 @@ function Hero() {
                     value={inputVal}
                     onChange={(e) => setInputVal(e.target.value)}
                     className="terminal-input"
-                    placeholder="Digita um comando..."
+                    placeholder="Digita um comando (ex: help, scan, skills)..."
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
@@ -212,7 +262,7 @@ function Hero() {
             </div>
           </TiltCard>
           <div className="terminal-hint">
-            Dica: Experimenta digitar <span className="hint-code">scan</span> ou <span className="hint-code">projects</span> e pressiona Enter!
+            Dica: Experimenta digitar <span className="hint-code" onClick={() => setInputVal('scan')}>scan</span>, <span className="hint-code" onClick={() => setInputVal('skills')}>skills</span> ou <span className="hint-code" onClick={() => setInputVal('cv')}>cv</span> e pressiona Enter!
           </div>
         </motion.div>
       </div>
@@ -221,3 +271,4 @@ function Hero() {
 }
 
 export default Hero;
+

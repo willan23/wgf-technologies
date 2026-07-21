@@ -29,6 +29,16 @@ function Contact() {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
+  const [copiedField, setCopiedField] = useState(null);
+
+  const copyToClipboard = (text, fieldName, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedField(fieldName);
+    setTimeout(() => setCopiedField(null), 2500);
+  };
+
   const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
   const githubUrl = "https://github.com/willan23";
   const linkedinUrl = "https://linkedin.com/in/william-fernandes-152506244";
@@ -56,6 +66,13 @@ function Contact() {
                 <span>WhatsApp Direto</span>
                 <strong>+351 939 060 342</strong>
               </div>
+              <button 
+                onClick={(e) => copyToClipboard('+351 939 060 342', 'phone', e)}
+                className="contact-copy-btn"
+                title="Copiar Telefone"
+              >
+                {copiedField === 'phone' ? 'Copiado! ✓' : 'Copiar'}
+              </button>
             </a>
             
             <a href={emailUrl} className="contact-card">
@@ -66,6 +83,13 @@ function Contact() {
                 <span>Email Profissional</span>
                 <strong>wgftechnologies@gmail.com</strong>
               </div>
+              <button 
+                onClick={(e) => copyToClipboard('wgftechnologies@gmail.com', 'email', e)}
+                className="contact-copy-btn"
+                title="Copiar Email"
+              >
+                {copiedField === 'email' ? 'Copiado! ✓' : 'Copiar'}
+              </button>
             </a>
             
             <a href={linkedinUrl} target="_blank" rel="noreferrer" className="contact-card">

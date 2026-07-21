@@ -105,6 +105,27 @@
   color: var(--accent-cyan);
 }
 
+.contact-copy-btn {
+  margin-left: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.contact-copy-btn:hover {
+  background: var(--accent-cyan);
+  color: #000000;
+  border-color: transparent;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
 /* ==========================================================================
    Right Side (Form & Success Feedback)
    ========================================================================== */

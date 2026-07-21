@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Timeline Styles - WGF Technologies
+   ========================================================================== */
+
+.timeline-section {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.timeline-container {
+  position: relative;
+  margin-top: 4rem;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue), var(--accent-green), var(--accent-gold));
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3rem;
+  position: relative;
+  margin-bottom: 3.5rem;
+  width: 50%;
+}
+
+.timeline-item.right {
+  align-self: flex-end;
+  justify-content: flex-start;
+  padding-left: 3rem;
+  padding-right: 0;
+  margin-left: auto;
+}
+
+.timeline-node {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  border: 3px solid var(--bg-main);
+  transition: transform 0.3s ease;
+}
+
+.timeline-item.right .timeline-node {
+  left: -20px;
+  right: auto;
+}
+
+.timeline-item:hover .timeline-node {
+  transform: scale(1.15) rotate(10deg);
+}
+
+.timeline-content {
+  width: 100%;
+  padding: 1.8rem;
+  border-radius: 16px;
+  border-left: 4px solid var(--accent-cyan);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px var(--shadow-color);
+}
+
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-year, .timeline-location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.timeline-badge-item {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.timeline-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.highlight-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg-card);
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* Responsividade da Linha do Tempo */
+@media (max-width: 900px) {
+  .timeline-line {
+    left: 20px;
+  }
+  .timeline-item, .timeline-item.right {
+    width: 100%;
+    padding-left: 3.5rem;
+    padding-right: 0;
+    margin-left: 0;
+  }
+  .timeline-node, .timeline-item.right .timeline-node {
+    left: 0;
+    right: auto;
+  }
+}
