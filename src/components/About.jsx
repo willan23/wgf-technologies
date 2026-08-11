@@ -61,7 +61,7 @@ function About() {
           </div>
 
           <div className="about-actions">
-            <a href="/Biografia.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+            <a href="/Curriculo_Willan_Fernandes.pdf" target="_blank" rel="noreferrer" className="btn-primary">
               <FileText size={18} /> Ver Currículo Completo (PDF)
             </a>
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-secondary">

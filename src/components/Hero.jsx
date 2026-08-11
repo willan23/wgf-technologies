@@ -53,10 +53,10 @@ function Hero() {
       case 'cv':
         response = [
           `> ${inputVal}`,
-          "[+] A abrir Currículo / Biografia de William Fernandes (PDF)...",
-          "[✓] Ficheiro pronto: /Biografia.pdf"
+          "[+] A abrir Currículo Profissional de Willan Fernandes (PDF)...",
+          "[✓] Ficheiro pronto: /Curriculo_Willan_Fernandes.pdf"
         ];
-        window.open('/Biografia.pdf', '_blank');
+        window.open('/Curriculo_Willan_Fernandes.pdf', '_blank');
         break;
       case 'status':
         response = [
@@ -106,14 +106,29 @@ function Hero() {
       case 'projects':
         response = [
           `> ${inputVal}`,
-          "Ecossistema de Soluções WGF Technologies:",
-          "  [1] Sistema NGAV & EDR Enterprise (Rust + eBPF Kernel Driver)",
-          "  [2] AI Site Shield (SaaS de Varredura Defensiva de Código IA)",
-          "  [3] WGF SenseOS (Sensoriamento Indoor 3D Wi-Fi sem Câmaras)",
-          "  [4] WGF Note (IDE Local-First com Ollama AI Offline)",
-          "  [5] Connect CPLP / STPway (App Mobile FinTech & Gateway Bancário)",
-          "  [6] SUPER CKDO (Web E-commerce Next.js 16 de Alta Performance)",
-          "  [7] CLMA Engenharia (Web Design Premium para Construção Civil)"
+          "Ecossistema de Soluções WGF Technologies (22 Projetos):",
+          "  [1] ZETE — Zero-Trust Edge Telemetry Engine (Rust + eBPF Kernel)",
+          "  [2] Sistema NGAV & EDR Enterprise (Ring-0 Windows Driver)",
+          "  [3] WGF Protocol Mesh Network (Zero-Trust Cryptography em Rust)",
+          "  [4] AI Site Shield (SaaS de Varredura Defensiva de Código IA)",
+          "  [5] BTC Puzzle & Security Solver (Motor C++ OpenCL em GPU)",
+          "  [6] Hermes AI Agent System (Orquestração de Agentes Autónomos)",
+          "  [7] WGF Note (IDE Local-First com Ollama AI Offline)",
+          "  [8] Control Hub Enterprise (SaaS de Risco & Auditoria IA)",
+          "  [9] DCIP — Digital Campus Intelligence (IA Preditiva)",
+          "  [10] WGF SenseOS (Sensoriamento Indoor 3D Wi-Fi sem Câmaras)",
+          "  [11] NetGene OS (Automação de Redes Cisco)",
+          "  [12] Sistema Emergente (Triagem & Despacho em Tempo Real)",
+          "  [13] Connect CPLP — Remessas & Wallet CPLP (Stripe & Multi-Currency)",
+          "  [14] STPway Mobile Payment Application (Gateway Bancário Nacional)",
+          "  [15] CST Mobile PWA & Billing (Telecom PWA & Security)",
+          "  [16] EMAE Mobile Utility Platform (Gestão de Água & Energia)",
+          "  [17] Vrum Mobility Platform (Aluguer & Frota Móvel)",
+          "  [18] CLMA Engenharia (Web Design Premium para Construção)",
+          "  [19] Massagem & Spa Booking (Agendamentos Web)",
+          "  [20] Varejo Retail OS & POS (POS Multi-Tenant Serverless)",
+          "  [21] EcoSEO Acquisition Engine (Automação Playwright)",
+          "  [22] WGF SaaS Monorepo Infrastructure (Docker DevOps)"
         ];
         break;
       case 'scan':
@@ -187,7 +202,7 @@ function Hero() {
             <a href="#projects" className="btn-primary">
               <Briefcase size={18} /> Ver Projetos
             </a>
-            <a href="/Biografia.pdf" target="_blank" rel="noreferrer" className="btn-secondary">
+            <a href="/Curriculo_Willan_Fernandes.pdf" target="_blank" rel="noreferrer" className="btn-secondary">
               <FileText size={18} /> Ver Currículo (PDF)
             </a>
             <a href="https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary whatsapp-btn">
