@@ -48,18 +48,10 @@ function About() {
             <p className="lead-paragraph">
               {t.about.lead}
             </p>
-            <p>
-              Nasci em São Tomé e Príncipe em 18 de março de 1997. Iniciei o meu percurso académico em **Engenharia Informática (2018-2021)**, onde desenvolvi uma base sólida em arquitetura de sistemas e redes computacionais.
-            </p>
-            <p>
-              Em dezembro de 2022, mudei-me para **Portugal** para expandir as minhas capacidades técnicas. Formei-me como **Técnico de Produção Aeronáutica (Nível 4)** e assumi a responsabilidade pela produção de compósitos de fibra para a indústria de transporte público. Esta experiência no setor aeroespacial ensinou-me o valor prático da **latência zero, precisão extrema e gestão de processos complexos**.
-            </p>
-            <p>
-              Como autodidata focado em infraestrutura crítica, especializei-me em **Gestão de Redes e Sistemas Computacionais**, com certificações avançadas pela **Cisco Networking Academy em Cybersecurity e Packet Tracer** obtidas em 2026.
-            </p>
-            <p className="highlight-paragraph">
-              Atualmente, estou focado no crescimento da **WGF Technologies**. Se algum dos 22 projetos ou tecnologias desenvolvidas chamou a sua atenção, entre em contacto para **adquirir a solução (código-fonte / licença), contratar consultoria ou propor uma parceria estratégica de investimento**.
-            </p>
+            <p>{t.about.p1}</p>
+            <p>{t.about.p2}</p>
+            <p>{t.about.p3}</p>
+            <p className="highlight-paragraph">{t.about.p4}</p>
           </div>
 
           <div className="about-actions">

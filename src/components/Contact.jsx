@@ -133,7 +133,7 @@ function Contact() {
             </div>
           ) : (
             <form className="contact-form" onSubmit={handleSubmit}>
-              <h3>Enviar Mensagem</h3>
+              <h3>{t.contact.formTitle}</h3>
               
               <div className="form-group">
                 <input 
@@ -141,7 +141,7 @@ function Contact() {
                   name="name"
                   value={formState.name}
                   onChange={handleChange}
-                  placeholder="O teu nome" 
+                  placeholder={t.contact.namePlaceholder} 
                   className="form-input" 
                   required 
                   disabled={isSubmitting}
@@ -154,7 +154,7 @@ function Contact() {
                   name="email"
                   value={formState.email}
                   onChange={handleChange}
-                  placeholder="O teu e-mail" 
+                  placeholder={t.contact.emailPlaceholder} 
                   className="form-input" 
                   required 
                   disabled={isSubmitting}
@@ -166,7 +166,7 @@ function Contact() {
                   name="message"
                   value={formState.message}
                   onChange={handleChange}
-                  placeholder="Como posso ajudar no teu projeto ou negócio?" 
+                  placeholder={t.contact.msgPlaceholder} 
                   rows="4" 
                   className="form-input" 
                   required
@@ -181,11 +181,11 @@ function Contact() {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 size={18} className="spinner-icon" /> A enviar...
+                    <Loader2 size={18} className="spinner-icon" /> ...
                   </>
                 ) : (
                   <>
-                    <Send size={18} /> Enviar Mensagem
+                    <Send size={18} /> {t.contact.sendBtn}
                   </>
                 )}
               </button>

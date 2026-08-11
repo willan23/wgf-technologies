@@ -485,7 +485,7 @@ function Showcase() {
 
                   <div className="project-card-footer">
                     <button className="btn-read-more" style={{ color: project.color }}>
-                      Ver Caso de Estudo <span className="arrow-icon">→</span>
+                      {t.showcase.cardButton} <span className="arrow-icon">→</span>
                     </button>
                   </div>
                 </motion.div>
