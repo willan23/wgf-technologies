@@ -56,7 +56,7 @@ function About() {
               Como autodidata focado em infraestrutura crítica, especializei-me em **Gestão de Redes e Sistemas Computacionais**, com certificações avançadas pela **Cisco Networking Academy em Cybersecurity e Packet Tracer** obtidas em 2026.
             </p>
             <p className="highlight-paragraph">
-              Atualmente, estou focado no crescimento da **WGF Technologies**, onde transformo os meus desenvolvimentos em soluções de mercado prontas para escala. Procuro parceiros e investimentos estratégicos para alavancar os meus projetos de segurança e sensoriamento Wi-Fi.
+              Atualmente, estou focado no crescimento da **WGF Technologies**. Se algum dos 22 projetos ou tecnologias desenvolvidas chamou a sua atenção, entre em contacto para **adquirir a solução (código-fonte / licença), contratar consultoria ou propor uma parceria estratégica de investimento**.
             </p>
           </div>
 

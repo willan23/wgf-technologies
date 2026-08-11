@@ -479,6 +479,14 @@
   line-height: 1.7;
 }
 
+.modal-commercial-banner {
+  border: 1px solid;
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
 .modal-footer-actions {
   display: flex;
   justify-content: flex-end;

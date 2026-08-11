@@ -50,11 +50,11 @@ function Contact() {
         {/* Left Side: Contact Information Cards */}
         <div className="contact-info">
           <h2 className="section-title">
-            Vamos Iniciar a tua Próxima <br />
-            <span className="text-gradient">Evolução Tecnológica</span>
+            Aquisição de Projetos & <br />
+            <span className="text-gradient">Parcerias Estratégicas</span>
           </h2>
           <p className="section-desc">
-            Quer precises de uma auditoria avançada de cibersegurança, de uma aplicação FinTech robusta ou de uma infraestrutura escalável, estou pronto para ajudar.
+            Se algum dos <b>22 projetos</b> chamou a sua atenção, entre em contacto direto. Todos os sistemas estão disponíveis para <b>compra de código-fonte, licenciamento comercial ou parcerias de investimento</b>.
           </p>
           
           <div className="contact-methods">

@@ -538,17 +538,39 @@ function Showcase() {
                   </h4>
                   <p>{selectedProject.results}</p>
                 </div>
+
+                {/* Banner de Oportunidades Comerciais & Parcerias */}
+                <div className="modal-commercial-banner glass-effect" style={{ borderColor: `${selectedProject.color}40`, background: `${selectedProject.color}08` }}>
+                  <h5 style={{ color: selectedProject.color, margin: '0 0 0.4rem 0', fontWeight: 800 }}>
+                    🤝 Aquisição de Projeto ou Parceria Estratégica
+                  </h5>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                    Interessado nesta solução? Este projeto está disponível para <b>aquisição (código-fonte / licença comercial)</b> ou para estabelecimento de <b>parcerias de investimento e joint-venture</b>.
+                  </p>
+                </div>
               </div>
 
               <div className="modal-footer-actions">
                 <a 
-                  href={`https://wa.me/351939060342?text=${encodeURIComponent(selectedProject.demoMessage)}`}
+                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá William, gostei do projeto ${selectedProject.title} e tenho interesse em adquirir / comprar o projeto ou ver uma demonstração.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"
+                  style={{ background: `linear-gradient(135deg, ${selectedProject.color}, #3b82f6)` }}
                 >
-                  <ExternalLink size={16} /> Agendar Demonstração no WhatsApp
+                  <ExternalLink size={16} /> Comprar / Adquirir Projeto
                 </a>
+
+                <a 
+                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá William, gostaria de propor uma parceria comercial ou investimento para o projeto ${selectedProject.title}.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary"
+                  style={{ borderColor: `${selectedProject.color}60` }}
+                >
+                  🤝 Propor Parceria
+                </a>
+
                 <button className="btn-secondary" onClick={() => setSelectedProject(null)}>
                   Fechar
                 </button>
