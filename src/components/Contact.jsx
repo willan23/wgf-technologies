@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Phone, Linkedin, Mail, Github, CheckCircle, Send, Loader2 } from 'lucide-react';
 import './Contact.css';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 function Contact() {
+  const { t } = useLanguage();
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -50,11 +52,11 @@ function Contact() {
         {/* Left Side: Contact Information Cards */}
         <div className="contact-info">
           <h2 className="section-title">
-            Aquisição de Projetos & <br />
-            <span className="text-gradient">Parcerias Estratégicas</span>
+            {t.contact.titleStart} <br />
+            <span className="text-gradient">{t.contact.titleGrad}</span>
           </h2>
           <p className="section-desc">
-            Se algum dos <b>22 projetos</b> chamou a sua atenção, entre em contacto direto. Todos os sistemas estão disponíveis para <b>compra de código-fonte, licenciamento comercial ou parcerias de investimento</b>.
+            {t.contact.desc}
           </p>
           
           <div className="contact-methods">
@@ -63,7 +65,7 @@ function Contact() {
                 <Phone size={24} color="var(--accent-green)" />
               </div>
               <div className="contact-card-text">
-                <span>WhatsApp Direto</span>
+                <span>{t.contact.whatsappLabel}</span>
                 <strong>+351 939 060 342</strong>
               </div>
               <button 
@@ -71,7 +73,7 @@ function Contact() {
                 className="contact-copy-btn"
                 title="Copiar Telefone"
               >
-                {copiedField === 'phone' ? 'Copiado! ✓' : 'Copiar'}
+                {copiedField === 'phone' ? t.contact.copiedText : t.contact.copyBtn}
               </button>
             </a>
             
@@ -80,7 +82,7 @@ function Contact() {
                 <Mail size={24} color="var(--accent-gold)" />
               </div>
               <div className="contact-card-text">
-                <span>Email Profissional</span>
+                <span>{t.contact.emailLabel}</span>
                 <strong>wgftechnologies@gmail.com</strong>
               </div>
               <button 
@@ -88,7 +90,7 @@ function Contact() {
                 className="contact-copy-btn"
                 title="Copiar Email"
               >
-                {copiedField === 'email' ? 'Copiado! ✓' : 'Copiar'}
+                {copiedField === 'email' ? t.contact.copiedText : t.contact.copyBtn}
               </button>
             </a>
             
@@ -97,7 +99,7 @@ function Contact() {
                 <Linkedin size={24} color="var(--accent-blue)" />
               </div>
               <div className="contact-card-text">
-                <span>Conectar no LinkedIn</span>
+                <span>{t.contact.linkedinLabel}</span>
                 <strong>William Fernandes</strong>
               </div>
             </a>

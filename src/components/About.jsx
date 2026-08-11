@@ -1,8 +1,10 @@
 import React from 'react';
 import { Award, ShieldAlert, Target, FileText, Phone } from 'lucide-react';
 import './About.css';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 function About() {
+  const { t } = useLanguage();
   const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
 
   return (
@@ -36,15 +38,15 @@ function About() {
 
         {/* Right Side: Structured Story */}
         <div className="about-details">
-          <span className="about-tagline">A Minha Trajetória</span>
+          <span className="about-tagline">{t.about.badge}</span>
           <h2 className="section-title">
-            Willan Da Graça Fernandes <br />
-            <span className="text-gradient">Engenheiro & Especialista</span>
+            {t.about.titleStart} <br />
+            <span className="text-gradient">{t.about.titleGrad}</span>
           </h2>
           
           <div className="about-text-content">
             <p className="lead-paragraph">
-              A minha jornada é definida por uma transição constante entre o rigor da engenharia física e a inovação em cibersegurança e sistemas digitais.
+              {t.about.lead}
             </p>
             <p>
               Nasci em São Tomé e Príncipe em 18 de março de 1997. Iniciei o meu percurso académico em **Engenharia Informática (2018-2021)**, onde desenvolvi uma base sólida em arquitetura de sistemas e redes computacionais.
@@ -62,10 +64,10 @@ function About() {
 
           <div className="about-actions">
             <a href="/Curriculo_Willan_Fernandes.pdf" target="_blank" rel="noreferrer" className="btn-primary">
-              <FileText size={18} /> Ver Currículo Completo (PDF)
+              <FileText size={18} /> {t.about.btnCV}
             </a>
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-secondary">
-              <Phone size={18} /> Contacto WhatsApp
+              <Phone size={18} /> {t.about.btnContact}
             </a>
           </div>
         </div>

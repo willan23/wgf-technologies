@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Terminal, Cpu, Smartphone, Layers, CheckCircle2, Code2 } from 'lucide-react';
 import TiltCard from './TiltCard.jsx';
 import './SkillsMatrix.css';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const skillCategories = [
   {
@@ -66,6 +67,7 @@ const skillCategories = [
 ];
 
 function SkillsMatrix() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("kernel");
 
   const currentCategory = skillCategories.find(c => c.id === activeTab) || skillCategories[0];
@@ -74,24 +76,22 @@ function SkillsMatrix() {
     <section id="skills" className="skills-section">
       <div className="section-header">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="skills-badge glass-effect"
+          className="section-badge"
         >
-          <Layers size={16} color="var(--accent-cyan)" />
-          <span>Matriz de Especialização</span>
+          <Layers size={14} /> {t.skills.badge}
         </motion.div>
 
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           className="section-title"
         >
-          Stack Tecnológico & <span className="text-gradient">Competências Clave</span>
+          {t.skills.titleStart} <span className="text-gradient">{t.skills.titleGrad}</span>
         </motion.h2>
 
         <motion.p 

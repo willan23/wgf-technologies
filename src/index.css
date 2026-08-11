@@ -248,6 +248,44 @@ h1, h2, h3, h4, .logo-text, .section-title {
   color: var(--accent-cyan);
 }
 
+/* Multi-Language Selector Pills */
+.lang-switcher-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+}
+
+.lang-icon {
+  color: var(--accent-cyan);
+  margin-right: 0.2rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  color: var(--text-main);
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 242, 254, 0.3);
+}
+
 .main-nav a:not(.btn-primary)::after {
   content: '';
   position: absolute;

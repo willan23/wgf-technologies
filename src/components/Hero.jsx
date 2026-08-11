@@ -4,8 +4,11 @@ import { Shield, Terminal, MessageSquare, Briefcase, FileText, Activity } from '
 import './Hero.css';
 import TiltCard from './TiltCard.jsx';
 import ThreeDHeroObject from './ThreeDHeroObject.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 function Hero() {
+  const { t } = useLanguage();
+
   const [terminalHistory, setTerminalHistory] = useState([
     "WGF OS v2.0.6 (Porto, Portugal) - Cyber-Security Kernel Console",
     "Initializing eBPF Kernel telemetry... [OK]",
@@ -186,27 +189,27 @@ function Hero() {
         >
           <motion.div variants={itemVariants} className="hero-badge glass-effect">
             <span className="badge-dot"></span>
-            <Activity size={14} className="pulse-icon" /> Disponível para Projetos Globais & Consultoria
+            <Activity size={14} className="pulse-icon" /> {t.hero.badge}
           </motion.div>
           
           <motion.h1 variants={itemVariants} className="hero-title">
-            Segurança de Sistemas & <br />
-            <span className="text-gradient">Desenvolvimento Full-Stack</span>
+            {t.hero.titleStart} <br />
+            <span className="text-gradient">{t.hero.titleGrad}</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="hero-subtitle">
-            Aplico o rigor <strong>"Zero-Fault"</strong> da aviação no desenvolvimento de software de alta performance. De drivers de kernel eBPF em Rust a aplicações mobile FinTech e plataformas Web de grande escala.
+            {t.hero.subtitle}
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-actions">
             <a href="#projects" className="btn-primary">
-              <Briefcase size={18} /> Ver Projetos
+              <Briefcase size={18} /> {t.hero.btnProjects}
             </a>
             <a href="/Curriculo_Willan_Fernandes.pdf" target="_blank" rel="noreferrer" className="btn-secondary">
-              <FileText size={18} /> Ver Currículo (PDF)
+              <FileText size={18} /> {t.hero.btnCV}
             </a>
             <a href="https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary whatsapp-btn">
-              <MessageSquare size={18} /> WhatsApp
+              <MessageSquare size={18} /> {t.hero.btnWhatsApp}
             </a>
           </motion.div>
 

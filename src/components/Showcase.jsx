@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import './Showcase.css';
 import TiltCard from './TiltCard.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const projects = [
   {
@@ -330,6 +331,7 @@ const categories = [
 ];
 
 function Showcase() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -354,7 +356,7 @@ function Showcase() {
           viewport={{ once: true }}
           className="section-badge"
         >
-          <Sparkles size={14} /> Eng. de Software & Cibersegurança
+          <Sparkles size={14} /> {t.showcase.badge}
         </motion.div>
 
         <motion.h2 
@@ -364,7 +366,7 @@ function Showcase() {
           transition={{ duration: 0.6 }}
           className="section-title"
         >
-          Projetos de <span className="text-gradient">Alta Engenharia & Inovação</span>
+          {t.showcase.titleStart} <span className="text-gradient">{t.showcase.titleGrad}</span>
         </motion.h2>
         
         <motion.p 
@@ -374,26 +376,26 @@ function Showcase() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="section-desc"
         >
-          Portfólio com 22 sistemas de grau industrial desenvolvidos com rigor aeronáutico "Zero-Fault", de Drivers Ring-0 a Inteligência Artificial e FinTech.
+          {t.showcase.desc}
         </motion.p>
 
         {/* Counter Metrics Row */}
         <div className="metrics-counter-row">
           <div className="metric-box">
             <span className="metric-num">22</span>
-            <span className="metric-label">Sistemas Deploiados</span>
+            <span className="metric-label">{t.showcase.metric1}</span>
           </div>
           <div className="metric-box">
             <span className="metric-num">&lt; 1ms</span>
-            <span className="metric-label">Latência Kernel eBPF</span>
+            <span className="metric-label">{t.showcase.metric2}</span>
           </div>
           <div className="metric-box">
             <span className="metric-num">100%</span>
-            <span className="metric-label">Segurança Proativa</span>
+            <span className="metric-label">{t.showcase.metric3}</span>
           </div>
           <div className="metric-box">
             <span className="metric-num">6+</span>
-            <span className="metric-label">Áreas de Especialidade</span>
+            <span className="metric-label">{t.showcase.metric4}</span>
           </div>
         </div>
       </div>
@@ -406,13 +408,23 @@ function Showcase() {
               ? projects.length 
               : projects.filter(p => p.category === cat).length;
 
+            const categoryKeyMap = {
+              "Todos": t.showcase.categories.all,
+              "Cibersegurança & Kernel": t.showcase.categories.cyber,
+              "IA & Agentes Autónomos": t.showcase.categories.ai,
+              "Sistemas & IoT": t.showcase.categories.iot,
+              "FinTech & Mobile": t.showcase.categories.fintech,
+              "Web Apps & Retalho": t.showcase.categories.web,
+              "Cloud & Growth": t.showcase.categories.cloud
+            };
+
             return (
               <button
                 key={idx}
                 className={`category-tab ${activeCategory === cat ? 'active' : ''}`}
                 onClick={() => setActiveCategory(cat)}
               >
-                <span>{cat}</span>
+                <span>{categoryKeyMap[cat] || cat}</span>
                 <span className="category-count">{count}</span>
               </button>
             );
@@ -520,21 +532,21 @@ function Showcase() {
               <div className="modal-body-content">
                 <div className="modal-section-block">
                   <h4 className="modal-section-title">
-                    <CheckCircle2 size={18} style={{ color: selectedProject.color }} /> O Desafio Técnico
+                    <CheckCircle2 size={18} style={{ color: selectedProject.color }} /> {t.showcase.modal.challenge}
                   </h4>
                   <p>{selectedProject.challenge}</p>
                 </div>
 
                 <div className="modal-section-block">
                   <h4 className="modal-section-title">
-                    <Cpu size={18} style={{ color: selectedProject.color }} /> Arquitetura & Solução
+                    <Cpu size={18} style={{ color: selectedProject.color }} /> {t.showcase.modal.solution}
                   </h4>
                   <p>{selectedProject.solution}</p>
                 </div>
 
                 <div className="modal-section-block">
                   <h4 className="modal-section-title">
-                    <BarChart size={18} style={{ color: selectedProject.color }} /> Resultados de Impacto
+                    <BarChart size={18} style={{ color: selectedProject.color }} /> {t.showcase.modal.results}
                   </h4>
                   <p>{selectedProject.results}</p>
                 </div>
@@ -542,10 +554,10 @@ function Showcase() {
                 {/* Banner de Oportunidades Comerciais & Parcerias */}
                 <div className="modal-commercial-banner glass-effect" style={{ borderColor: `${selectedProject.color}40`, background: `${selectedProject.color}08` }}>
                   <h5 style={{ color: selectedProject.color, margin: '0 0 0.4rem 0', fontWeight: 800 }}>
-                    🤝 Aquisição de Projeto ou Parceria Estratégica
+                    {t.showcase.modal.commercialTitle}
                   </h5>
                   <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                    Interessado nesta solução? Este projeto está disponível para <b>aquisição (código-fonte / licença comercial)</b> ou para estabelecimento de <b>parcerias de investimento e joint-venture</b>.
+                    {t.showcase.modal.commercialDesc}
                   </p>
                 </div>
               </div>
@@ -558,7 +570,7 @@ function Showcase() {
                   className="btn-primary"
                   style={{ background: `linear-gradient(135deg, ${selectedProject.color}, #3b82f6)` }}
                 >
-                  <ExternalLink size={16} /> Comprar / Adquirir Projeto
+                  <ExternalLink size={16} /> {t.showcase.modal.btnBuy}
                 </a>
 
                 <a 
@@ -568,11 +580,11 @@ function Showcase() {
                   className="btn-secondary"
                   style={{ borderColor: `${selectedProject.color}60` }}
                 >
-                  🤝 Propor Parceria
+                  🤝 {t.showcase.modal.btnPartner}
                 </a>
 
                 <button className="btn-secondary" onClick={() => setSelectedProject(null)}>
-                  Fechar
+                  {t.showcase.modal.btnClose}
                 </button>
               </div>
             </motion.div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Github, Linkedin, Mail, MessageSquare, ArrowUp } from 'lucide-react';
+import { Sun, Moon, Github, Linkedin, Mail, MessageSquare, ArrowUp, Globe } from 'lucide-react';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Timeline from './components/Timeline.jsx';
@@ -7,9 +7,11 @@ import SkillsMatrix from './components/SkillsMatrix.jsx';
 import Showcase from './components/Showcase.jsx';
 import Contact from './components/Contact.jsx';
 import ThreeBackground from './components/ThreeBackground.jsx';
+import { LanguageProvider, useLanguage } from './context/LanguageContext.jsx';
 
-function App() {
-  // Inicializar o tema a partir do localStorage ou padrão 'dark'
+function AppContent() {
+  const { lang, setLang, t } = useLanguage();
+
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('wgf-portfolio-theme');
     return savedTheme ? savedTheme : 'dark';
@@ -18,7 +20,6 @@ function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Efeito para sincronizar a classe do tema no elemento HTML raiz
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'light') {
@@ -29,7 +30,6 @@ function App() {
     localStorage.setItem('wgf-portfolio-theme', theme);
   }, [theme]);
 
-  // Efeito para monitorizar o progresso do scroll na página
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -48,7 +48,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Função para alternar o tema
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
@@ -85,24 +84,50 @@ function App() {
           <span className="logo-text">WGF <span className="logo-accent">Technologies</span></span>
         </div>
         <nav className="main-nav">
-          <a href="#hero">Início</a>
-          <a href="#about">Sobre Mim</a>
-          <a href="#timeline">Trajetória</a>
-          <a href="#skills">Competências</a>
-          <a href="#projects">Projetos</a>
-          <a href="#contact">Contacto</a>
+          <a href="#hero">{t.nav.home}</a>
+          <a href="#about">{t.nav.about}</a>
+          <a href="#timeline">{t.nav.timeline}</a>
+          <a href="#skills">{t.nav.skills}</a>
+          <a href="#projects">{t.nav.projects}</a>
+          <a href="#contact">{t.nav.contact}</a>
           
+          {/* Seletor Dinâmico de Idiomas */}
+          <div className="lang-switcher-container">
+            <Globe size={16} className="lang-icon" />
+            <button 
+              className={`lang-btn ${lang === 'PT' ? 'active' : ''}`}
+              onClick={() => setLang('PT')}
+              title="Português"
+            >
+              PT
+            </button>
+            <button 
+              className={`lang-btn ${lang === 'EN' ? 'active' : ''}`}
+              onClick={() => setLang('EN')}
+              title="English"
+            >
+              EN
+            </button>
+            <button 
+              className={`lang-btn ${lang === 'FR' ? 'active' : ''}`}
+              onClick={() => setLang('FR')}
+              title="Français"
+            >
+              FR
+            </button>
+          </div>
+
           {/* Seletor Dinâmico de Tema */}
           <button 
             onClick={toggleTheme} 
             className="theme-toggle-btn"
             aria-label="Alternar Tema"
-            title={theme === 'dark' ? 'Mudar para Tema Claro' : 'Mudar para Tema Escuro'}
+            title={theme === 'dark' ? 'Tema Claro' : 'Tema Escuro'}
           >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           
-          <a href="#contact" className="btn-primary">Fale Comigo</a>
+          <a href="#contact" className="btn-primary">{t.nav.talkBtn}</a>
         </nav>
       </header>
       
@@ -153,12 +178,19 @@ function App() {
             <Mail size={22} />
           </a>
         </div>
-        <p>&copy; 2026 WGF Technologies. William Fernandes. Todos os direitos reservados.</p>
-        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>Porto, Portugal</p>
+        <p>{t.footer.rights}</p>
+        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>{t.footer.location}</p>
       </footer>
     </div>
   );
 }
 
-export default App;
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
+}
 
+export default App;
