@@ -289,18 +289,18 @@ export const translations = {
     },
     home: {
       badge: 'Technology Venture Studio',
-      headline: 'Building the next generation of intelligent digital products.',
+      headline: 'A construir a próxima geração de produtos digitais inteligentes.',
       subheadline:
         'A WGF Technologies constrói plataformas AI-native, produtos SaaS e infraestrutura digital para transformar problemas complexos em tecnologia escalável.',
       ctaPortfolio: 'Explorar o Portfólio',
       ctaPartner: 'Ser Parceiro',
-      ctaInvestor: 'Investor Relations',
+      ctaInvestor: 'Relações com Investidores',
       positioningTitle: 'Não construímos só software. Construímos produtos de tecnologia para o mercado.',
       positioningBody:
         'A WGF Technologies é um venture tecnológico independente que desenvolve produtos AI-native, plataformas SaaS, infraestrutura digital e sistemas inteligentes para resolver problemas reais e escalar em mercados emergentes e globais.',
-      snapshotTitle: 'Technology Portfolio',
+      snapshotTitle: 'Portfólio Tecnológico',
       snapshotBody: 'Múltiplos produtos em:',
-      portfolioTitle: 'Our Technology Portfolio',
+      portfolioTitle: 'O Nosso Portfólio Tecnológico',
       portfolioBody:
         'Um portfólio crescente de produtos tecnológicos desenhados em torno de mercados reais, problemas reais e infraestrutura digital escalável.',
       techTitle: 'Tecnologia',
@@ -529,18 +529,18 @@ export const translations = {
     },
     home: {
       badge: 'Technology Venture Studio',
-      headline: 'Building the next generation of intelligent digital products.',
+      headline: 'Construire la prochaine génération de produits numériques intelligents.',
       subheadline:
         'WGF Technologies construit des plateformes AI-native, des produits SaaS et des infrastructures numériques pour transformer des problèmes complexes en technologie scalable.',
       ctaPortfolio: 'Explorer le Portfolio',
       ctaPartner: 'Devenir Partenaire',
-      ctaInvestor: 'Investor Relations',
+      ctaInvestor: 'Relations Investisseurs',
       positioningTitle: 'Nous ne construisons pas seulement du logiciel. Nous construisons des produits technologiques pour le marché.',
       positioningBody:
         'WGF Technologies est un venture technologique indépendant qui développe des produits AI-native, des plateformes SaaS, des infrastructures numériques et des systèmes intelligents pour résoudre des problèmes réels et scaler sur les marchés émergents et mondiaux.',
-      snapshotTitle: 'Technology Portfolio',
+      snapshotTitle: 'Portfolio Technologique',
       snapshotBody: 'Plusieurs produits à travers :',
-      portfolioTitle: 'Our Technology Portfolio',
+      portfolioTitle: 'Notre Portfolio Technologique',
       portfolioBody:
         'Un portfolio croissant de produits technologiques conçus autour de marchés réels, de problèmes réels et d’infrastructures numériques scalables.',
       techTitle: 'Technologie',
@@ -551,7 +551,7 @@ export const translations = {
       investorTitle: 'Opportunité d’investissement',
       investorBody:
         'Nous préparons la prochaine étape de croissance et sommes ouverts aux conversations avec des investisseurs stratégiques, venture partners et capital technologique.',
-      investorCta: 'Register Interest',
+      investorCta: 'Enregistrer un intérêt',
       partnersTitle: 'Partenariats Stratégiques',
       partnersBody: 'Partenaires technologie, distribution et marché qui veulent construire avec nous.',
       partnersCta: 'Devenir Partenaire Stratégique',

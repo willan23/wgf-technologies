@@ -274,6 +274,9 @@ h1, h2, h3, h4, .logo-text, .section-title {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .lang-btn:hover {

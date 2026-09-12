@@ -81,15 +81,25 @@ export default function Layout() {
               {label}
             </NavLink>
           ))}
+          <Link to="/contact" className="btn-primary nav-cta">
+            {t.nav.cta}
+          </Link>
+        </nav>
 
-          <div className="lang-switcher-container">
-            <Globe size={16} className="lang-icon" />
+        <div className="header-tools">
+          <div className="lang-switcher-container" role="group" aria-label="Language">
+            <Globe size={16} className="lang-icon" aria-hidden />
             {['PT', 'EN', 'FR'].map((code) => (
               <button
                 key={code}
                 type="button"
                 className={`lang-btn ${lang === code ? 'active' : ''}`}
-                onClick={() => setLang(code)}
+                aria-pressed={lang === code}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setLang(code);
+                }}
               >
                 {code}
               </button>
@@ -105,19 +115,15 @@ export default function Layout() {
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          <Link to="/contact" className="btn-primary nav-cta">
-            {t.nav.cta}
-          </Link>
-        </nav>
-
-        <button
-          type="button"
-          className="mobile-menu-btn"
-          aria-label="Menu"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <button
+            type="button"
+            className="mobile-menu-btn"
+            aria-label="Menu"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </header>
 
       {menuOpen && (
@@ -127,29 +133,10 @@ export default function Layout() {
               {label}
             </NavLink>
           ))}
-          <div className="mobile-tools">
-            {['PT', 'EN', 'FR'].map((code) => (
-              <button
-                key={code}
-                type="button"
-                className={`lang-btn ${lang === code ? 'active' : ''}`}
-                onClick={() => setLang(code)}
-              >
-                {code}
-              </button>
-            ))}
-            <button
-              type="button"
-              className="theme-toggle-btn"
-              onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </div>
         </div>
       )}
 
-      <main className="page-main">
+      <main className="page-main" key={lang}>
         <Outlet />
       </main>
 

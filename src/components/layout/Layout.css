@@ -1,7 +1,7 @@
 .logo-img {
   height: 44px;
   width: auto;
-  max-width: min(240px, 52vw);
+  max-width: min(240px, 42vw);
   object-fit: contain;
   display: block;
 }
@@ -10,6 +10,19 @@
   text-decoration: none;
   gap: 0.75rem;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.header-tools .lang-switcher-container {
+  flex-shrink: 0;
 }
 
 .page-main {
@@ -61,14 +74,6 @@
 
 .mobile-drawer a.active {
   color: var(--accent-cyan);
-}
-
-.mobile-tools {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--border-color);
 }
 
 .site-footer {
