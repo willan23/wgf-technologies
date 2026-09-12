@@ -1,6 +1,6 @@
 .logo-symbol {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
   object-fit: contain;
   background: transparent;
   filter: drop-shadow(0 4px 10px rgba(0, 242, 254, 0.25));
@@ -12,14 +12,6 @@
   gap: 0.75rem;
   align-items: center;
   flex-shrink: 0;
-}
-
-.logo-container .logo-text {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-main);
-  text-transform: none;
 }
 
 .header-tools {
@@ -162,12 +154,8 @@
   }
 
   .logo-symbol {
-    height: 34px;
-    width: 34px;
-  }
-
-  .logo-container .logo-text {
-    font-size: 0.95rem;
+    height: 40px;
+    width: 40px;
   }
 
   .site-footer {

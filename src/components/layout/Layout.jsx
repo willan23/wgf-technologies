@@ -72,10 +72,7 @@ export default function Layout() {
 
       <header className="main-header glass-effect">
         <Link to="/" className="logo-container" aria-label={company.name}>
-          <img src={company.assets.symbol3d} alt="" className="logo-symbol" />
-          <span className="logo-text">
-            WGF <span className="logo-accent">Technologies</span>
-          </span>
+          <img src={company.assets.symbol3d} alt="WGF Technologies" className="logo-symbol" />
         </Link>
 
         <nav className="main-nav desktop-nav" aria-label="Primary">
