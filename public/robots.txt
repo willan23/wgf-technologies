@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /investor-data-room
 
 Sitemap: https://www.wgf-technologies.site/sitemap.xml
