@@ -26,6 +26,7 @@ export const company = {
   assets: {
     brand: '/wgf-brand.png',
     crest: '/wgf-crest.png',
+    symbol3d: '/wgf-symbol-3d.png',
     founderPhoto: '/image.png',
     ogImage: '/wgf-brand.png',
   },

@@ -72,7 +72,10 @@ export default function Layout() {
 
       <header className="main-header glass-effect">
         <Link to="/" className="logo-container" aria-label={company.name}>
-          <img src={company.assets.brand} alt="WGF Technologies" className="logo-img" />
+          <img src={company.assets.symbol3d} alt="" className="logo-symbol" />
+          <span className="logo-text">
+            WGF <span className="logo-accent">Technologies</span>
+          </span>
         </Link>
 
         <nav className="main-nav desktop-nav" aria-label="Primary">
@@ -144,7 +147,7 @@ export default function Layout() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand-row">
-              <img src={company.assets.brand} alt="" className="footer-brand-img" />
+              <img src={company.assets.symbol3d} alt="" className="footer-brand-img" />
               <div className="footer-brand">WGF Technologies</div>
             </div>
             <p>{t.footer.tagline}</p>

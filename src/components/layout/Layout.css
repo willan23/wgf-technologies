@@ -1,16 +1,25 @@
-.logo-img {
-  height: 44px;
-  width: auto;
-  max-width: min(240px, 42vw);
+.logo-symbol {
+  height: 40px;
+  width: 40px;
   object-fit: contain;
-  display: block;
+  background: transparent;
+  filter: drop-shadow(0 4px 10px rgba(0, 242, 254, 0.25));
 }
 
 .logo-container {
   text-decoration: none;
+  display: inline-flex;
   gap: 0.75rem;
   align-items: center;
   flex-shrink: 0;
+}
+
+.logo-container .logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  text-transform: none;
 }
 
 .header-tools {
@@ -99,9 +108,10 @@
 }
 
 .footer-brand-img {
-  height: 42px;
-  width: auto;
+  height: 40px;
+  width: 40px;
   object-fit: contain;
+  background: transparent;
 }
 
 .footer-brand {
@@ -151,8 +161,13 @@
     padding: 1rem 1.25rem;
   }
 
-  .logo-img {
-    height: 36px;
+  .logo-symbol {
+    height: 34px;
+    width: 34px;
+  }
+
+  .logo-container .logo-text {
+    font-size: 0.95rem;
   }
 
   .site-footer {

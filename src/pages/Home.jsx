@@ -8,6 +8,7 @@ import { getPublicProducts } from '../data/products';
 import { technologyCategories } from '../data/technology';
 import { markets } from '../data/markets';
 import ProductCard from '../components/ProductCard';
+import Symbol3D from '../components/Symbol3D';
 import { trackEvent } from '../lib/analytics';
 
 export default function Home() {
@@ -28,7 +29,6 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <span className="section-eyebrow">{t.home.badge}</span>
-          <img src={company.assets.brand} alt="WGF Technologies" className="home-brand-mark" />
           <h1>{t.home.headline}</h1>
           <p className="lead">{t.home.subheadline}</p>
           <div className="hero-actions">
@@ -53,7 +53,7 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.15 }}
         >
-          <img src={company.assets.crest} alt="WGF crest" className="home-crest" />
+          <Symbol3D size="lg" alt="WGF symbol" />
         </motion.div>
       </section>
 
