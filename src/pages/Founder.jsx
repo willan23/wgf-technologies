@@ -28,7 +28,8 @@ export default function Founder() {
       <PageHero title={t.founder.title} subtitle={t.founder.role} />
       <section className="section-block founder-layout">
         <div className="founder-photo-card glass-effect">
-          <img src={founder.photo} alt={founder.name} />
+          <img src={company.assets.crest} alt="WGF crest" className="founder-crest" />
+          <img src={founder.photo} alt={founder.name} className="founder-photo" />
           <h2>{founder.name}</h2>
           <p className="muted">{founder.role}</p>
         </div>

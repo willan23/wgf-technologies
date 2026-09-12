@@ -23,6 +23,12 @@ export const company = {
     site: 'https://www.wgf-technologies.site',
     canonical: 'https://www.wgf-technologies.site/',
   },
+  assets: {
+    brand: '/wgf-brand.png',
+    crest: '/wgf-crest.png',
+    founderPhoto: '/image.png',
+    ogImage: '/wgf-brand.png',
+  },
   founder: {
     name: 'Willan Da Graça Fernandes',
     role: 'Founder',

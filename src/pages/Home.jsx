@@ -28,6 +28,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <span className="section-eyebrow">{t.home.badge}</span>
+          <img src={company.assets.brand} alt="WGF Technologies" className="home-brand-mark" />
           <h1>{t.home.headline}</h1>
           <p className="lead">{t.home.subheadline}</p>
           <div className="hero-actions">
@@ -45,6 +46,14 @@ export default function Home() {
               <LineChart size={16} /> {t.home.ctaInvestor}
             </Link>
           </div>
+        </motion.div>
+        <motion.div
+          className="home-hero-visual"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.15 }}
+        >
+          <img src={company.assets.crest} alt="WGF crest" className="home-crest" />
         </motion.div>
       </section>
 

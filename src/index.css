@@ -474,7 +474,37 @@ h1, h2, h3, h4, .logo-text, .section-title {
 .page-hero,
 .home-hero {
   padding: 4rem 4rem 2rem;
-  max-width: 1100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  min-height: calc(100vh - 5.5rem);
+}
+
+.home-brand-mark {
+  display: block;
+  width: min(320px, 100%);
+  height: auto;
+  margin: 0.75rem 0 1.25rem;
+  border-radius: 12px;
+}
+
+.home-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-crest {
+  width: min(380px, 100%);
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .page-hero h1,
@@ -711,11 +741,20 @@ h1, h2, h3, h4, .logo-text, .section-title {
 }
 
 .founder-strip img,
-.founder-photo-card img {
+.founder-photo-card .founder-photo {
   width: 100%;
   border-radius: 16px;
   object-fit: cover;
   aspect-ratio: 1;
+}
+
+.founder-crest {
+  width: 72%;
+  margin: 0 auto 1rem;
+  display: block;
+  border-radius: 16px;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
 }
 
 .founder-layout {
@@ -932,6 +971,16 @@ h1, h2, h3, h4, .logo-text, .section-title {
   .section-block {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 2.5rem;
+  }
+
+  .home-crest {
+    width: min(280px, 80%);
   }
 
   .two-col,
