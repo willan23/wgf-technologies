@@ -1,12 +1,14 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { markets } from '../data/markets';
+import { localizeList } from '../data/localize';
 import PageHero from '../components/PageHero';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Markets() {
-  const { t } = useLanguage();
-  usePageMeta({ title: t.nav.markets, description: t.markets.body, path: '/markets' });
+  const { t, lang } = useLanguage();
+  usePageMeta(routeMeta('/markets', t, lang));
 
   return (
     <div>
@@ -19,10 +21,10 @@ export default function Markets() {
             <span className="map-node n3">STP</span>
             <span className="map-node n4">Global</span>
           </div>
-          <p className="map-caption">Opportunity markets — not claimed physical offices</p>
+          <p className="map-caption">{t.markets.mapCaption}</p>
         </div>
         <div className="feature-grid">
-          {markets.map((item) => (
+          {localizeList(markets, lang).map((item) => (
             <article key={item.id} className="feature-card glass-effect">
               <h2>{item.title}</h2>
               <p>{item.description}</p>

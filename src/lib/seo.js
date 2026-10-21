@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { company } from '../data/company';
+import { resolveHead } from './routeMeta.js';
 
-const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+export { absoluteUrl } from './routeMeta.js';
 
 function upsertMeta(attr, key, content) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -23,33 +23,26 @@ function upsertCanonical(href) {
   el.setAttribute('href', href);
 }
 
-export function absoluteUrl(path = '/') {
-  return path === '/' ? company.urls.canonical : `${company.urls.site}${path}`;
-}
-
 /**
  * Per-route metadata for the SPA. Every page calls this so title, description,
- * canonical, Open Graph / Twitter and robots always match the current route
- * (index.html only carries the homepage defaults).
+ * canonical, Open Graph / Twitter and robots always match the current route.
+ * The same values are baked into static HTML at build time by scripts/prerender.mjs.
  */
-export function usePageMeta({ title, description, path, robots = DEFAULT_ROBOTS, image = company.assets.ogImage }) {
+export function usePageMeta({ title, description, path, robots, image }) {
   useEffect(() => {
-    const fullTitle = title ? `${title} | ${company.name}` : `${company.name} | ${company.tagline}`;
-    const desc = description || company.description;
-    const url = absoluteUrl(path);
-    const imageUrl = image.startsWith('http') ? image : `${company.urls.site}${image}`;
+    const head = resolveHead({ title, description, path, robots, image });
 
-    document.title = fullTitle;
-    upsertMeta('name', 'description', desc);
-    upsertMeta('name', 'robots', robots);
-    upsertCanonical(url);
-    upsertMeta('property', 'og:title', fullTitle);
-    upsertMeta('property', 'og:description', desc);
-    upsertMeta('property', 'og:url', url);
-    upsertMeta('property', 'og:image', imageUrl);
-    upsertMeta('name', 'twitter:title', fullTitle);
-    upsertMeta('name', 'twitter:description', desc);
-    upsertMeta('name', 'twitter:url', url);
-    upsertMeta('name', 'twitter:image', imageUrl);
+    document.title = head.title;
+    upsertMeta('name', 'description', head.description);
+    upsertMeta('name', 'robots', head.robots);
+    upsertCanonical(head.url);
+    upsertMeta('property', 'og:title', head.title);
+    upsertMeta('property', 'og:description', head.description);
+    upsertMeta('property', 'og:url', head.url);
+    upsertMeta('property', 'og:image', head.image);
+    upsertMeta('name', 'twitter:title', head.title);
+    upsertMeta('name', 'twitter:description', head.description);
+    upsertMeta('name', 'twitter:url', head.url);
+    upsertMeta('name', 'twitter:image', head.image);
   }, [title, description, path, robots, image]);
 }

@@ -7,15 +7,17 @@ import { company } from '../data/company';
 import { getPublicProducts, STATUS } from '../data/products';
 import { technologyCategories } from '../data/technology';
 import { markets } from '../data/markets';
+import { localizeList } from '../data/localize';
 import ProductCard from '../components/ProductCard';
 import Symbol3D from '../components/Symbol3D';
 import { trackEvent } from '../lib/analytics';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 const audienceIcons = { customers: Rocket, partners: HeartHandshake, investors: LineChart };
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const products = getPublicProducts();
   const liveProducts = products.filter((p) => p.status === STATUS.LIVE && p.url);
 
@@ -27,7 +29,7 @@ export default function Home() {
     { value: t.home.proofBase, label: t.home.proofBaseLabel },
   ];
 
-  usePageMeta({ description: t.home.subheadline, path: '/' });
+  usePageMeta(routeMeta('/', t, lang));
 
   return (
     <div className="home-page">
@@ -157,7 +159,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mini-grid">
-          {technologyCategories.slice(0, 4).map((item) => (
+          {localizeList(technologyCategories, lang).slice(0, 4).map((item) => (
             <div key={item.id} className="mini-card glass-effect">
               <h3>{item.title}</h3>
               <p>{item.description}</p>
@@ -170,7 +172,7 @@ export default function Home() {
         <h2>{t.home.marketsTitle}</h2>
         <p className="muted">{t.home.marketsBody}</p>
         <div className="chip-grid">
-          {markets.map((m) => (
+          {localizeList(markets, lang).map((m) => (
             <Link key={m.id} to="/markets" className="info-chip link-chip">
               {m.title}
             </Link>

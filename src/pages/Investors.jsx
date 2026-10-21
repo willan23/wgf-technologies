@@ -6,11 +6,12 @@ import PageHero from '../components/PageHero';
 import InvestorForm from '../components/InvestorForm';
 import { trackEvent } from '../lib/analytics';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Investors() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
-  usePageMeta({ title: t.nav.investors, description: t.investors.subheadline, path: '/investors' });
+  usePageMeta(routeMeta('/investors', t, lang));
 
   useEffect(() => {
     trackEvent('investor_page_view');

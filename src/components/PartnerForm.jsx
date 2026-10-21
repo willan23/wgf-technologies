@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Loader2, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { partnerCategories } from '../data/partners';
+import { localizeList } from '../data/localize';
 import { FORM_ENV, isFormConfigured } from '../lib/forms';
 import { useLeadForm } from '../lib/useLeadForm';
 import FormResult, { FormError } from './FormResult';
@@ -18,7 +19,7 @@ const initial = {
 };
 
 export default function PartnerForm() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { form, status, error, mailto, onChange, onSubmit, backToForm } = useLeadForm({
     initial,
     honeypot: 'fax',
@@ -61,7 +62,7 @@ export default function PartnerForm() {
       <label>
         {t.forms.category}
         <select name="category" value={form.category} onChange={onChange}>
-          {partnerCategories.map((c) => (
+          {localizeList(partnerCategories, lang).map((c) => (
             <option key={c.id} value={c.id}>{c.title}</option>
           ))}
         </select>

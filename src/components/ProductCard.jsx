@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 import { useLanguage } from '../context/LanguageContext';
+import { localizeProduct, tagLabel } from '../data/products';
 import { trackEvent } from '../lib/analytics';
 
-export default function ProductCard({ product }) {
-  const { t } = useLanguage();
+export default function ProductCard({ product: base }) {
+  const { t, lang } = useLanguage();
+  const product = localizeProduct(base, lang);
+  const tags = [...(product.markets || []).slice(0, 2), product.businessModel?.[0]].filter(Boolean);
 
   return (
     <article className="product-card glass-effect">
@@ -26,8 +29,8 @@ export default function ProductCard({ product }) {
       </h3>
       <p className="product-desc">{product.shortDescription}</p>
       <ul className="product-tags" aria-label={t.portfolio.market}>
-        {[...(product.markets || []).slice(0, 2), product.businessModel?.[0]].filter(Boolean).map((tag) => (
-          <li key={tag}>{tag}</li>
+        {tags.map((tag) => (
+          <li key={tag}>{tagLabel(tag, lang)}</li>
         ))}
       </ul>
       <div className="product-card-actions">

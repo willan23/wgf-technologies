@@ -6,6 +6,7 @@ import { getPublicProducts } from '../data/products';
 import PageHero from '../components/PageHero';
 import { whatsappUrl } from '../lib/forms';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 const founderBio = {
   paragraphs: [
@@ -16,11 +17,11 @@ const founderBio = {
 };
 
 export default function Founder() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const products = getPublicProducts();
   const { founder, contacts } = company;
 
-  usePageMeta({ title: t.nav.founder, description: `${company.founder.name} — ${t.founder.role}`, path: '/founder' });
+  usePageMeta(routeMeta('/founder', t, lang));
 
   return (
     <div>

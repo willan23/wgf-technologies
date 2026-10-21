@@ -2,10 +2,11 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import PageHero from '../components/PageHero';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function About() {
-  const { t } = useLanguage();
-  usePageMeta({ title: t.nav.about, path: '/about' });
+  const { t, lang } = useLanguage();
+  usePageMeta(routeMeta('/about', t, lang));
 
   return (
     <div>

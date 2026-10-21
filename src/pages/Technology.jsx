@@ -1,12 +1,14 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { technologyCategories } from '../data/technology';
+import { localizeList } from '../data/localize';
 import PageHero from '../components/PageHero';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Technology() {
-  const { t } = useLanguage();
-  usePageMeta({ title: t.nav.technology, description: t.technology.body, path: '/technology' });
+  const { t, lang } = useLanguage();
+  usePageMeta(routeMeta('/technology', t, lang));
 
   return (
     <div>
@@ -14,7 +16,7 @@ export default function Technology() {
       <section className="section-block">
         <p className="muted">{t.technology.note}</p>
         <div className="feature-grid">
-          {technologyCategories.map((item) => (
+          {localizeList(technologyCategories, lang).map((item) => (
             <article key={item.id} className="feature-card glass-effect">
               <h2>{item.title}</h2>
               <p>{item.description}</p>

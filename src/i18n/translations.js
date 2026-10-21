@@ -193,6 +193,7 @@ export const translations = {
     markets: {
       title: 'Markets',
       body: 'Markets where our products can operate. We do not claim physical offices or presence where none exists.',
+      mapCaption: 'Opportunity markets — not claimed physical offices',
     },
     investors: {
       title: 'Investor Relations',
@@ -306,6 +307,7 @@ export const translations = {
       title: 'Investor Data Room',
       body: 'Private materials are available by invitation only. This area is prepared for future authenticated access and is not publicly indexed.',
       note: 'Request access through Investor Relations.',
+      locked: 'Access by invitation',
       cta: 'Contact Investor Relations',
       sections: [
         'Company Overview',
@@ -508,6 +510,7 @@ export const translations = {
     markets: {
       title: 'Mercados',
       body: 'Mercados onde os nossos produtos podem operar. Não afirmamos escritórios ou presença física inexistente.',
+      mapCaption: 'Mercados de oportunidade — não são escritórios físicos',
     },
     investors: {
       title: 'Relações com Investidores',
@@ -621,7 +624,8 @@ export const translations = {
     dataRoom: {
       title: 'Data Room para Investidores',
       body: 'Materiais privados disponíveis apenas por convite. Esta área está preparada para acesso autenticado futuro e não é indexada publicamente.',
-      note: 'Peça acesso através de Investor Relations.',
+      note: 'Peça acesso através das Relações com Investidores.',
+      locked: 'Acesso por convite',
       cta: 'Contactar Relações com Investidores',
       sections: [
         'Visão geral da empresa',
@@ -824,6 +828,7 @@ export const translations = {
     markets: {
       title: 'Marchés',
       body: 'Marchés où nos produits peuvent opérer. Nous n’affirmons aucune présence physique inexistante.',
+      mapCaption: 'Marchés d’opportunité — pas des bureaux physiques',
     },
     investors: {
       title: 'Relations investisseurs',
@@ -937,7 +942,8 @@ export const translations = {
     dataRoom: {
       title: 'Data room investisseurs',
       body: 'Documents privés disponibles uniquement sur invitation. Zone préparée pour un accès authentifié futur, non indexée publiquement.',
-      note: 'Demandez l’accès via Investor Relations.',
+      note: 'Demandez l’accès via les relations investisseurs.',
+      locked: 'Accès sur invitation',
       cta: 'Contacter les relations investisseurs',
       sections: [
         'Présentation de l’entreprise',
