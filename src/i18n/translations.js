@@ -81,6 +81,43 @@ export const translations = {
       contactCta: 'Contact WGF',
       viewAll: 'View all',
       visitProduct: 'View product',
+      proofPublic: 'public products',
+      proofLive: 'live in production',
+      proofEarly: 'in beta / MVP',
+      proofBase: 'Porto, Portugal',
+      proofBaseLabel: 'independent venture',
+      liveNow: 'Live now',
+      audienceEyebrow: 'Work with us',
+      audienceTitle: 'One studio, three ways to work together',
+      audience: [
+        {
+          id: 'customers',
+          title: 'Customers & teams',
+          body: 'Use our live products or ask for a demo of a product that fits your operation.',
+          cta: 'Request a demo',
+          to: '/contact?type=product',
+        },
+        {
+          id: 'partners',
+          title: 'Strategic partners',
+          body: 'Distribution, technology and market partners who want to build and scale with us.',
+          cta: 'Become a partner',
+          to: '/partners#partner-interest',
+        },
+        {
+          id: 'investors',
+          title: 'Investors',
+          body: 'Understand the portfolio, the stage we are at and how we plan to grow.',
+          cta: 'Investor relations',
+          to: '/investors',
+        },
+      ],
+      steps: [
+        { title: 'We build.', body: 'Working software first — not slides.' },
+        { title: 'We validate.', body: 'Real users and real markets decide what stays.' },
+        { title: 'We launch.', body: 'Products go public only when they are ready.' },
+        { title: 'We scale.', body: 'Cloud and AI infrastructure designed to grow.' },
+      ],
     },
     about: {
       title: 'About WGF Technologies',
@@ -115,6 +152,13 @@ export const translations = {
       status: 'Status',
       market: 'Market',
       model: 'Business Model',
+      search: 'Search products',
+      searchPlaceholder: 'Search by name, market or technology…',
+      all: 'All',
+      results: 'products',
+      noResults: 'No products match these filters.',
+      clear: 'Clear filters',
+      visitSite: 'Visit site',
       cta: 'Explore',
     },
     product: {
@@ -134,6 +178,12 @@ export const translations = {
       opportunity: 'Market opportunity',
       back: 'Back to Portfolio',
       notFound: 'This product is not publicly available.',
+    },
+    notFound: {
+      title: 'Page not found',
+      body: 'The page you are looking for does not exist or is no longer public.',
+      home: 'Go to homepage',
+      portfolio: 'See the portfolio',
     },
     technology: {
       title: 'Technology',
@@ -306,7 +356,7 @@ export const translations = {
   PT: {
     nav: sharedNav.PT,
     footer: {
-      tagline: 'Building the next generation of intelligent digital products.',
+      tagline: 'A construir a próxima geração de produtos digitais inteligentes.',
       rights: '© 2026 WGF Technologies. Todos os direitos reservados.',
       location: 'Porto, Portugal',
       privacy: 'Privacidade',
@@ -314,7 +364,7 @@ export const translations = {
       cookies: 'Cookies',
     },
     home: {
-      badge: 'Technology Venture Studio',
+      badge: 'Estúdio de ventures tecnológicas',
       headline: 'A construir a próxima geração de produtos digitais inteligentes.',
       subheadline:
         'A WGF Technologies constrói plataformas AI-native, produtos SaaS e infraestrutura digital para transformar problemas complexos em tecnologia escalável.',
@@ -346,9 +396,46 @@ export const translations = {
       contactCta: 'Contactar a WGF',
       viewAll: 'Ver tudo',
       visitProduct: 'Ver produto',
+      proofPublic: 'produtos públicos',
+      proofLive: 'em produção (live)',
+      proofEarly: 'em beta / MVP',
+      proofBase: 'Porto, Portugal',
+      proofBaseLabel: 'venture independente',
+      liveNow: 'Disponível agora',
+      audienceEyebrow: 'Trabalhe connosco',
+      audienceTitle: 'Um estúdio, três formas de trabalhar juntos',
+      audience: [
+        {
+          id: 'customers',
+          title: 'Clientes e equipas',
+          body: 'Use os nossos produtos em produção ou peça uma demonstração do produto que se adapta à sua operação.',
+          cta: 'Pedir demonstração',
+          to: '/contact?type=product',
+        },
+        {
+          id: 'partners',
+          title: 'Parceiros estratégicos',
+          body: 'Parceiros de distribuição, tecnologia e mercado que querem construir e escalar connosco.',
+          cta: 'Ser parceiro',
+          to: '/partners#partner-interest',
+        },
+        {
+          id: 'investors',
+          title: 'Investidores',
+          body: 'Conheça o portfólio, a fase em que estamos e como planeamos crescer.',
+          cta: 'Relações com investidores',
+          to: '/investors',
+        },
+      ],
+      steps: [
+        { title: 'Construímos.', body: 'Software a funcionar primeiro — não slides.' },
+        { title: 'Validamos.', body: 'Utilizadores e mercados reais decidem o que fica.' },
+        { title: 'Lançamos.', body: 'Os produtos só ficam públicos quando estão prontos.' },
+        { title: 'Escalamos.', body: 'Infraestrutura cloud e IA preparada para crescer.' },
+      ],
     },
     about: {
-      title: 'About WGF Technologies',
+      title: 'Sobre a WGF Technologies',
       p1: 'A WGF Technologies é um venture tecnológico independente focado em construir e comercializar produtos digitais inteligentes.',
       p2: 'A nossa abordagem combina desenvolvimento de produto, inteligência artificial, automação e execução orientada ao mercado para transformar ideias e protótipos em negócios tecnológicos escaláveis.',
       pillars: [
@@ -372,7 +459,7 @@ export const translations = {
       contactTitle: 'Contacto',
     },
     portfolio: {
-      title: 'Our Technology Portfolio',
+      title: 'O nosso portfólio tecnológico',
       body:
         'Um portfólio crescente de produtos tecnológicos desenhados em torno de mercados reais, problemas reais e infraestrutura digital escalável.',
       empty: 'Os produtos públicos aparecerão aqui à medida que estiverem prontos para divulgação.',
@@ -380,6 +467,13 @@ export const translations = {
       status: 'Estado',
       market: 'Mercado',
       model: 'Modelo de negócio',
+      search: 'Pesquisar produtos',
+      searchPlaceholder: 'Pesquisar por nome, mercado ou tecnologia…',
+      all: 'Todos',
+      results: 'produtos',
+      noResults: 'Nenhum produto corresponde a estes filtros.',
+      clear: 'Limpar filtros',
+      visitSite: 'Visitar site',
       cta: 'Explorar',
     },
     product: {
@@ -400,6 +494,12 @@ export const translations = {
       back: 'Voltar ao Portfólio',
       notFound: 'Este produto não está disponível publicamente.',
     },
+    notFound: {
+      title: 'Página não encontrada',
+      body: 'A página que procura não existe ou já não está pública.',
+      home: 'Ir para o início',
+      portfolio: 'Ver o portfólio',
+    },
     technology: {
       title: 'Tecnologia',
       body: 'Os nossos produtos assentam em IA moderna, cloud, automação e infraestrutura de dados.',
@@ -410,7 +510,7 @@ export const translations = {
       body: 'Mercados onde os nossos produtos podem operar. Não afirmamos escritórios ou presença física inexistente.',
     },
     investors: {
-      title: 'Investor Relations',
+      title: 'Relações com Investidores',
       subheadline: 'A construir um portfólio de produtos tecnológicos com potencial de mercado global.',
       opportunityTitle: 'A Oportunidade',
       opportunityBody:
@@ -432,15 +532,15 @@ export const translations = {
       ctaBody:
         'Estamos a preparar a próxima fase de crescimento e abertos a conversas com investidores estratégicos, venture partners e capital focado em tecnologia.',
       ctaButton: 'Registar Interesse',
-      opportunityLink: 'Capital Deployment',
+      opportunityLink: 'Aplicação de capital',
       legalNote:
         'Registar interesse não constitui oferta de valores mobiliários, venda de equity ou solicitação. Qualquer investimento seguirá conversa qualificada e estrutura jurídica/corporativa adequada.',
       formTitle: 'Interesse de Investidor',
     },
     opportunity: {
-      title: 'Capital Deployment',
+      title: 'Aplicação de capital',
       body: 'Categorias ilustrativas de utilização de capital. Percentagens só serão publicadas com planos financeiros finais.',
-      back: 'Voltar a Investor Relations',
+      back: 'Voltar a Relações com Investidores',
     },
     partners: {
       title: 'Parcerias Estratégicas',
@@ -519,27 +619,27 @@ export const translations = {
       more: 'Política de Cookies',
     },
     dataRoom: {
-      title: 'Investor Data Room',
+      title: 'Data Room para Investidores',
       body: 'Materiais privados disponíveis apenas por convite. Esta área está preparada para acesso autenticado futuro e não é indexada publicamente.',
       note: 'Peça acesso através de Investor Relations.',
-      cta: 'Contactar Investor Relations',
+      cta: 'Contactar Relações com Investidores',
       sections: [
-        'Company Overview',
+        'Visão geral da empresa',
         'Pitch Deck',
-        'Financial Model',
-        'Product Documentation',
-        'Market Analysis',
+        'Modelo financeiro',
+        'Documentação de produto',
+        'Análise de mercado',
         'Cap Table',
         'Legal',
         'IP',
-        'Corporate Documents',
-        'Technical Overview',
+        'Documentos societários',
+        'Visão técnica',
         'Roadmap',
       ],
     },
     common: {
       learnMore: 'Saber mais',
-      earlyStage: 'Early Stage',
+      earlyStage: 'Fase inicial',
       inDevelopment: 'Em desenvolvimento',
     },
     forms: {
@@ -572,7 +672,7 @@ export const translations = {
   FR: {
     nav: sharedNav.FR,
     footer: {
-      tagline: 'Building the next generation of intelligent digital products.',
+      tagline: 'Construire la prochaine génération de produits numériques intelligents.',
       rights: '© 2026 WGF Technologies. Tous droits réservés.',
       location: 'Porto, Portugal',
       privacy: 'Confidentialité',
@@ -580,7 +680,7 @@ export const translations = {
       cookies: 'Cookies',
     },
     home: {
-      badge: 'Technology Venture Studio',
+      badge: 'Studio de ventures technologiques',
       headline: 'Construire la prochaine génération de produits numériques intelligents.',
       subheadline:
         'WGF Technologies construit des plateformes AI-native, des produits SaaS et des infrastructures numériques pour transformer des problèmes complexes en technologie scalable.',
@@ -612,9 +712,46 @@ export const translations = {
       contactCta: 'Contacter WGF',
       viewAll: 'Voir tout',
       visitProduct: 'Voir le produit',
+      proofPublic: 'produits publics',
+      proofLive: 'en production',
+      proofEarly: 'en bêta / MVP',
+      proofBase: 'Porto, Portugal',
+      proofBaseLabel: 'venture indépendante',
+      liveNow: 'Disponible maintenant',
+      audienceEyebrow: 'Travailler avec nous',
+      audienceTitle: 'Un studio, trois façons de collaborer',
+      audience: [
+        {
+          id: 'customers',
+          title: 'Clients et équipes',
+          body: 'Utilisez nos produits en production ou demandez une démo du produit adapté à votre activité.',
+          cta: 'Demander une démo',
+          to: '/contact?type=product',
+        },
+        {
+          id: 'partners',
+          title: 'Partenaires stratégiques',
+          body: 'Partenaires de distribution, de technologie et de marché qui veulent construire et grandir avec nous.',
+          cta: 'Devenir partenaire',
+          to: '/partners#partner-interest',
+        },
+        {
+          id: 'investors',
+          title: 'Investisseurs',
+          body: 'Comprendre le portefeuille, notre stade de développement et notre plan de croissance.',
+          cta: 'Relations investisseurs',
+          to: '/investors',
+        },
+      ],
+      steps: [
+        { title: 'Nous construisons.', body: 'Du logiciel qui fonctionne d’abord — pas des slides.' },
+        { title: 'Nous validons.', body: 'Les vrais utilisateurs et marchés décident.' },
+        { title: 'Nous lançons.', body: 'Un produit devient public seulement quand il est prêt.' },
+        { title: 'Nous grandissons.', body: 'Une infrastructure cloud et IA conçue pour évoluer.' },
+      ],
     },
     about: {
-      title: 'About WGF Technologies',
+      title: 'À propos de WGF Technologies',
       p1: 'WGF Technologies est un venture technologique indépendant focalisé sur la construction et la commercialisation de produits numériques intelligents.',
       p2: 'Notre approche combine développement produit, intelligence artificielle, automation et exécution orientée marché pour transformer idées et prototypes en entreprises technologiques scalables.',
       pillars: [
@@ -638,7 +775,7 @@ export const translations = {
       contactTitle: 'Contact',
     },
     portfolio: {
-      title: 'Our Technology Portfolio',
+      title: 'Notre portefeuille technologique',
       body:
         'Un portfolio croissant de produits technologiques conçus autour de marchés réels, de problèmes réels et d’infrastructures numériques scalables.',
       empty: 'Les produits publics apparaîtront ici lorsqu’ils seront prêts à être divulgués.',
@@ -646,6 +783,13 @@ export const translations = {
       status: 'Statut',
       market: 'Marché',
       model: 'Modèle économique',
+      search: 'Rechercher des produits',
+      searchPlaceholder: 'Rechercher par nom, marché ou technologie…',
+      all: 'Tous',
+      results: 'produits',
+      noResults: 'Aucun produit ne correspond à ces filtres.',
+      clear: 'Effacer les filtres',
+      visitSite: 'Visiter le site',
       cta: 'Explorer',
     },
     product: {
@@ -666,6 +810,12 @@ export const translations = {
       back: 'Retour au Portfolio',
       notFound: 'Ce produit n’est pas disponible publiquement.',
     },
+    notFound: {
+      title: 'Page introuvable',
+      body: 'La page que vous cherchez n’existe pas ou n’est plus publique.',
+      home: 'Retour à l’accueil',
+      portfolio: 'Voir le portfolio',
+    },
     technology: {
       title: 'Technologie',
       body: 'Nos produits s’appuient sur l’IA moderne, le cloud, l’automation et l’infrastructure data.',
@@ -676,7 +826,7 @@ export const translations = {
       body: 'Marchés où nos produits peuvent opérer. Nous n’affirmons aucune présence physique inexistante.',
     },
     investors: {
-      title: 'Investor Relations',
+      title: 'Relations investisseurs',
       subheadline: 'Construire un portfolio de produits technologiques à potentiel de marché mondial.',
       opportunityTitle: 'L’Opportunité',
       opportunityBody:
@@ -697,16 +847,16 @@ export const translations = {
       ctaTitle: 'Intéressé à investir dans WGF Technologies ?',
       ctaBody:
         'Nous préparons la prochaine étape de croissance et sommes ouverts aux conversations avec des investisseurs stratégiques, venture partners et capital technologique.',
-      ctaButton: 'Register Interest',
-      opportunityLink: 'Capital Deployment',
+      ctaButton: 'Manifester mon intérêt',
+      opportunityLink: 'Allocation du capital',
       legalNote:
         'Enregistrer un intérêt ne constitue pas une offre de titres, une vente d’equity ou une sollicitation. Tout investissement suivra une conversation qualifiée et une structure juridique appropriée.',
       formTitle: 'Intérêt Investisseur',
     },
     opportunity: {
-      title: 'Capital Deployment',
+      title: 'Allocation du capital',
       body: 'Catégories illustratives d’utilisation du capital. Les pourcentages ne seront publiés que lorsque les plans financiers seront finalisés.',
-      back: 'Retour à Investor Relations',
+      back: 'Retour aux relations investisseurs',
     },
     partners: {
       title: 'Partenariats Stratégiques',
@@ -752,7 +902,7 @@ export const translations = {
       message: 'Message',
       consent:
         'J’accepte le traitement de mes données selon la Politique de Confidentialité pour les relations investisseurs.',
-      submit: 'Register Interest',
+      submit: 'Manifester mon intérêt',
       types: [
         'Angel Investor',
         'VC',
@@ -785,27 +935,27 @@ export const translations = {
       more: 'Politique de Cookies',
     },
     dataRoom: {
-      title: 'Investor Data Room',
+      title: 'Data room investisseurs',
       body: 'Documents privés disponibles uniquement sur invitation. Zone préparée pour un accès authentifié futur, non indexée publiquement.',
       note: 'Demandez l’accès via Investor Relations.',
-      cta: 'Contacter Investor Relations',
+      cta: 'Contacter les relations investisseurs',
       sections: [
-        'Company Overview',
+        'Présentation de l’entreprise',
         'Pitch Deck',
-        'Financial Model',
-        'Product Documentation',
-        'Market Analysis',
+        'Modèle financier',
+        'Documentation produit',
+        'Analyse de marché',
         'Cap Table',
         'Legal',
         'IP',
-        'Corporate Documents',
-        'Technical Overview',
+        'Documents sociaux',
+        'Présentation technique',
         'Roadmap',
       ],
     },
     common: {
       learnMore: 'En savoir plus',
-      earlyStage: 'Early Stage',
+      earlyStage: 'Phase de démarrage',
       inDevelopment: 'En développement',
     },
     forms: {

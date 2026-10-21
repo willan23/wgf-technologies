@@ -29,11 +29,28 @@ repositório não tem backend).
 | 12 | Acessibilidade / desempenho | **Melhorado** | `MotionConfig reducedMotion="user"` respeita "reduzir movimento" em todas as animações Framer Motion. Fundo Three.js só com WebGL disponível e fora de dispositivos de baixa potência; pausa com o separador oculto; o `requestAnimationFrame` passou a ser cancelado no unmount (antes continuava a correr). `aria-label` nos botões só com ícone, `aria-expanded` no menu, `role="alert"` nos erros. |
 | — | Navegação mobile (encontrado durante testes) | **Corrigido** | A navegação desktop aparecia e transbordava em ecrãs < 1100 px porque `index.css` (`.main-nav {display:flex}`) sobrepunha `Layout.css`. |
 
+## Fase 2 e 3 — identidade, UX e catálogo
+
+| Área | O que mudou |
+|---|---|
+| Hero | Faixa "Disponível agora" com links diretos para os produtos `live` (Connect-CPLP, STPway). |
+| Prova factual | Faixa de números **derivados de `src/data/products.js`** (produtos públicos, em produção, em beta/MVP) — nenhum número inventado; atualiza-se sozinha. |
+| CTAs por público | Secção "Um estúdio, três formas de trabalhar juntos": clientes (demo → `/contact?type=product`), parceiros, investidores. Substitui os dois painéis soltos de investidor/parceiro. |
+| Como trabalhamos | Passos numerados com descrição, agora traduzidos (antes "We build." aparecia em inglês em PT/FR). |
+| Cartões de produto | Cartão inteiro clicável, tags de mercado/modelo, link externo "Visitar site", hover/focus visíveis. |
+| Portfólio | Pesquisa (ignora acentos), filtros por mercado e estado, contador de resultados, estado vazio; filtros no URL (`?q=&market=&status=`) para partilha. |
+| 404 | Página "não encontrada" real com `noindex` (antes redirecionava para `/`, um soft-404). |
+| Acessibilidade | Link "Saltar para o conteúdo", `sr-only`, `aria-pressed` nos filtros, `aria-live` no contador, hover sem movimento com "reduzir movimento". |
+| Idioma | Títulos que estavam em inglês nas versões PT/FR traduzidos (portfólio, sobre, investidores, data room, rodapé, badge). Mantidos termos de uso corrente: Pitch Deck, Cap Table, Family Office. |
+
+Por fazer nesta área: os textos dos produtos em `src/data/products.js` (descrições, categorias, mercados)
+continuam só em inglês — traduzi-los exige um modelo de dados por idioma e revisão do conteúdo.
+
 ## Como validar
 
 ```bash
 npm ci
-npm test          # 11 testes: validação de leads, regras de publicação, sitemap
+npm test          # 12 testes: validação de leads, publicação, sitemap, filtros
 npm run build     # gera sitemap.xml e o build
 npx vite preview  # serve com os cabeçalhos de produção (CSP, HSTS…)
 ```
@@ -56,7 +73,7 @@ cabeçalho mobile a 375 px. **Não testado**: envio real via Formspree (sem ID c
    homepage. Prerender das rotas públicas resolve isto e abre caminho a `hreflang`.
 5. **Analytics consentidos (P1)** — integrar um fornecedor (atualizando a CSP `connect-src`) antes de
    reportar conversões.
-6. Rotas desconhecidas redirecionam para `/` (soft-404); considerar uma página 404 real.
+6. ~~Soft-404~~ resolvido com página 404 + `noindex`; um 404 HTTP real exige prerender ou função de servidor.
 7. Componentes legados não usados (`Hero.jsx`, `ThreeDHeroObject.jsx`, `About.jsx`, `Showcase.jsx`…)
    continuam no repositório; remover após confirmação.
 

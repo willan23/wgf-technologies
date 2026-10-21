@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import { ConsentProvider } from './context/ConsentContext';
@@ -19,6 +19,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
 import DataRoom from './pages/DataRoom';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -44,7 +45,7 @@ export default function App() {
               <Route path="terms" element={<Terms />} />
               <Route path="cookies" element={<Cookies />} />
               <Route path="investor-data-room" element={<DataRoom />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -78,6 +78,9 @@ export default function Layout() {
 
   return (
     <div className="app-container">
+      <a href="#main-content" className="skip-link">
+        {lang === "PT" ? "Saltar para o conteúdo" : lang === "FR" ? "Aller au contenu" : "Skip to content"}
+      </a>
       <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
       <div className="bg-grid" />
       <div className="bg-glow" />
@@ -155,7 +158,7 @@ export default function Layout() {
         </div>
       )}
 
-      <main className="page-main" key={lang}>
+      <main id="main-content" className="page-main" key={lang} tabIndex={-1}>
         <Outlet />
       </main>
 

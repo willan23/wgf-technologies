@@ -37,3 +37,14 @@ test('sitemap lists every public product and nothing private', () => {
   assert.ok(!xml.includes('investor-data-room'));
   assert.equal(new Set(sitemapPaths()).size, sitemapPaths().length);
 });
+
+test('filterProducts matches text accent-insensitively, by market and by status', async () => {
+  const { filterProducts, getProductMarkets } = await import('../src/data/products.js');
+  const list = getPublicProducts();
+  assert.deepEqual(filterProducts(list, {}).length, list.length);
+  assert.deepEqual(filterProducts(list, { q: 'sao tome' }).map((p) => p.slug), ['stpway']);
+  assert.ok(filterProducts(list, { market: 'Web3' }).every((p) => p.markets.includes('Web3')));
+  assert.ok(filterProducts(list, { status: 'live' }).every((p) => p.status === 'live'));
+  assert.equal(filterProducts(list, { q: 'zzz-no-match' }).length, 0);
+  assert.ok(getProductMarkets(list).length > 0);
+});
