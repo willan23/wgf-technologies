@@ -5,12 +5,14 @@ import { company, fundingStageLabels } from '../data/company';
 import PageHero from '../components/PageHero';
 import InvestorForm from '../components/InvestorForm';
 import { trackEvent } from '../lib/analytics';
+import { usePageMeta } from '../lib/seo';
 
 export default function Investors() {
   const { t } = useLanguage();
 
+  usePageMeta({ title: t.nav.investors, description: t.investors.subheadline, path: '/investors' });
+
   useEffect(() => {
-    document.title = `Investors | ${company.name}`;
     trackEvent('investor_page_view');
   }, []);
 

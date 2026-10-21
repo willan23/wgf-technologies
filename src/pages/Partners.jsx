@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { partnerCategories } from '../data/partners';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
 import PartnerForm from '../components/PartnerForm';
+import { usePageMeta } from '../lib/seo';
 
 export default function Partners() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Partners | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.partners, description: t.partners.body, path: '/partners' });
 
   return (
     <div>

@@ -240,6 +240,32 @@ export function getPublicProducts() {
   return products.filter(isPublicProduct);
 }
 
+/** Markets present in the given products, in first-seen order. */
+export function getProductMarkets(list) {
+  return [...new Set(list.flatMap((p) => p.markets || []))];
+}
+
+function normalize(text) {
+  return String(text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+}
+
+/** Filters by free-text query (accent-insensitive), market and status. Empty values match all. */
+export function filterProducts(list, { q = '', market = '', status = '' } = {}) {
+  const terms = normalize(q).split(/\s+/).filter(Boolean);
+  return list.filter((p) => {
+    if (market && !(p.markets || []).includes(market)) return false;
+    if (status && p.status !== status) return false;
+    if (!terms.length) return true;
+    const haystack = normalize(
+      [p.name, p.category, p.shortDescription, p.valueProposition, ...(p.markets || []), ...(p.technology || []), ...(p.businessModel || [])].join(' '),
+    );
+    return terms.every((term) => haystack.includes(term));
+  });
+}
+
 export function getProductBySlug(slug) {
   const product = products.find((p) => p.slug === slug);
   if (!product || !isPublicProduct(product)) return null;

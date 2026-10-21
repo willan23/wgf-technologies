@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function About() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `About | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.about, path: '/about' });
 
   return (
     <div>

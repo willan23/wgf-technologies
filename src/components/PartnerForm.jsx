@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { partnerCategories } from '../data/partners';
-import { FORM_ENV, mailtoUrl, submitFormspree, whatsappUrl } from '../lib/forms';
-import { trackEvent } from '../lib/analytics';
+import { FORM_ENV, isFormConfigured } from '../lib/forms';
+import { useLeadForm } from '../lib/useLeadForm';
+import FormResult, { FormError } from './FormResult';
 
 const initial = {
   name: '',
@@ -13,75 +14,52 @@ const initial = {
   category: 'technology',
   message: '',
   consent: false,
-  fax: '',
+  fax: '', // honeypot
 };
 
 export default function PartnerForm() {
   const { t } = useLanguage();
-  const [form, setForm] = useState(initial);
-  const [status, setStatus] = useState('idle');
+  const { form, status, error, mailto, onChange, onSubmit, backToForm } = useLeadForm({
+    initial,
+    honeypot: 'fax',
+    envKey: FORM_ENV.partner,
+    formType: 'partner',
+    required: ['name', 'email', 'organization', 'message'],
+    subject: (p) => `WGF Partnership — ${p.category}`,
+    eventName: 'partner_form_submit',
+    eventProps: (p) => ({ category: p.category }),
+  });
 
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (form.fax) return;
-    setStatus('sending');
-    try {
-      const result = await submitFormspree(FORM_ENV.partner, {
-        formType: 'partner',
-        name: form.name,
-        email: form.email,
-        organization: form.organization,
-        category: form.category,
-        message: form.message,
-      });
-      if (result.mode === 'fallback') {
-        window.location.href = mailtoUrl({
-          subject: `WGF Partnership — ${form.category}`,
-          body: `Name: ${form.name}\nOrg: ${form.organization}\nCategory: ${form.category}\n\n${form.message}`,
-        });
-      }
-      trackEvent('partner_form_submit', { category: form.category });
-      setStatus('success');
-      setForm(initial);
-    } catch {
-      setStatus('idle');
-    }
-  };
-
-  if (status === 'success') {
+  if (status === 'submitted' || status === 'email_client') {
     return (
-      <div className="form-success glass-effect">
-        <p>{t.contact.success}</p>
-        <a className="btn-secondary" href={whatsappUrl('Hello WGF, I am interested in a strategic partnership.')} target="_blank" rel="noreferrer">
-          {t.contact.whatsapp}
-        </a>
-      </div>
+      <FormResult
+        status={status}
+        mailto={mailto}
+        onBack={backToForm}
+        whatsappMessage="Hello WGF, I am interested in a strategic partnership."
+      />
     );
   }
 
   return (
-    <form id="partner-interest" className="wgf-form glass-effect" onSubmit={onSubmit}>
+    <form id="partner-interest" className="wgf-form glass-effect" onSubmit={onSubmit} noValidate>
       <h3>{t.partners.formTitle}</h3>
+      {!isFormConfigured(FORM_ENV.partner) && <p className="form-hint">{t.contact.fallback}</p>}
       <input className="hp-field" tabIndex={-1} autoComplete="off" name="fax" value={form.fax} onChange={onChange} aria-hidden="true" />
       <label>
         {t.contact.name}
-        <input name="name" value={form.name} onChange={onChange} required />
+        <input name="name" value={form.name} onChange={onChange} autoComplete="name" required />
       </label>
       <label>
         {t.contact.email}
-        <input type="email" name="email" value={form.email} onChange={onChange} required />
+        <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" required />
       </label>
       <label>
-        Organization
-        <input name="organization" value={form.organization} onChange={onChange} required />
+        {t.forms.organization}
+        <input name="organization" value={form.organization} onChange={onChange} autoComplete="organization" required />
       </label>
       <label>
-        Category
+        {t.forms.category}
         <select name="category" value={form.category} onChange={onChange}>
           {partnerCategories.map((c) => (
             <option key={c.id} value={c.id}>{c.title}</option>
@@ -95,9 +73,10 @@ export default function PartnerForm() {
       <label className="consent-row">
         <input type="checkbox" name="consent" checked={form.consent} onChange={onChange} required />
         <span>
-          {t.contact.consent} <Link to="/privacy">Privacy</Link>
+          {t.contact.consent} <Link to="/privacy">{t.forms.privacyLink}</Link>
         </span>
       </label>
+      <FormError error={error} />
       <button type="submit" className="btn-primary" disabled={status === 'sending'}>
         {status === 'sending' ? <Loader2 className="spinner-icon" size={18} /> : <Send size={18} />}
         {t.partners.cta}

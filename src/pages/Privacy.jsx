@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Privacy() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Privacy | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.legal.privacyTitle, path: '/privacy' });
 
   return (
     <div>

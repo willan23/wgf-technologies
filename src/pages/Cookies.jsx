@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { company } from '../data/company';
+import { useConsent } from '../context/ConsentContext';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Cookies() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Cookies | ${company.name}`;
-  }, []);
+  const { choice, openSettings } = useConsent();
+  usePageMeta({ title: 'Cookies', description: t.cookies.body, path: '/cookies' });
 
   return (
     <div>
@@ -19,8 +19,13 @@ export default function Cookies() {
         <p>
           Only after consent, we may record lightweight event analytics (page path, portfolio clicks, form submissions). No unnecessary personal profiling.
         </p>
-        <h2>Manage consent</h2>
-        <p>Clear site data for this domain or contact us to update your preference.</p>
+        <h2>{t.consent.settings}</h2>
+        <p>
+          {t.consent.current}: <strong>{t.consent[choice || 'unset']}</strong>
+        </p>
+        <button type="button" className="btn-secondary" onClick={openSettings}>
+          {t.consent.manage}
+        </button>
       </section>
     </div>
   );

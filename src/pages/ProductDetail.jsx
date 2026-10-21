@@ -6,15 +6,21 @@ import { getProductBySlug } from '../data/products';
 import { company } from '../data/company';
 import StatusBadge from '../components/StatusBadge';
 import { trackEvent } from '../lib/analytics';
+import { usePageMeta } from '../lib/seo';
 
 export default function ProductDetail() {
   const { slug } = useParams();
   const { t } = useLanguage();
   const product = getProductBySlug(slug);
 
+  usePageMeta(
+    product
+      ? { title: product.name, description: product.shortDescription, path: `/portfolio/${product.slug}` }
+      : { title: t.product.notFound, path: `/portfolio/${slug}`, robots: 'noindex, follow' },
+  );
+
   useEffect(() => {
     if (product) {
-      document.title = `${product.name} | ${company.name}`;
       trackEvent('product_view', { slug: product.slug });
 
       const existing = document.getElementById('product-jsonld');
@@ -41,7 +47,6 @@ export default function ProductDetail() {
         script.remove();
       };
     }
-    document.title = `Product | ${company.name}`;
     return undefined;
   }, [product]);
 

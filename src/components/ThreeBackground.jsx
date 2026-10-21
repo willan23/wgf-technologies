@@ -121,9 +121,10 @@ function ThreeBackground() {
 
     // --- ANIMATION LOOP ---
     const clock = new THREE.Clock();
+    let frameId = 0;
 
     const animate = () => {
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
 
       const elapsedTime = clock.getElapsedTime();
       
@@ -164,8 +165,17 @@ function ThreeBackground() {
 
     window.addEventListener('resize', handleResize);
 
+    // Stop rendering while the tab is hidden to save battery / GPU.
+    const handleVisibility = () => {
+      cancelAnimationFrame(frameId);
+      if (!document.hidden) animate();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     // --- CLEANUP ---
     return () => {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);

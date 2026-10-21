@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Github, Linkedin, Mail, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import { getPublicProducts } from '../data/products';
 import PageHero from '../components/PageHero';
 import { whatsappUrl } from '../lib/forms';
+import { usePageMeta } from '../lib/seo';
 
 const founderBio = {
   paragraphs: [
@@ -19,9 +20,7 @@ export default function Founder() {
   const products = getPublicProducts();
   const { founder, contacts } = company;
 
-  useEffect(() => {
-    document.title = `Founder | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.founder, description: `${company.founder.name} — ${t.founder.role}`, path: '/founder' });
 
   return (
     <div>
