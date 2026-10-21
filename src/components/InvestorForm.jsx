@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPublicProducts } from '../data/products';
-import { FORM_ENV, mailtoUrl, submitFormspree, whatsappUrl } from '../lib/forms';
-import { trackEvent } from '../lib/analytics';
+import { FORM_ENV, isFormConfigured } from '../lib/forms';
+import { useLeadForm } from '../lib/useLeadForm';
+import FormResult, { FormError } from './FormResult';
 
 const initial = {
   name: '',
@@ -16,88 +17,51 @@ const initial = {
   range: '€5K–€25K',
   message: '',
   consent: false,
-  website: '',
+  website: '', // honeypot
 };
 
 export default function InvestorForm() {
   const { t } = useLanguage();
   const products = getPublicProducts();
-  const [form, setForm] = useState(initial);
-  const [status, setStatus] = useState('idle');
-  const [error, setError] = useState('');
+  const { form, status, error, mailto, onChange, onSubmit, backToForm } = useLeadForm({
+    initial,
+    honeypot: 'website',
+    envKey: FORM_ENV.investor,
+    formType: 'investor-interest',
+    required: ['name', 'email', 'country'],
+    subject: () => 'WGF Investor Interest',
+    eventName: 'investor_form_submit',
+    eventProps: (p) => ({ range: p.range, type: p.investorType }),
+  });
 
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    if (form.website) return;
-    if (!form.consent) {
-      setError('Consent required');
-      return;
-    }
-    setStatus('sending');
-    try {
-      const payload = {
-        formType: 'investor-interest',
-        ...form,
-        website: undefined,
-      };
-      const result = await submitFormspree(FORM_ENV.investor, payload);
-      if (result.mode === 'fallback') {
-        const body = Object.entries(form)
-          .filter(([k]) => !['consent', 'website'].includes(k))
-          .map(([k, v]) => `${k}: ${v}`)
-          .join('\n');
-        window.location.href = mailtoUrl({
-          subject: 'WGF Investor Interest',
-          body,
-        });
-      }
-      trackEvent('investor_form_submit', { range: form.range, type: form.investorType });
-      setStatus('success');
-      setForm(initial);
-    } catch (err) {
-      setStatus('idle');
-      setError(err.message || 'Error');
-    }
-  };
-
-  if (status === 'success') {
+  if (status === 'submitted' || status === 'email_client') {
     return (
-      <div className="form-success glass-effect">
-        <p>{t.contact.success}</p>
-        <a
-          className="btn-secondary"
-          href={whatsappUrl('Hello WGF Investor Relations, I registered interest via the website.')}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t.contact.whatsapp}
-        </a>
-      </div>
+      <FormResult
+        status={status}
+        mailto={mailto}
+        onBack={backToForm}
+        whatsappMessage="Hello WGF Investor Relations, I registered interest via the website."
+      />
     );
   }
 
   return (
-    <form id="investor-interest" className="wgf-form glass-effect" onSubmit={onSubmit}>
+    <form id="investor-interest" className="wgf-form glass-effect" onSubmit={onSubmit} noValidate>
       <h3>{t.investors.formTitle}</h3>
+      {!isFormConfigured(FORM_ENV.investor) && <p className="form-hint">{t.contact.fallback}</p>}
       <input className="hp-field" tabIndex={-1} autoComplete="off" name="website" value={form.website} onChange={onChange} aria-hidden="true" />
 
       <label>
         {t.investorForm.name}
-        <input name="name" value={form.name} onChange={onChange} required />
+        <input name="name" value={form.name} onChange={onChange} autoComplete="name" required />
       </label>
       <label>
         {t.investorForm.email}
-        <input type="email" name="email" value={form.email} onChange={onChange} required />
+        <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" required />
       </label>
       <label>
         {t.investorForm.country}
-        <input name="country" value={form.country} onChange={onChange} required />
+        <input name="country" value={form.country} onChange={onChange} autoComplete="country-name" required />
       </label>
       <label>
         {t.investorForm.investorType}
@@ -136,10 +100,10 @@ export default function InvestorForm() {
       <label className="consent-row">
         <input type="checkbox" name="consent" checked={form.consent} onChange={onChange} required />
         <span>
-          {t.investorForm.consent} <Link to="/privacy">Privacy</Link>
+          {t.investorForm.consent} <Link to="/privacy">{t.forms.privacyLink}</Link>
         </span>
       </label>
-      {error && <p className="form-error">{error}</p>}
+      <FormError error={error} />
       <button type="submit" className="btn-primary" disabled={status === 'sending'}>
         {status === 'sending' ? <Loader2 className="spinner-icon" size={18} /> : <Send size={18} />}
         {t.investorForm.submit}

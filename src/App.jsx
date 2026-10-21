@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import { ConsentProvider } from './context/ConsentContext';
 import Layout from './components/layout/Layout';
@@ -23,6 +24,8 @@ export default function App() {
   return (
     <LanguageProvider>
       <ConsentProvider>
+        {/* Honour the OS "reduce motion" setting for every Framer Motion animation. */}
+        <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
@@ -45,6 +48,7 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        </MotionConfig>
       </ConsentProvider>
     </LanguageProvider>
   );

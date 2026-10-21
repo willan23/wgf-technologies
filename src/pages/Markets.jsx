@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { markets } from '../data/markets';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Markets() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Markets | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.markets, description: t.markets.body, path: '/markets' });
 
   return (
     <div>

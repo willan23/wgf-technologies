@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { technologyCategories } from '../data/technology';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Technology() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Technology | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.technology, description: t.technology.body, path: '/technology' });
 
   return (
     <div>

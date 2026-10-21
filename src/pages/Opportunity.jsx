@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { capitalDeployment } from '../data/partners';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Opportunity() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Investment Opportunity | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.opportunity.title, description: t.opportunity.body, path: '/investors/opportunity' });
 
   return (
     <div>

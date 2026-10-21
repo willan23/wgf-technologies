@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Briefcase, LineChart, Users } from 'lucide-react';
@@ -10,14 +10,13 @@ import { markets } from '../data/markets';
 import ProductCard from '../components/ProductCard';
 import Symbol3D from '../components/Symbol3D';
 import { trackEvent } from '../lib/analytics';
+import { usePageMeta } from '../lib/seo';
 
 export default function Home() {
   const { t } = useLanguage();
   const products = getPublicProducts();
 
-  useEffect(() => {
-    document.title = `${company.name} | ${company.tagline}`;
-  }, []);
+  usePageMeta({ description: t.home.subheadline, path: '/' });
 
   return (
     <div className="home-page">

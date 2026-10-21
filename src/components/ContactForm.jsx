@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { FORM_ENV, mailtoUrl, submitFormspree, whatsappUrl } from '../lib/forms';
-import { trackEvent } from '../lib/analytics';
+import { FORM_ENV, isFormConfigured } from '../lib/forms';
+import { useLeadForm } from '../lib/useLeadForm';
+import FormResult, { FormError } from './FormResult';
 
 const initial = {
   name: '',
@@ -17,79 +18,46 @@ const initial = {
 
 export default function ContactForm({ defaultType = 'general' }) {
   const { t } = useLanguage();
-  const [form, setForm] = useState({ ...initial, type: defaultType });
-  const [status, setStatus] = useState('idle');
-  const [error, setError] = useState('');
+  const { form, status, error, mailto, onChange, onSubmit, backToForm } = useLeadForm({
+    initial: { ...initial, type: defaultType },
+    honeypot: 'company',
+    envKey: FORM_ENV.contact,
+    formType: 'contact',
+    required: ['name', 'email', 'message'],
+    subject: (p) => `WGF Contact — ${p.type}`,
+    eventName: 'contact_form_submit',
+    eventProps: (p) => ({ type: p.type }),
+  });
 
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    if (form.company) return;
-    if (!form.consent) {
-      setError('Consent required');
-      return;
-    }
-    setStatus('sending');
-    try {
-      const payload = {
-        formType: 'contact',
-        name: form.name,
-        email: form.email,
-        country: form.country,
-        inquiryType: form.type,
-        message: form.message,
-      };
-      const result = await submitFormspree(FORM_ENV.contact, payload);
-      if (result.mode === 'fallback') {
-        const body = `Name: ${form.name}\nEmail: ${form.email}\nCountry: ${form.country}\nType: ${form.type}\n\n${form.message}`;
-        window.location.href = mailtoUrl({
-          subject: `WGF Contact — ${form.type}`,
-          body,
-        });
-      }
-      trackEvent('contact_form_submit', { type: form.type });
-      setStatus('success');
-      setForm({ ...initial, type: defaultType });
-    } catch (err) {
-      setStatus('idle');
-      setError(err.message || 'Error');
-    }
-  };
-
-  if (status === 'success') {
+  if (status === 'submitted' || status === 'email_client') {
     return (
-      <div className="form-success glass-effect">
-        <p>{t.contact.success}</p>
-        <a className="btn-secondary" href={whatsappUrl('Hello WGF, following up on my contact form.')} target="_blank" rel="noreferrer">
-          {t.contact.whatsapp}
-        </a>
-      </div>
+      <FormResult
+        status={status}
+        mailto={mailto}
+        onBack={backToForm}
+        whatsappMessage="Hello WGF, following up on my contact form."
+      />
     );
   }
 
   return (
     <form className="wgf-form glass-effect" onSubmit={onSubmit} noValidate>
       <h3>{t.contact.formTitle}</h3>
-      <p className="form-hint">{t.contact.fallback}</p>
+      {!isFormConfigured(FORM_ENV.contact) && <p className="form-hint">{t.contact.fallback}</p>}
 
       <input className="hp-field" tabIndex={-1} autoComplete="off" name="company" value={form.company} onChange={onChange} aria-hidden="true" />
 
       <label>
         {t.contact.name}
-        <input name="name" value={form.name} onChange={onChange} required />
+        <input name="name" value={form.name} onChange={onChange} autoComplete="name" required />
       </label>
       <label>
         {t.contact.email}
-        <input type="email" name="email" value={form.email} onChange={onChange} required />
+        <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" required />
       </label>
       <label>
         {t.contact.country}
-        <input name="country" value={form.country} onChange={onChange} />
+        <input name="country" value={form.country} onChange={onChange} autoComplete="country-name" />
       </label>
       <label>
         {t.contact.type}
@@ -106,11 +74,11 @@ export default function ContactForm({ defaultType = 'general' }) {
       <label className="consent-row">
         <input type="checkbox" name="consent" checked={form.consent} onChange={onChange} required />
         <span>
-          {t.contact.consent} <Link to="/privacy">Privacy</Link>
+          {t.contact.consent} <Link to="/privacy">{t.forms.privacyLink}</Link>
         </span>
       </label>
 
-      {error && <p className="form-error">{error}</p>}
+      <FormError error={error} />
 
       <button type="submit" className="btn-primary" disabled={status === 'sending'}>
         {status === 'sending' ? <Loader2 className="spinner-icon" size={18} /> : <Send size={18} />}

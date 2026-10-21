@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
 
 export default function Terms() {
   const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Terms | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.legal.termsTitle, path: '/terms' });
 
   return (
     <div>

@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPublicProducts } from '../data/products';
 import PageHero from '../components/PageHero';
 import ProductCard from '../components/ProductCard';
-import { company } from '../data/company';
+import { usePageMeta } from '../lib/seo';
 
 export default function Portfolio() {
   const { t } = useLanguage();
   const products = getPublicProducts();
 
-  useEffect(() => {
-    document.title = `Portfolio | ${company.name}`;
-  }, []);
+  usePageMeta({ title: t.nav.portfolio, description: t.portfolio.body, path: '/portfolio' });
 
   return (
     <div>
