@@ -4,17 +4,18 @@ import { useLanguage } from '../context/LanguageContext';
 import { capitalDeployment } from '../data/partners';
 import PageHero from '../components/PageHero';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Opportunity() {
-  const { t } = useLanguage();
-  usePageMeta({ title: t.opportunity.title, description: t.opportunity.body, path: '/investors/opportunity' });
+  const { t, lang } = useLanguage();
+  usePageMeta(routeMeta('/investors/opportunity', t, lang));
 
   return (
     <div>
       <PageHero title={t.opportunity.title} subtitle={t.opportunity.body} />
       <section className="section-block">
         <div className="feature-grid">
-          {capitalDeployment.map((item) => (
+          {(capitalDeployment[lang] || capitalDeployment.EN).map((item) => (
             <article key={item} className="feature-card glass-effect">
               <h2>{item}</h2>
             </article>

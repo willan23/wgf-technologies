@@ -43,15 +43,32 @@ repositório não tem backend).
 | Acessibilidade | Link "Saltar para o conteúdo", `sr-only`, `aria-pressed` nos filtros, `aria-live` no contador, hover sem movimento com "reduzir movimento". |
 | Idioma | Títulos que estavam em inglês nas versões PT/FR traduzidos (portfólio, sobre, investidores, data room, rodapé, badge). Mantidos termos de uso corrente: Pitch Deck, Cap Table, Family Office. |
 
-Por fazer nesta área: os textos dos produtos em `src/data/products.js` (descrições, categorias, mercados)
-continuam só em inglês — traduzi-los exige um modelo de dados por idioma e revisão do conteúdo.
+## Produção (21 out 2026)
+
+- **Deep links 404** (PR #2): com `cleanUrls`, a rewrite SPA tem de apontar para `/`, não `/index.html`.
+  Todas as rotas exceto `/` davam 404 ao abrir diretamente — erro anterior a esta auditoria.
+- **Formulários**: `VITE_FORMSPREE_CONTACT_ID` / `_INVESTOR_ID` / `_PARTNER_ID` definidos no projeto Vercel
+  `willan23-wgf-technologies` (o que serve `www.wgf-technologies.site`). Envio real testado e recebido.
+
+## Conteúdo em PT/FR e prerender de SEO
+
+| Área | O que mudou |
+|---|---|
+| Produtos | Textos dos 4 produtos públicos traduzidos (categoria, descrição, problema, solução, tecnologia, mercado, roadmap, aviso legal do Memecoin OS). `localizeProduct()` aplica PT/FR com fallback para EN. Mercados/modelos de negócio mostram rótulos traduzidos mas mantêm o valor canónico no URL (`?market=Mobility`). |
+| Dados | Mercados, áreas de tecnologia, categorias de parceiros e aplicação de capital traduzidos (`i18n` por item, helper `src/data/localize.js`). |
+| Legal | Privacidade, Termos e Cookies em PT/FR (`src/data/legal.js`). Tradução fiel do EN — **recomenda-se revisão jurídica**. |
+| Metadados | `src/lib/routeMeta.js` é a fonte única de título/descrição/robots por rota, usada pelas páginas e pelo build. Um teste garante que todas as rotas do `App.jsx` têm metadados. |
+| Prerender | `scripts/prerender.mjs` corre no fim de `npm run build` e escreve `dist/<rota>.html` com título, descrição, canonical, Open Graph/Twitter, robots e JSON-LD de produto. Com `cleanUrls`, a Vercel serve esses ficheiros; Google e pré-visualizações (LinkedIn, WhatsApp) veem metadados corretos sem JavaScript. O HTML estático está em inglês (o idioma do visitante só é conhecido no browser). |
+
+Limites: o prerender cobre o `<head>`, não o conteúdo da página (o corpo continua a ser renderizado pelo
+React). Por isso `hreflang` continua a não se aplicar — exigiria URLs por idioma (`/pt/...`).
 
 ## Como validar
 
 ```bash
 npm ci
-npm test          # 12 testes: validação de leads, publicação, sitemap, filtros
-npm run build     # gera sitemap.xml e o build
+npm test          # 22 testes: leads, publicação, sitemap, filtros, vercel.json, i18n, metadados, prerender
+npm run build     # sitemap + vite build + prerender
 npx vite preview  # serve com os cabeçalhos de produção (CSP, HSTS…)
 ```
 
@@ -69,8 +86,8 @@ cabeçalho mobile a 375 px. **Não testado**: envio real via Formspree (sem ID c
    auditoria antes de qualquer ficheiro confidencial.
 3. **Pagamentos (P0 antes de cobrar)** — checkout server-side, webhooks assinados e idempotentes, estado
    `pending` para Multibanco; testar em sandbox. Rodar qualquer chave partilhada com terceiros.
-4. **Prerender/SSG (P1)** — os metadados por rota são aplicados no cliente; crawlers sem JS veem os da
-   homepage. Prerender das rotas públicas resolve isto e abre caminho a `hreflang`.
+4. ~~Prerender de metadados~~ feito. SSR/SSG do conteúdo completo e URLs por idioma (`hreflang`) ficam
+   como evolução opcional.
 5. **Analytics consentidos (P1)** — integrar um fornecedor (atualizando a CSP `connect-src`) antes de
    reportar conversões.
 6. ~~Soft-404~~ resolvido com página 404 + `noindex`; um 404 HTTP real exige prerender ou função de servidor.

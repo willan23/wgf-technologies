@@ -7,15 +7,16 @@ import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
 import { whatsappUrl } from '../lib/forms';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [params] = useSearchParams();
   const initialType = params.get('type') || 'general';
   const [copied, setCopied] = useState('');
   const { contacts } = company;
 
-  usePageMeta({ title: t.nav.contact, description: t.contact.body, path: '/contact' });
+  usePageMeta(routeMeta('/contact', t, lang));
 
   const copy = async (value, key) => {
     await navigator.clipboard.writeText(value);

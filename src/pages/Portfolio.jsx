@@ -2,11 +2,12 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { filterProducts, getProductMarkets, getPublicProducts } from '../data/products';
+import { filterProducts, getProductMarkets, getPublicProducts, localizeProduct, tagLabel } from '../data/products';
 import { statusMeta } from '../lib/status';
 import PageHero from '../components/PageHero';
 import ProductCard from '../components/ProductCard';
 import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 function FilterRow({ label, options, value, onSelect, allLabel }) {
   return (
@@ -28,15 +29,15 @@ function FilterRow({ label, options, value, onSelect, allLabel }) {
 }
 
 export default function Portfolio() {
-  const { t } = useLanguage();
-  const products = getPublicProducts();
+  const { t, lang } = useLanguage();
+  const products = getPublicProducts().map((p) => localizeProduct(p, lang));
   // Filters live in the URL (?q=&market=&status=) so a filtered view can be shared.
   const [params, setParams] = useSearchParams();
   const q = params.get('q') || '';
   const market = params.get('market') || '';
   const status = params.get('status') || '';
 
-  usePageMeta({ title: t.nav.portfolio, description: t.portfolio.body, path: '/portfolio' });
+  usePageMeta(routeMeta('/portfolio', t, lang));
 
   const markets = getProductMarkets(products);
   const statuses = [...new Set(products.map((p) => p.status))];
@@ -72,7 +73,7 @@ export default function Portfolio() {
               <FilterRow
                 label={t.portfolio.market}
                 allLabel={t.portfolio.all}
-                options={markets.map((m) => [m, m])}
+                options={markets.map((m) => [m, tagLabel(m, lang)])}
                 value={market}
                 onSelect={(v) => update('market', v)}
               />

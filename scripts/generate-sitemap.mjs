@@ -3,25 +3,13 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { getPublicProducts } from '../src/data/products.js';
+import { translations } from '../src/i18n/translations.js';
+import { NOINDEX, STATIC_PATHS, routeMeta } from '../src/lib/routeMeta.js';
 
 export const SITE = 'https://www.wgf-technologies.site';
 
-// Keep in sync with src/App.jsx. /investor-data-room is intentionally excluded (noindex).
-export const STATIC_ROUTES = [
-  '/',
-  '/portfolio',
-  '/technology',
-  '/markets',
-  '/about',
-  '/founder',
-  '/investors',
-  '/investors/opportunity',
-  '/partners',
-  '/contact',
-  '/privacy',
-  '/terms',
-  '/cookies',
-];
+// Same route list as the per-route metadata; noindex routes (investor data room) are left out.
+export const STATIC_ROUTES = STATIC_PATHS.filter((path) => routeMeta(path, translations.EN).robots !== NOINDEX);
 
 export function sitemapPaths() {
   const productPaths = getPublicProducts().map((p) => `/portfolio/${p.slug}`);
