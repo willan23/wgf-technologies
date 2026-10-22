@@ -200,34 +200,39 @@ export const products = [
     disclaimer: null,
   },
   {
-    id: 'ecoseo-ai',
-    slug: 'ecoseo-ai',
-    name: 'EcoSEO AI',
-    url: null,
-    category: 'AI / E-commerce / Autonomous Sourcing',
-    status: STATUS.DEVELOPMENT,
-    public: false,
-    ready: false,
+    id: 'ecoseo',
+    slug: 'ecoseo',
+    name: 'EcoSEO',
+    url: 'https://ecoseoai.one',
+    category: 'AI / E-commerce / SEO content',
+    status: STATUS.LIVE,
+    public: true,
+    ready: true,
     markets: ['E-commerce', 'Artificial Intelligence', 'SaaS'],
-    businessModel: ['SaaS', 'B2B', 'Subscription'],
+    businessModel: ['SaaS', 'Subscription', 'B2B'],
     shortDescription:
-      'An AI-powered platform designed to automate product discovery, sourcing intelligence and e-commerce workflows.',
-    valueProposition: 'Automate discovery and sourcing intelligence for e-commerce workflows.',
+      'An AI tool that writes SEO titles, product descriptions and meta descriptions for online stores, in the format of each e-commerce platform.',
+    valueProposition: 'SEO-ready copy for every product page, reviewed by the seller before publishing.',
     problem:
-      'E-commerce operators spend excessive time on manual product discovery and sourcing research.',
+      'Online sellers spend hours writing product titles and descriptions, or reuse supplier text that many other stores also publish, which rarely ranks in search.',
     solution:
-      'EcoSEO AI is under development to automate parts of product discovery and sourcing intelligence. Capabilities will be listed publicly only when implemented and ready.',
-    technology: ['Automation workflows', 'AI-assisted analysis', 'E-commerce tooling'],
+      'EcoSEO generates a title, description and meta description from the product facts the seller provides, within the limits of Shopify, WooCommerce, Etsy, eBay, Amazon and other platforms, in six languages. Sellers review and edit before publishing. Pro adds bulk generation from CSV; Enterprise adds team approvals, an audit log and API access.',
+    technology: [
+      'Web application (React and Node.js)',
+      'LLM content generation restricted to the facts provided',
+      'Google Cloud Run and Cloud SQL',
+      'Stripe subscriptions and Firebase Authentication',
+    ],
     targetMarket: {
-      geography: ['Global', 'Emerging Markets'],
-      segments: ['E-commerce operators', 'Sourcing teams'],
-      opportunity: 'Automation of repetitive e-commerce research workflows.',
+      geography: ['Portugal', 'Europe', 'Global'],
+      segments: ['Online store owners', 'Marketplace sellers', 'E-commerce agencies'],
+      opportunity: 'Product content at catalogue scale for small and mid-size online stores.',
     },
     roadmap: {
-      completed: ['Internal prototyping'],
-      current: ['Private development'],
-      next: ['MVP hardening'],
-      future: ['Public launch when ready'],
+      completed: ['Public launch with Free, Pro and Enterprise plans', 'Bulk generation from CSV', 'Team approvals and audit log'],
+      current: ['Search visibility and first customers'],
+      next: ['More store connectors with verified publishing'],
+      future: ['Wider catalogue automation'],
     },
     disclaimer: null,
   },
@@ -238,6 +243,62 @@ export const products = [
  * any field missing here falls back to it. Translate faithfully — no new claims.
  */
 const productTranslations = {
+  ecoseo: {
+    PT: {
+      category: 'IA / E-commerce / Conteúdo SEO',
+      shortDescription:
+        'Uma ferramenta de IA que escreve títulos SEO, descrições de produto e meta descriptions para lojas online, no formato de cada plataforma de e-commerce.',
+      valueProposition: 'Texto pronto para SEO em cada página de produto, revisto pelo lojista antes de publicar.',
+      problem:
+        'Quem vende online passa horas a escrever títulos e descrições de produto, ou reutiliza o texto do fornecedor que muitas outras lojas também publicam, o que raramente aparece nas pesquisas.',
+      solution:
+        'O EcoSEO gera o título, a descrição e a meta description a partir dos factos do produto indicados pelo lojista, dentro dos limites da Shopify, WooCommerce, Etsy, eBay, Amazon e outras plataformas, em seis idiomas. O lojista revê e edita antes de publicar. O plano Pro acrescenta geração em massa por CSV; o Enterprise acrescenta aprovações em equipa, registo de auditoria e acesso por API.',
+      technology: [
+        'Aplicação web (React e Node.js)',
+        'Geração de conteúdo com LLM restrita aos factos fornecidos',
+        'Google Cloud Run e Cloud SQL',
+        'Subscrições Stripe e Firebase Authentication',
+      ],
+      targetMarket: {
+        geography: ['Portugal', 'Europa', 'Global'],
+        segments: ['Donos de lojas online', 'Vendedores em marketplaces', 'Agências de e-commerce'],
+        opportunity: 'Conteúdo de produto à escala do catálogo para lojas online de pequena e média dimensão.',
+      },
+      roadmap: {
+        completed: ['Lançamento público com planos Grátis, Pro e Enterprise', 'Geração em massa por CSV', 'Aprovações em equipa e registo de auditoria'],
+        current: ['Visibilidade nas pesquisas e primeiros clientes'],
+        next: ['Mais conectores de loja com publicação verificada'],
+        future: ['Automação mais ampla do catálogo'],
+      },
+    },
+    FR: {
+      category: 'IA / E-commerce / Contenu SEO',
+      shortDescription:
+        'Un outil d’IA qui rédige les titres SEO, les descriptions de produits et les méta-descriptions des boutiques en ligne, au format de chaque plateforme e-commerce.',
+      valueProposition: 'Des textes optimisés pour le SEO sur chaque fiche produit, relus par le vendeur avant publication.',
+      problem:
+        'Les vendeurs en ligne passent des heures à rédiger titres et descriptions de produits, ou réutilisent le texte du fournisseur que de nombreuses autres boutiques publient aussi, ce qui ressort rarement dans les recherches.',
+      solution:
+        'EcoSEO génère le titre, la description et la méta-description à partir des informations produit fournies par le vendeur, dans les limites de Shopify, WooCommerce, Etsy, eBay, Amazon et d’autres plateformes, en six langues. Le vendeur relit et modifie avant de publier. L’offre Pro ajoute la génération en masse par CSV ; l’offre Enterprise ajoute les validations en équipe, un journal d’audit et l’accès API.',
+      technology: [
+        'Application web (React et Node.js)',
+        'Génération de contenu par LLM limitée aux informations fournies',
+        'Google Cloud Run et Cloud SQL',
+        'Abonnements Stripe et Firebase Authentication',
+      ],
+      targetMarket: {
+        geography: ['Portugal', 'Europe', 'Monde'],
+        segments: ['Propriétaires de boutiques en ligne', 'Vendeurs sur marketplaces', 'Agences e-commerce'],
+        opportunity: 'Du contenu produit à l’échelle du catalogue pour les boutiques en ligne de petite et moyenne taille.',
+      },
+      roadmap: {
+        completed: ['Lancement public avec les offres Gratuite, Pro et Enterprise', 'Génération en masse par CSV', 'Validations en équipe et journal d’audit'],
+        current: ['Visibilité dans les recherches et premiers clients'],
+        next: ['Davantage de connecteurs de boutique avec publication vérifiée'],
+        future: ['Automatisation plus large du catalogue'],
+      },
+    },
+  },
   'connect-cplp': {
     PT: {
       category: 'Infraestrutura digital / CPLP / Ecossistema',
