@@ -17,6 +17,56 @@ export const STATUS = {
 
 export const products = [
   {
+    id: 'wgf-ip-shield',
+    slug: 'wgf-ip-shield',
+    name: 'WGF IP Shield',
+    url: 'https://wgfipshield.online/',
+    category: 'SaaS / IP Protection / Software Authorship',
+    status: STATUS.LIVE,
+    public: true,
+    ready: true,
+    featured: true,
+    markets: ['SaaS', 'Cybersecurity', 'Digital Economy', 'Artificial Intelligence'],
+    businessModel: ['SaaS', 'Subscription', 'B2B', 'Freemium'],
+    shortDescription:
+      'Proof of authorship for software: timestamped fingerprints, verifiable certificates and protection reports — without uploading your source code.',
+    valueProposition: 'Your code — timestamped, fingerprinted, owned.',
+    problem:
+      'Developers and companies struggle to prove authorship and version history of software without exposing proprietary source code.',
+    solution:
+      'WGF IP Shield fingerprints projects in the browser (SHA-256), issues verifiable authorship certificates with timestamps, keeps version history, offers public verification, README badges, CI/CD registration API and AI protection reports. Only fingerprints leave the machine — not the source code.',
+    technology: [
+      'Client-side SHA-256 fingerprinting',
+      'Authorship certificates with version provenance chain',
+      'Public verification (/verify)',
+      'AI protection reports (licenses, secrets, copying/scraping risks)',
+      'CI/CD API with hashed API keys',
+      'Stripe subscription billing',
+      'Supabase-backed cloud delivery',
+    ],
+    targetMarket: {
+      geography: ['Europe', 'Global', 'Lusophone Markets'],
+      segments: ['Software developers', 'Startups', 'Agencies', 'Technology companies'],
+      opportunity:
+        'Growing need for software authorship proof, IP documentation and version integrity without sacrificing code privacy.',
+    },
+    roadmap: {
+      completed: [
+        'Live product at wgfipshield.online',
+        'Auth, projects, versions and certificates',
+        'Public verification and SVG badges',
+        'Stripe payments (monthly/yearly)',
+        'AI protection reports',
+        'CI/CD public API',
+      ],
+      current: ['Commercialization and market acquisition'],
+      next: ['Transactional email flows', 'Stronger independent time-anchoring'],
+      future: ['Signed certificates, verified holder identity, selective disclosure tooling'],
+    },
+    disclaimer:
+      'WGF IP Shield provides evidence of existence, integrity and recorded provenance. No system stops copying entirely. Certificates support authorship and integrity claims; they are not a substitute for legal counsel or registered intellectual-property filings where required.',
+  },
+  {
     id: 'connect-cplp',
     slug: 'connect-cplp',
     name: 'Connect-CPLP',

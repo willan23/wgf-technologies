@@ -6,7 +6,9 @@ export const company = {
   secondaryMessage:
     "We don't just build software. We build technology products designed for the market.",
   narrative: ['We build.', 'We validate.', 'We launch.', 'We scale.'],
-  fundingStage: 'bootstrapped', // bootstrapped | pre-seed | seed | growth
+  fundingStage: 'pre-seed', // bootstrapped | pre-seed | seed | growth
+  openForInvestment: true,
+  investmentFocus: ['wgf-ip-shield', 'portfolio'],
   location: {
     locality: 'Porto',
     country: 'Portugal',

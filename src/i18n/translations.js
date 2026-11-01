@@ -71,7 +71,7 @@ export const translations = {
       philosophyTitle: 'How we work',
       investorTitle: 'Investment opportunity',
       investorBody:
-        'We are preparing our next stage of growth and are open to conversations with strategic investors, venture partners and technology-focused capital.',
+        'Pre-seed conversations are open. Capital to commercialize and scale live products — including WGF IP Shield.',
       investorCta: 'Register Interest',
       partnersTitle: 'Strategic Partnerships',
       partnersBody: 'Technology, distribution and market partners who want to build with us.',
@@ -147,13 +147,17 @@ export const translations = {
     investors: {
       title: 'Investor Relations',
       subheadline: 'Building a portfolio of technology products with global market potential.',
+      openBadge: 'Open to investment discussions',
+      openBody:
+        'We are actively open to conversations with angel investors, strategic partners and technology-focused capital to commercialize and scale live products — starting with WGF IP Shield.',
+      featuredLabel: 'Featured live product',
       opportunityTitle: 'The Opportunity',
       opportunityBody:
-        'WGF Technologies is developing a portfolio of digital products across AI, SaaS, cybersecurity, Web3 and digital infrastructure.',
+        'WGF Technologies is commercializing a portfolio of digital products across AI, SaaS, cybersecurity, IP protection, Web3 and digital infrastructure. WGF IP Shield is live at wgfipshield.online with authorship certificates, public verification and subscription billing.',
       whyTitle: 'Why WGF',
       why: [
         'Multiple working products',
-        'Product portfolio',
+        'Live SaaS product (WGF IP Shield)',
         'Technology ownership',
         'Rapid iteration',
         'Cross-market opportunities',
@@ -162,12 +166,15 @@ export const translations = {
       stageTitle: 'Current Funding Stage',
       thesisTitle: 'Investment thesis',
       thesisBody:
-        'We commercialize working products and expand into adjacent markets with owned technology and disciplined execution.',
+        'We commercialize working products and expand into adjacent markets with owned technology and disciplined execution — capital focused on go-to-market, infrastructure and team.',
       ctaTitle: 'Interested in investing in WGF Technologies?',
       ctaBody:
-        'We are currently preparing our next stage of growth and are open to conversations with strategic investors, venture partners and technology-focused capital.',
+        'We are open to conversations with strategic investors, venture partners and technology-focused capital. Register interest below — no online equity sale.',
       ctaButton: 'Register Interest',
+      whatsappCta: 'WhatsApp Investor Relations',
       opportunityLink: 'Capital Deployment',
+      noPaymentNote:
+        'This website does not accept investment payments or sell equity online. You can register interest (including anonymously). Any transfer of funds happens only after a qualified conversation and proper legal/corporate setup.',
       legalNote:
         'Registering interest does not constitute an offer of securities, equity sale, or solicitation. Any investment would follow a qualified conversation and appropriate legal/corporate structure.',
       formTitle: 'Investor Interest',
@@ -219,6 +226,17 @@ export const translations = {
       product: 'Interested Product',
       range: 'Approximate Investment Range',
       message: 'Message',
+      optional: 'optional',
+      anonymousToggle: 'Register as anonymous investor',
+      anonymousHelp:
+        'We will not ask for your real name. You receive a private alias code. Optional email helps us reply privately. This is interest registration only — not a payment.',
+      anonymousEmailPlaceholder: 'Optional private email for reply',
+      anonymousConsent:
+        'I agree that WGF may process the data I choose to share (and my anonymous alias) under the Privacy Policy for investor-relations follow-up.',
+      anonymousContactHint: 'For anonymous interest, leave an optional email or a message so we can continue the conversation.',
+      nameRequired: 'Name is required unless you choose anonymous mode.',
+      emailRequired: 'Email is required unless you choose anonymous mode.',
+      aliasLabel: 'Your anonymous alias',
       consent: 'I agree to the processing of my data according to the Privacy Policy for investor relations purposes.',
       submit: 'Register Interest',
       types: [
@@ -228,6 +246,7 @@ export const translations = {
         'Corporate',
         'Family Office',
         'Technology Partner',
+        'Anonymous Investor',
         'Other',
       ],
       ranges: [
@@ -310,7 +329,7 @@ export const translations = {
       philosophyTitle: 'Como trabalhamos',
       investorTitle: 'Oportunidade de investimento',
       investorBody:
-        'Estamos a preparar a próxima fase de crescimento e abertos a conversas com investidores estratégicos, venture partners e capital focado em tecnologia.',
+        'Conversas pre-seed abertas. Capital para comercializar e escalar produtos live — incluindo o WGF IP Shield.',
       investorCta: 'Registar Interesse',
       partnersTitle: 'Parcerias Estratégicas',
       partnersBody: 'Parceiros de tecnologia, distribuição e mercado que queiram construir connosco.',
@@ -386,13 +405,17 @@ export const translations = {
     investors: {
       title: 'Investor Relations',
       subheadline: 'A construir um portfólio de produtos tecnológicos com potencial de mercado global.',
+      openBadge: 'Aberto a conversas de investimento',
+      openBody:
+        'Estamos abertos a conversas com angel investors, parceiros estratégicos e capital focado em tecnologia para comercializar e escalar produtos live — começando pelo WGF IP Shield.',
+      featuredLabel: 'Produto live em destaque',
       opportunityTitle: 'A Oportunidade',
       opportunityBody:
-        'A WGF Technologies está a desenvolver um portfólio de produtos digitais em IA, SaaS, cibersegurança, Web3 e infraestrutura digital.',
+        'A WGF Technologies está a comercializar um portfólio de produtos digitais em IA, SaaS, cibersegurança, proteção de IP, Web3 e infraestrutura digital. O WGF IP Shield está live em wgfipshield.online com certificados de autoria, verificação pública e billing por subscrição.',
       whyTitle: 'Porquê a WGF',
       why: [
         'Múltiplos produtos a funcionar',
-        'Portfólio de produtos',
+        'Produto SaaS live (WGF IP Shield)',
         'Propriedade tecnológica',
         'Iteração rápida',
         'Oportunidades cross-market',
@@ -401,12 +424,15 @@ export const translations = {
       stageTitle: 'Fase de funding atual',
       thesisTitle: 'Tese de investimento',
       thesisBody:
-        'Comercializamos produtos a funcionar e expandimos para mercados adjacentes com tecnologia própria e execução disciplinada.',
+        'Comercializamos produtos a funcionar e expandimos para mercados adjacentes com tecnologia própria e execução disciplinada — capital focado em go-to-market, infraestrutura e equipa.',
       ctaTitle: 'Interessado em investir na WGF Technologies?',
       ctaBody:
-        'Estamos a preparar a próxima fase de crescimento e abertos a conversas com investidores estratégicos, venture partners e capital focado em tecnologia.',
+        'Estamos abertos a conversas com investidores estratégicos, venture partners e capital focado em tecnologia. Registe interesse abaixo — sem venda de equity online.',
       ctaButton: 'Registar Interesse',
+      whatsappCta: 'WhatsApp Investor Relations',
       opportunityLink: 'Capital Deployment',
+      noPaymentNote:
+        'Este website não aceita pagamentos de investimento nem vende equity online. Pode registar interesse (incluindo de forma anónima). Qualquer transferência de fundos só ocorre após conversa qualificada e estrutura jurídica/corporativa adequada.',
       legalNote:
         'Registar interesse não constitui oferta de valores mobiliários, venda de equity ou solicitação. Qualquer investimento seguirá conversa qualificada e estrutura jurídica/corporativa adequada.',
       formTitle: 'Interesse de Investidor',
@@ -458,6 +484,17 @@ export const translations = {
       product: 'Produto de Interesse',
       range: 'Intervalo Aproximado de Investimento',
       message: 'Mensagem',
+      optional: 'opcional',
+      anonymousToggle: 'Registar como investidor anónimo',
+      anonymousHelp:
+        'Não pedimos o seu nome real. Recebe um código-alias privado. Email opcional permite resposta privada. Isto é apenas registo de interesse — não é pagamento.',
+      anonymousEmailPlaceholder: 'Email privado opcional para resposta',
+      anonymousConsent:
+        'Aceito que a WGF trate os dados que eu escolher partilhar (e o meu alias anónimo) segundo a Política de Privacidade para follow-up de investor relations.',
+      anonymousContactHint: 'Em modo anónimo, deixe um email opcional ou uma mensagem para podermos continuar a conversa.',
+      nameRequired: 'O nome é obrigatório, exceto em modo anónimo.',
+      emailRequired: 'O email é obrigatório, exceto em modo anónimo.',
+      aliasLabel: 'O seu alias anónimo',
       consent:
         'Aceito o tratamento dos meus dados de acordo com a Política de Privacidade para fins de relações com investidores.',
       submit: 'Registar Interesse',
@@ -468,6 +505,7 @@ export const translations = {
         'Corporate',
         'Family Office',
         'Technology Partner',
+        'Anonymous Investor',
         'Other',
       ],
       ranges: [
@@ -550,7 +588,7 @@ export const translations = {
       philosophyTitle: 'Notre méthode',
       investorTitle: 'Opportunité d’investissement',
       investorBody:
-        'Nous préparons la prochaine étape de croissance et sommes ouverts aux conversations avec des investisseurs stratégiques, venture partners et capital technologique.',
+        'Discussions pre-seed ouvertes. Capital pour commercialiser et scaler des produits live — dont WGF IP Shield.',
       investorCta: 'Enregistrer un intérêt',
       partnersTitle: 'Partenariats Stratégiques',
       partnersBody: 'Partenaires technologie, distribution et marché qui veulent construire avec nous.',
@@ -626,13 +664,17 @@ export const translations = {
     investors: {
       title: 'Investor Relations',
       subheadline: 'Construire un portfolio de produits technologiques à potentiel de marché mondial.',
+      openBadge: 'Ouvert aux discussions d’investissement',
+      openBody:
+        'Nous sommes ouverts aux conversations avec des business angels, partenaires stratégiques et capital technologique pour commercialiser et scaler des produits live — à commencer par WGF IP Shield.',
+      featuredLabel: 'Produit live mis en avant',
       opportunityTitle: 'L’Opportunité',
       opportunityBody:
-        'WGF Technologies développe un portfolio de produits numériques en IA, SaaS, cybersécurité, Web3 et infrastructure numérique.',
+        'WGF Technologies commercialise un portfolio de produits numériques en IA, SaaS, cybersécurité, protection IP, Web3 et infrastructure numérique. WGF IP Shield est live sur wgfipshield.online avec certificats d’auteur, vérification publique et abonnements.',
       whyTitle: 'Pourquoi WGF',
       why: [
         'Plusieurs produits fonctionnels',
-        'Portfolio de produits',
+        'Produit SaaS live (WGF IP Shield)',
         'Propriété technologique',
         'Itération rapide',
         'Opportunités cross-market',
@@ -641,12 +683,15 @@ export const translations = {
       stageTitle: 'Étape de financement actuelle',
       thesisTitle: 'Thèse d’investissement',
       thesisBody:
-        'Nous commercialisons des produits fonctionnels et élargissons vers des marchés adjacents avec une technologie propriétaire et une exécution disciplinée.',
+        'Nous commercialisons des produits fonctionnels et élargissons vers des marchés adjacents avec une technologie propriétaire et une exécution disciplinée — capital axé go-to-market, infrastructure et équipe.',
       ctaTitle: 'Intéressé à investir dans WGF Technologies ?',
       ctaBody:
-        'Nous préparons la prochaine étape de croissance et sommes ouverts aux conversations avec des investisseurs stratégiques, venture partners et capital technologique.',
+        'Nous sommes ouverts aux conversations avec des investisseurs stratégiques, venture partners et capital technologique. Enregistrez votre intérêt ci-dessous — pas de vente d’equity en ligne.',
       ctaButton: 'Register Interest',
+      whatsappCta: 'WhatsApp Investor Relations',
       opportunityLink: 'Capital Deployment',
+      noPaymentNote:
+        'Ce site n’accepte pas les paiements d’investissement et ne vend pas d’equity en ligne. Vous pouvez enregistrer un intérêt (y compris anonymement). Tout transfert de fonds n’a lieu qu’après une conversation qualifiée et une structure juridique appropriée.',
       legalNote:
         'Enregistrer un intérêt ne constitue pas une offre de titres, une vente d’equity ou une sollicitation. Tout investissement suivra une conversation qualifiée et une structure juridique appropriée.',
       formTitle: 'Intérêt Investisseur',
@@ -698,6 +743,17 @@ export const translations = {
       product: 'Produit concerné',
       range: 'Fourchette approximative',
       message: 'Message',
+      optional: 'optionnel',
+      anonymousToggle: 'S’enregistrer comme investisseur anonyme',
+      anonymousHelp:
+        'Nous ne demandons pas votre vrai nom. Vous recevez un code alias privé. Un e-mail optionnel permet une réponse privée. Ceci est uniquement un enregistrement d’intérêt — pas un paiement.',
+      anonymousEmailPlaceholder: 'E-mail privé optionnel pour la réponse',
+      anonymousConsent:
+        'J’accepte que WGF traite les données que je choisis de partager (et mon alias anonyme) selon la Politique de Confidentialité pour le suivi investor relations.',
+      anonymousContactHint: 'En mode anonyme, laissez un e-mail optionnel ou un message pour poursuivre la conversation.',
+      nameRequired: 'Le nom est requis sauf en mode anonyme.',
+      emailRequired: 'L’e-mail est requis sauf en mode anonyme.',
+      aliasLabel: 'Votre alias anonyme',
       consent:
         'J’accepte le traitement de mes données selon la Politique de Confidentialité pour les relations investisseurs.',
       submit: 'Register Interest',
@@ -708,6 +764,7 @@ export const translations = {
         'Corporate',
         'Family Office',
         'Technology Partner',
+        'Anonymous Investor',
         'Other',
       ],
       ranges: [
