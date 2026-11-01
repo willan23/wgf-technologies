@@ -4,13 +4,31 @@ import { ArrowUp, Globe, Menu, MessageSquare, Moon, Sun, X } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext';
 import { company } from '../../data/company';
 import { whatsappUrl } from '../../lib/forms';
+import { useConsent } from '../../context/ConsentContext';
 import CookieBanner from '../CookieBanner';
 import './Layout.css';
 
 const ThreeBackground = lazy(() => import('../ThreeBackground'));
 
+function supportsWebGL() {
+  try {
+    const canvas = document.createElement('canvas');
+    return Boolean(window.WebGLRenderingContext && (canvas.getContext('webgl2') || canvas.getContext('webgl')));
+  } catch {
+    return false;
+  }
+}
+
+// Skip the decorative 3D layer on low-end devices (few cores / little memory).
+function isLowPowerDevice() {
+  const cores = navigator.hardwareConcurrency || 8;
+  const memory = navigator.deviceMemory || 8;
+  return cores <= 2 || memory <= 2;
+}
+
 export default function Layout() {
   const { lang, setLang, t } = useLanguage();
+  const { openSettings } = useConsent();
   const location = useLocation();
   const [theme, setTheme] = useState(() => localStorage.getItem('wgf-portfolio-theme') || 'dark');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +39,7 @@ export default function Layout() {
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mobile = window.matchMedia('(max-width: 900px)').matches;
-    setEnable3d(!reduced && !mobile);
+    setEnable3d(!reduced && !mobile && !isLowPowerDevice() && supportsWebGL());
   }, []);
 
   useEffect(() => {
@@ -60,6 +78,9 @@ export default function Layout() {
 
   return (
     <div className="app-container">
+      <a href="#main-content" className="skip-link">
+        {lang === "PT" ? "Saltar para o conteúdo" : lang === "FR" ? "Aller au contenu" : "Skip to content"}
+      </a>
       <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
       <div className="bg-grid" />
       <div className="bg-glow" />
@@ -119,6 +140,7 @@ export default function Layout() {
             type="button"
             className="mobile-menu-btn"
             aria-label="Menu"
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -136,7 +158,7 @@ export default function Layout() {
         </div>
       )}
 
-      <main className="page-main" key={lang}>
+      <main id="main-content" className="page-main" key={lang} tabIndex={-1}>
         <Outlet />
       </main>
 
@@ -158,6 +180,9 @@ export default function Layout() {
             <Link to="/privacy">{t.footer.privacy}</Link>
             <Link to="/terms">{t.footer.terms}</Link>
             <Link to="/cookies">{t.footer.cookies}</Link>
+            <button type="button" className="footer-link-btn" onClick={openSettings}>
+              {t.consent.settings}
+            </button>
           </div>
         </div>
         <div className="footer-bottom">
@@ -173,6 +198,7 @@ export default function Layout() {
           rel="noreferrer"
           className="floating-action-btn whatsapp-float-btn"
           title="WhatsApp"
+          aria-label="WhatsApp"
         >
           <MessageSquare size={22} />
         </a>
@@ -180,6 +206,7 @@ export default function Layout() {
           <button
             type="button"
             className="floating-action-btn back-to-top-btn"
+            aria-label="Back to top"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <ArrowUp size={20} />

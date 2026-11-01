@@ -8,13 +8,16 @@ import PageHero from '../components/PageHero';
 import InvestorForm from '../components/InvestorForm';
 import { trackEvent } from '../lib/analytics';
 import { whatsappUrl } from '../lib/forms';
+import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Investors() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const featured = getPublicProducts().find((p) => p.featured) || getPublicProducts()[0];
 
+  usePageMeta(routeMeta('/investors', t, lang));
+
   useEffect(() => {
-    document.title = `Investors | ${company.name}`;
     trackEvent('investor_page_view');
   }, []);
 

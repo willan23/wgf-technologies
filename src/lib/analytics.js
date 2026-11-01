@@ -1,4 +1,15 @@
 const CONSENT_KEY = 'wgf-analytics-consent';
+const EVENTS_KEY = 'wgf-analytics-events';
+
+/** 'granted' | 'denied' | null (no choice made yet) */
+export function getConsentChoice() {
+  try {
+    const value = localStorage.getItem(CONSENT_KEY);
+    return value === 'granted' || value === 'denied' ? value : null;
+  } catch {
+    return null;
+  }
+}
 
 export function getAnalyticsConsent() {
   try {
@@ -11,6 +22,8 @@ export function getAnalyticsConsent() {
 export function setAnalyticsConsent(granted) {
   try {
     localStorage.setItem(CONSENT_KEY, granted ? 'granted' : 'denied');
+    // Revoking consent also discards anything collected under it.
+    if (!granted) localStorage.removeItem(EVENTS_KEY);
   } catch {
     /* ignore */
   }
@@ -25,12 +38,12 @@ export function trackEvent(name, props = {}) {
     ts: new Date().toISOString(),
     path: window.location.pathname,
   };
-  // Lightweight local analytics buffer — replace with provider when consented + configured
+  // Local-only debug buffer: nothing is sent to a server, so these are NOT business metrics.
+  // Replace with a consented analytics provider before reporting conversion numbers.
   try {
-    const key = 'wgf-analytics-events';
-    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+    const existing = JSON.parse(localStorage.getItem(EVENTS_KEY) || '[]');
     existing.push(payload);
-    localStorage.setItem(key, JSON.stringify(existing.slice(-200)));
+    localStorage.setItem(EVENTS_KEY, JSON.stringify(existing.slice(-200)));
   } catch {
     /* ignore */
   }

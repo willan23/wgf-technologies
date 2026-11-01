@@ -1,29 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { company } from '../data/company';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function DataRoom() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
-  useEffect(() => {
-    document.title = `Investor Data Room | ${company.name}`;
-    const robots = document.querySelector('meta[name="robots"]');
-    const prev = robots?.getAttribute('content');
-    if (robots) robots.setAttribute('content', 'noindex, nofollow');
-    else {
-      const meta = document.createElement('meta');
-      meta.name = 'robots';
-      meta.content = 'noindex, nofollow';
-      document.head.appendChild(meta);
-    }
-    return () => {
-      const current = document.querySelector('meta[name="robots"]');
-      if (current && prev) current.setAttribute('content', prev);
-      else if (current && !prev) current.setAttribute('content', 'index, follow');
-    };
-  }, []);
+  // Not indexed (also enforced via X-Robots-Tag in vercel.json). This page holds NO documents:
+  // robots/noindex is not access control — confidential files need server-side auth first.
+  usePageMeta(routeMeta('/investor-data-room', t, lang));
 
   return (
     <div>
@@ -34,7 +21,7 @@ export default function DataRoom() {
           {t.dataRoom.sections.map((section) => (
             <article key={section} className="feature-card glass-effect locked-card">
               <h2>{section}</h2>
-              <p>Access by invitation</p>
+              <p>{t.dataRoom.locked}</p>
             </article>
           ))}
         </div>

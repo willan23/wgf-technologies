@@ -1,23 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, LineChart, Users } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Briefcase, HeartHandshake, LineChart, MessageSquare, Rocket, Users } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
-import { getPublicProducts } from '../data/products';
+import { getPublicProducts, STATUS } from '../data/products';
 import { technologyCategories } from '../data/technology';
 import { markets } from '../data/markets';
+import { localizeList } from '../data/localize';
 import ProductCard from '../components/ProductCard';
 import Symbol3D from '../components/Symbol3D';
 import { trackEvent } from '../lib/analytics';
+import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
+
+const audienceIcons = { customers: Rocket, partners: HeartHandshake, investors: LineChart };
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const products = getPublicProducts();
+  const liveProducts = products.filter((p) => p.status === STATUS.LIVE && p.url);
 
-  useEffect(() => {
-    document.title = `${company.name} | ${company.tagline}`;
-  }, []);
+  // Every figure is derived from src/data — no invented metrics.
+  const proof = [
+    { value: products.length, label: t.home.proofPublic },
+    { value: liveProducts.length, label: t.home.proofLive },
+    { value: products.length - products.filter((p) => p.status === STATUS.LIVE).length, label: t.home.proofEarly },
+    { value: t.home.proofBase, label: t.home.proofBaseLabel },
+  ];
+
+  usePageMeta(routeMeta('/', t, lang));
 
   return (
     <div className="home-page">
@@ -46,6 +58,26 @@ export default function Home() {
               <LineChart size={16} /> {t.home.ctaInvestor}
             </Link>
           </div>
+
+          {liveProducts.length > 0 && (
+            <div className="live-strip">
+              <span className="live-strip-label">
+                <span className="live-dot" aria-hidden /> {t.home.liveNow}
+              </span>
+              {liveProducts.map((p) => (
+                <a
+                  key={p.id}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="live-pill"
+                  onClick={() => trackEvent('product_external_click', { slug: p.slug, source: 'home_live' })}
+                >
+                  {p.name} <ArrowUpRight size={14} aria-hidden />
+                </a>
+              ))}
+            </div>
+          )}
         </motion.div>
         <motion.div
           className="home-hero-visual"
@@ -57,24 +89,21 @@ export default function Home() {
         </motion.div>
       </section>
 
+      <section className="section-block proof-section" aria-label="WGF Technologies in numbers">
+        <dl className="proof-strip glass-effect">
+          {proof.map((item) => (
+            <div key={item.label} className="proof-item">
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section className="section-block">
         <div className="section-narrow">
           <h2>{t.home.positioningTitle}</h2>
           <p className="lead muted">{t.home.positioningBody}</p>
-        </div>
-      </section>
-
-      <section className="section-block">
-        <div className="section-header-row">
-          <div>
-            <h2>{t.home.snapshotTitle}</h2>
-            <p className="muted">{t.home.snapshotBody}</p>
-          </div>
-        </div>
-        <div className="chip-grid">
-          {company.portfolioCategories.map((cat) => (
-            <span key={cat} className="info-chip">{cat}</span>
-          ))}
         </div>
       </section>
 
@@ -95,6 +124,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-block">
+        <span className="section-eyebrow">{t.home.audienceEyebrow}</span>
+        <h2>{t.home.audienceTitle}</h2>
+        <div className="audience-grid">
+          {t.home.audience.map((item) => {
+            const Icon = audienceIcons[item.id];
+            return (
+              <article key={item.id} className={`audience-card glass-effect audience-${item.id}`}>
+                <div className="audience-icon" aria-hidden>
+                  <Icon size={22} />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <Link
+                  to={item.to}
+                  className="text-link"
+                  onClick={() => trackEvent('audience_cta_click', { audience: item.id })}
+                >
+                  {item.cta} <ArrowRight size={16} />
+                </Link>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
       <section className="section-block two-col">
         <div>
           <h2>{t.home.techTitle}</h2>
@@ -104,7 +159,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mini-grid">
-          {technologyCategories.slice(0, 4).map((item) => (
+          {localizeList(technologyCategories, lang).slice(0, 4).map((item) => (
             <div key={item.id} className="mini-card glass-effect">
               <h3>{item.title}</h3>
               <p>{item.description}</p>
@@ -117,7 +172,7 @@ export default function Home() {
         <h2>{t.home.marketsTitle}</h2>
         <p className="muted">{t.home.marketsBody}</p>
         <div className="chip-grid">
-          {markets.map((m) => (
+          {localizeList(markets, lang).map((m) => (
             <Link key={m.id} to="/markets" className="info-chip link-chip">
               {m.title}
             </Link>
@@ -127,57 +182,36 @@ export default function Home() {
 
       <section className="section-block philosophy">
         <h2>{t.home.philosophyTitle}</h2>
-        <div className="philosophy-row">
-          {company.narrative.map((step) => (
-            <div key={step} className="philosophy-step glass-effect">
-              <span>{step}</span>
-            </div>
+        <ol className="philosophy-row">
+          {t.home.steps.map((step, i) => (
+            <li key={step.title} className="philosophy-step glass-effect">
+              <span className="step-number" aria-hidden>{String(i + 1).padStart(2, '0')}</span>
+              <strong>{step.title}</strong>
+              <p>{step.body}</p>
+            </li>
           ))}
-        </div>
-      </section>
-
-      <section className="section-block cta-panel glass-effect">
-        <div>
-          <h2>{t.home.investorTitle}</h2>
-          <p className="muted">{t.home.investorBody}</p>
-        </div>
-        <Link
-          to="/investors#investor-interest"
-          className="btn-primary"
-          onClick={() => trackEvent('investor_cta_click', { source: 'home_panel' })}
-        >
-          {t.home.investorCta}
-        </Link>
-      </section>
-
-      <section className="section-block cta-panel glass-effect">
-        <div>
-          <h2>{t.home.partnersTitle}</h2>
-          <p className="muted">{t.home.partnersBody}</p>
-        </div>
-        <Link to="/partners#partner-interest" className="btn-secondary">
-          {t.home.partnersCta}
-        </Link>
+        </ol>
       </section>
 
       <section className="section-block founder-strip glass-effect">
-        <img src={company.founder.photo} alt={company.founder.name} />
+        <img src={company.founder.photo} alt={company.founder.name} loading="lazy" />
         <div>
           <h2>{t.home.founderTitle}</h2>
           <h3>{company.founder.name}</h3>
-          <p className="muted">{company.founder.role}</p>
+          <p className="muted">{t.founder.role}</p>
           <Link to="/founder" className="text-link">
             {t.common.learnMore} <ArrowRight size={16} />
           </Link>
         </div>
       </section>
 
-      <section className="section-block cta-panel glass-effect">
+      <section className="section-block cta-panel cta-final glass-effect">
         <div>
           <h2>{t.home.contactTitle}</h2>
+          <p className="muted">{t.contact.body}</p>
         </div>
         <Link to="/contact" className="btn-primary">
-          {t.home.contactCta}
+          <MessageSquare size={18} /> {t.home.contactCta}
         </Link>
       </section>
     </div>

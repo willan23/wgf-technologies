@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Github, Linkedin, Mail, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,17 +6,17 @@ import { company } from '../data/company';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
 import { whatsappUrl } from '../lib/forms';
+import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [params] = useSearchParams();
   const initialType = params.get('type') || 'general';
   const [copied, setCopied] = useState('');
   const { contacts } = company;
 
-  useEffect(() => {
-    document.title = `Contact | ${company.name}`;
-  }, []);
+  usePageMeta(routeMeta('/contact', t, lang));
 
   const copy = async (value, key) => {
     await navigator.clipboard.writeText(value);

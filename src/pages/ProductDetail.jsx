@@ -2,19 +2,26 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { getProductBySlug } from '../data/products';
+import { getProductBySlug, localizeProduct, tagLabel } from '../data/products';
+import { productMeta } from '../lib/routeMeta';
 import { company } from '../data/company';
 import StatusBadge from '../components/StatusBadge';
 import { trackEvent } from '../lib/analytics';
+import { usePageMeta } from '../lib/seo';
 
 export default function ProductDetail() {
   const { slug } = useParams();
-  const { t } = useLanguage();
-  const product = getProductBySlug(slug);
+  const { t, lang } = useLanguage();
+  const product = localizeProduct(getProductBySlug(slug), lang);
+
+  usePageMeta(
+    product
+      ? productMeta(product)
+      : { title: t.product.notFound, path: `/portfolio/${slug}`, robots: 'noindex, follow' },
+  );
 
   useEffect(() => {
     if (product) {
-      document.title = `${product.name} | ${company.name}`;
       trackEvent('product_view', { slug: product.slug });
 
       const existing = document.getElementById('product-jsonld');
@@ -41,9 +48,8 @@ export default function ProductDetail() {
         script.remove();
       };
     }
-    document.title = `Product | ${company.name}`;
     return undefined;
-  }, [product]);
+  }, [product?.slug, lang]);
 
   if (!product) {
     return (
@@ -110,7 +116,7 @@ export default function ProductDetail() {
           <div className="chip-grid">
             {product.businessModel.map((m) => (
               <span key={m} className="info-chip">
-                {m}
+                {tagLabel(m, lang)}
               </span>
             ))}
           </div>

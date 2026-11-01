@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { markets } from '../data/markets';
-import { company } from '../data/company';
+import { localizeList } from '../data/localize';
 import PageHero from '../components/PageHero';
+import { usePageMeta } from '../lib/seo';
+import { routeMeta } from '../lib/routeMeta';
 
 export default function Markets() {
-  const { t } = useLanguage();
-  useEffect(() => {
-    document.title = `Markets | ${company.name}`;
-  }, []);
+  const { t, lang } = useLanguage();
+  usePageMeta(routeMeta('/markets', t, lang));
 
   return (
     <div>
@@ -21,10 +21,10 @@ export default function Markets() {
             <span className="map-node n3">STP</span>
             <span className="map-node n4">Global</span>
           </div>
-          <p className="map-caption">Opportunity markets — not claimed physical offices</p>
+          <p className="map-caption">{t.markets.mapCaption}</p>
         </div>
         <div className="feature-grid">
-          {markets.map((item) => (
+          {localizeList(markets, lang).map((item) => (
             <article key={item.id} className="feature-card glass-effect">
               <h2>{item.title}</h2>
               <p>{item.description}</p>

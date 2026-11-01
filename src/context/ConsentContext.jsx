@@ -1,38 +1,35 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getAnalyticsConsent, setAnalyticsConsent } from '../lib/analytics';
+import { getConsentChoice, setAnalyticsConsent } from '../lib/analytics';
 
 const ConsentContext = createContext(null);
 
 export function ConsentProvider({ children }) {
-  const [consent, setConsent] = useState(() => getAnalyticsConsent());
-  const [showBanner, setShowBanner] = useState(() => {
-    try {
-      return localStorage.getItem('wgf-analytics-consent') == null;
-    } catch {
-      return true;
-    }
-  });
+  // 'granted' | 'denied' | null
+  const [choice, setChoice] = useState(() => getConsentChoice());
+  const [showBanner, setShowBanner] = useState(() => getConsentChoice() == null);
 
   useEffect(() => {
-    const handler = (e) => setConsent(Boolean(e.detail?.granted));
+    const handler = (e) => setChoice(e.detail?.granted ? 'granted' : 'denied');
     window.addEventListener('wgf-consent-change', handler);
     return () => window.removeEventListener('wgf-consent-change', handler);
   }, []);
 
   const accept = () => {
     setAnalyticsConsent(true);
-    setConsent(true);
+    setChoice('granted');
     setShowBanner(false);
   };
 
   const decline = () => {
     setAnalyticsConsent(false);
-    setConsent(false);
+    setChoice('denied');
     setShowBanner(false);
   };
 
+  const openSettings = () => setShowBanner(true);
+
   return (
-    <ConsentContext.Provider value={{ consent, showBanner, accept, decline }}>
+    <ConsentContext.Provider value={{ consent: choice === 'granted', choice, showBanner, accept, decline, openSettings }}>
       {children}
     </ConsentContext.Provider>
   );
