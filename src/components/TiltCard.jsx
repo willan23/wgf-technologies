@@ -1,80 +1,92 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-function TiltCard({ children, className = "", maxTilt = 12 }) {
+function TiltCard({
+  children,
+  className = '',
+  maxTilt = 9,
+  scaleOnHover = 1.015,
+  glare = true,
+}) {
   const cardRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-  // Check if viewport is mobile/touch to avoid tilt conflicts
   useEffect(() => {
-    const checkViewport = () => {
-      setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window));
+    const checkEnvironment = () => {
+      const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+      const touchOrMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+      setDisabled(Boolean(reduced || touchOrMobile));
     };
-    checkViewport();
-    window.addEventListener('resize', checkViewport);
-    return () => window.removeEventListener('resize', checkViewport);
+    checkEnvironment();
+    window.addEventListener('resize', checkEnvironment);
+    return () => window.removeEventListener('resize', checkEnvironment);
   }, []);
 
-  // Framer Motion Values for Tracking Mouse Coordinates
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Map mouse coordinates to degrees of rotation
-  // When mouse is on the left (negative ratio), rotateY is positive (tilts right face forward)
-  // When mouse is at the top (negative ratio), rotateX is positive (tilts top face forward)
-  const rotateX = useTransform(y, [-0.5, 0.5], [maxTilt, -maxTilt]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-maxTilt, maxTilt]);
+  const springConfig = { damping: 22, stiffness: 175, mass: 0.65 };
+  const smoothX = useSpring(x, springConfig);
+  const smoothY = useSpring(y, springConfig);
 
-  // Spring configuration for cinematic inertia
-  const springConfig = { damping: 20, stiffness: 150, mass: 0.8 };
-  const springRotateX = useSpring(rotateX, springConfig);
-  const springRotateY = useSpring(rotateY, springConfig);
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [maxTilt, -maxTilt]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-maxTilt, maxTilt]);
+  const glareX = useTransform(smoothX, [-0.5, 0.5], ['0%', '100%']);
+  const glareY = useTransform(smoothY, [-0.5, 0.5], ['0%', '100%']);
 
   const handleMouseMove = (event) => {
-    if (!cardRef.current || isMobile) return;
-
+    if (!cardRef.current || disabled) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+    if (!rect.width || !rect.height) return;
 
-    // Calculate mouse position relative to card center as a ratio from -0.5 to 0.5
-    const relativeX = (event.clientX - rect.left) / width - 0.5;
-    const relativeY = (event.clientY - rect.top) / height - 0.5;
+    const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
 
-    x.set(relativeX);
-    y.set(relativeY);
+    x.set(Math.max(-0.5, Math.min(0.5, relativeX)));
+    y.set(Math.max(-0.5, Math.min(0.5, relativeY)));
+    if (!hovered) setHovered(true);
   };
 
   const handleMouseLeave = () => {
-    // Reset values to center
     x.set(0);
     y.set(0);
+    setHovered(false);
   };
 
-  // Skip rendering tilt animations on mobile for UX/perf
-  if (isMobile) {
-    return (
-      <div className={className}>
-        {children}
-      </div>
-    );
+  if (disabled) {
+    return <div className={`tilt-card-fallback ${className}`.trim()}>{children}</div>;
   }
 
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
+      animate={{ scale: hovered ? scaleOnHover : 1 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
       style={{
-        rotateX: springRotateX,
-        rotateY: springRotateY,
-        transformStyle: "preserve-3d",
-        perspective: "1000px",
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+        perspective: '1100px',
       }}
-      className={className}
+      className={`tilt-card-shell ${hovered ? 'is-tilting' : ''} ${className}`.trim()}
     >
-      <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>
+      <div className="tilt-card-inner">
         {children}
+        {glare && (
+          <motion.div
+            aria-hidden="true"
+            className="tilt-card-glare"
+            style={{
+              '--glare-x': glareX,
+              '--glare-y': glareY,
+              opacity: hovered ? 1 : 0,
+            }}
+          />
+        )}
       </div>
     </motion.div>
   );

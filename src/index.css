@@ -1011,36 +1011,186 @@ h1, h2, h3, h4, .logo-text, .section-title {
 
 .markets-map {
   position: relative;
-  height: 220px;
-  border-radius: 20px;
-  margin-bottom: 1.5rem;
+  height: 270px;
+  border-radius: 24px;
+  margin-bottom: 1.75rem;
   overflow: hidden;
   display: grid;
   place-items: center;
+  perspective: 900px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0, 242, 254, 0.14) 0%, rgba(59, 130, 246, 0.06) 40%, transparent 72%),
+    var(--glass-bg);
+}
+
+.markets-3d-stage {
+  position: relative;
+  width: min(500px, 92%);
+  height: 175px;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  transform: rotateX(18deg);
+}
+
+.map-orbit-ring {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.map-orbit-outer {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  box-shadow:
+    0 0 32px rgba(0, 242, 254, 0.12),
+    inset 0 0 24px rgba(59, 130, 246, 0.1);
+  transform: rotateX(52deg) rotateZ(-6deg);
+  animation: map-orbit-breathe 6s ease-in-out infinite alternate;
+}
+
+.map-orbit-inner {
+  width: 68%;
+  height: 68%;
+  border: 1px dashed rgba(245, 158, 11, 0.32);
+  transform: rotateX(52deg) rotateZ(12deg);
+}
+
+.map-core-sphere {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--accent-cyan) 42%, var(--accent-blue) 85%);
+  box-shadow:
+    0 0 28px rgba(0, 242, 254, 0.55),
+    0 0 60px rgba(59, 130, 246, 0.35);
+  transform: translateZ(18px);
+}
+
+@keyframes map-orbit-breathe {
+  0% {
+    transform: rotateX(52deg) rotateZ(-6deg) scale(0.97);
+  }
+  100% {
+    transform: rotateX(52deg) rotateZ(6deg) scale(1.03);
+  }
 }
 
 .map-orbit {
   position: relative;
-  width: min(420px, 90%);
-  height: 140px;
-  border: 1px dashed var(--border-color);
+  width: 100%;
+  height: 145px;
+  border: 1px dashed rgba(0, 242, 254, 0.22);
   border-radius: 999px;
+  transform-style: preserve-3d;
 }
 
 .map-node {
   position: absolute;
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 999px;
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  font-size: 0.75rem;
-  font-weight: 700;
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow:
+    0 10px 24px var(--shadow-color),
+    0 0 16px rgba(0, 242, 254, 0.16);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  transform: translateZ(24px);
+  animation: node-float 4.5s ease-in-out infinite alternate;
 }
 
-.map-node.n1 { top: -12px; left: 18%; }
-.map-node.n2 { top: 40%; right: -8px; }
-.map-node.n3 { bottom: -12px; left: 40%; }
-.map-node.n4 { top: 30%; left: -10px; }
+.map-node::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+.map-node.n1 { top: -14px; left: 18%; animation-delay: 0s; }
+.map-node.n2 { top: 38%; right: -10px; animation-delay: 0.8s; border-color: rgba(16, 185, 129, 0.42); }
+.map-node.n2::before { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+.map-node.n3 { bottom: -14px; left: 40%; animation-delay: 1.6s; border-color: rgba(245, 158, 11, 0.45); }
+.map-node.n3::before { background: var(--accent-gold); box-shadow: 0 0 8px var(--accent-gold); }
+.map-node.n4 { top: 28%; left: -10px; animation-delay: 2.4s; }
+
+@keyframes node-float {
+  0% {
+    transform: translateZ(20px) translateY(0);
+  }
+  100% {
+    transform: translateZ(30px) translateY(-5px);
+  }
+}
+
+/* ==========================================================================
+   3D Tactile TiltCard & Specular Glare System
+   ========================================================================== */
+
+.tilt-card-shell,
+.tilt-card-fallback {
+  height: 100%;
+  display: block;
+}
+
+.tilt-card-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 20px;
+}
+
+.tilt-card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(0, 242, 254, 0.15) 0%,
+    rgba(59, 130, 246, 0.07) 35%,
+    transparent 68%
+  );
+  transition: opacity 0.25s ease;
+}
+
+:root.light-mode .tilt-card-glare {
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(14, 165, 233, 0.12) 0%,
+    rgba(29, 78, 216, 0.05) 38%,
+    transparent 68%
+  );
+}
+
+.tilt-card-shell.is-tilting .product-card,
+.tilt-card-shell.is-tilting .audience-card,
+.tilt-card-shell.is-tilting .feature-card,
+.tilt-card-shell.is-tilting .mini-card,
+.tilt-card-shell.is-tilting .philosophy-step,
+.tilt-card-shell.is-tilting .founder-photo-card {
+  border-color: rgba(0, 242, 254, 0.36);
+  box-shadow:
+    0 22px 48px var(--shadow-color),
+    0 0 24px rgba(0, 242, 254, 0.12);
+}
+
+.tilt-card-shell .product-logo-mark,
+.tilt-card-shell .audience-icon,
+.tilt-card-shell .step-number,
+.tilt-card-shell .founder-crest {
+  transform: translateZ(16px);
+  transition: transform 0.3s ease;
+}
 
 .map-caption {
   position: absolute;

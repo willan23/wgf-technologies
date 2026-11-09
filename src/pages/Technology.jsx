@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { technologyCategories } from '../data/technology';
 import { localizeList } from '../data/localize';
 import PageHero from '../components/PageHero';
+import TiltCard from '../components/TiltCard';
 import { usePageMeta } from '../lib/seo';
 import { routeMeta } from '../lib/routeMeta';
 
@@ -17,10 +18,12 @@ export default function Technology() {
         <p className="muted">{t.technology.note}</p>
         <div className="feature-grid">
           {localizeList(technologyCategories, lang).map((item) => (
-            <article key={item.id} className="feature-card glass-effect">
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-            </article>
+            <TiltCard key={item.id} maxTilt={7}>
+              <article className="feature-card glass-effect">
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </article>
+            </TiltCard>
           ))}
         </div>
       </section>

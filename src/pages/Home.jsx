@@ -10,6 +10,7 @@ import { markets } from '../data/markets';
 import { localizeList } from '../data/localize';
 import ProductCard from '../components/ProductCard';
 import Symbol3D from '../components/Symbol3D';
+import TiltCard from '../components/TiltCard';
 import { trackEvent } from '../lib/analytics';
 import { usePageMeta } from '../lib/seo';
 import { routeMeta } from '../lib/routeMeta';
@@ -131,20 +132,22 @@ export default function Home() {
           {t.home.audience.map((item) => {
             const Icon = audienceIcons[item.id];
             return (
-              <article key={item.id} className={`audience-card glass-effect audience-${item.id}`}>
-                <div className="audience-icon" aria-hidden>
-                  <Icon size={22} />
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <Link
-                  to={item.to}
-                  className="text-link"
-                  onClick={() => trackEvent('audience_cta_click', { audience: item.id })}
-                >
-                  {item.cta} <ArrowRight size={16} />
-                </Link>
-              </article>
+              <TiltCard key={item.id} maxTilt={7}>
+                <article className={`audience-card glass-effect audience-${item.id}`}>
+                  <div className="audience-icon" aria-hidden>
+                    <Icon size={22} />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <Link
+                    to={item.to}
+                    className="text-link"
+                    onClick={() => trackEvent('audience_cta_click', { audience: item.id })}
+                  >
+                    {item.cta} <ArrowRight size={16} />
+                  </Link>
+                </article>
+              </TiltCard>
             );
           })}
         </div>
@@ -160,10 +163,12 @@ export default function Home() {
         </div>
         <div className="mini-grid">
           {localizeList(technologyCategories, lang).slice(0, 4).map((item) => (
-            <div key={item.id} className="mini-card glass-effect">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
+            <TiltCard key={item.id} maxTilt={8}>
+              <div className="mini-card glass-effect">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -184,10 +189,14 @@ export default function Home() {
         <h2>{t.home.philosophyTitle}</h2>
         <ol className="philosophy-row">
           {t.home.steps.map((step, i) => (
-            <li key={step.title} className="philosophy-step glass-effect">
-              <span className="step-number" aria-hidden>{String(i + 1).padStart(2, '0')}</span>
-              <strong>{step.title}</strong>
-              <p>{step.body}</p>
+            <li key={step.title}>
+              <TiltCard maxTilt={7}>
+                <div className="philosophy-step glass-effect">
+                  <span className="step-number" aria-hidden>{String(i + 1).padStart(2, '0')}</span>
+                  <strong>{step.title}</strong>
+                  <p>{step.body}</p>
+                </div>
+              </TiltCard>
             </li>
           ))}
         </ol>

@@ -3,7 +3,14 @@
   width: 48px;
   object-fit: contain;
   background: transparent;
-  filter: drop-shadow(0 4px 10px rgba(0, 242, 254, 0.25));
+  filter: drop-shadow(0 4px 10px rgba(0, 242, 254, 0.28));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+
+.logo-container:hover .logo-symbol {
+  transform: perspective(400px) rotateY(14deg) rotateX(-6deg) scale(1.06);
+  filter:
+    drop-shadow(0 8px 18px rgba(0, 242, 254, 0.45)) drop-shadow(4px 0 12px rgba(245, 158, 11, 0.25));
 }
 
 .logo-container {
@@ -141,6 +148,7 @@
 }
 
 @media (max-width: 1100px) {
+
   /* Extra specificity: index.css (.main-nav { display: flex }) loads after this file. */
   .main-header .desktop-nav {
     display: none;

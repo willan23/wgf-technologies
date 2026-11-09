@@ -2,134 +2,248 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-function ThreeDHeroObject() {
+function ThreeDHeroObject({ interactive = true, className = '' }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    const container = mountRef.current;
+    if (!container) return;
 
-    // --- DIMENSIONS SETUP ---
-    const width = mountRef.current.clientWidth || 400;
-    const height = mountRef.current.clientHeight || 400;
+    const width = container.clientWidth || 440;
+    const height = container.clientHeight || 440;
 
-    // --- SCENE SETUP ---
+    // --- SCENE, CAMERA, RENDERER ---
     const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, 8.2);
 
-    // Camera
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.z = 8;
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance',
+    });
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    mountRef.current.appendChild(renderer.domElement);
+    renderer.setPixelRatio(pixelRatio);
+    container.appendChild(renderer.domElement);
 
-    // Orbit Controls (for interactive rotation)
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = false; // Disable zoom to avoid scrolling conflict
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.0;
-
-    // --- LIGHTING ---
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-    scene.add(ambientLight);
-
-    const pointLight1 = new THREE.PointLight(0x00f2fe, 2, 50); // Cyan glow light
-    pointLight1.position.set(5, 5, 5);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0x3b82f6, 1.5, 50); // Blue light
-    pointLight2.position.set(-5, -5, -5);
-    scene.add(pointLight2);
-
-    // --- GEOMETRIES AND MATERIALS ---
-    // 1. Core Sphere (glowing wireframe)
-    const geometry = new THREE.SphereGeometry(1.8, 32, 32);
-    
-    // Store original position coordinates for vertex displacement/morphing
-    const positionAttribute = geometry.attributes.position;
-    const originalPositions = new Float32Array(positionAttribute.count * 3);
-    for (let i = 0; i < positionAttribute.count * 3; i++) {
-      originalPositions[i] = positionAttribute.array[i];
+    // Optional OrbitControls when interactive mode is enabled
+    let controls = null;
+    if (interactive) {
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enableZoom = false;
+      controls.enablePan = false;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.9;
     }
 
-    // Material setup matching system theme
     let isLightMode = document.documentElement.classList.contains('light-mode');
-    
-    const getWireframeColor = (light) => (light ? 0x0ea5e9 : 0x00f2fe);
-    const getSolidColor = (light) => (light ? 0xffffff : 0x03050a);
-    
-    const wireframeMaterial = new THREE.MeshBasicMaterial({
-      color: getWireframeColor(isLightMode),
+
+    // --- LIGHTING ---
+    const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.65 : 0.35);
+    scene.add(ambientLight);
+
+    const pointLightCyan = new THREE.PointLight(0x00f2fe, 2.8, 30);
+    pointLightCyan.position.set(5, 5, 5);
+    scene.add(pointLightCyan);
+
+    const pointLightBlue = new THREE.PointLight(0x3b82f6, 2.2, 30);
+    pointLightBlue.position.set(-5, -4, 4);
+    scene.add(pointLightBlue);
+
+    const pointLightGold = new THREE.PointLight(0xf59e0b, 1.6, 30);
+    pointLightGold.position.set(4, -5, -3);
+    scene.add(pointLightGold);
+
+    const rootGroup = new THREE.Group();
+    scene.add(rootGroup);
+
+    // --- 1. FRESNEL RIM-LIT ENERGY CORE ---
+    const innerCoreGeo = new THREE.SphereGeometry(1.42, 48, 48);
+    const fresnelMat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uBaseColor: { value: new THREE.Color(isLightMode ? 0xe0f2fe : 0x050b18) },
+        uRimColor1: { value: new THREE.Color(isLightMode ? 0x0284c7 : 0x00f2fe) },
+        uRimColor2: { value: new THREE.Color(isLightMode ? 0xd97706 : 0xf59e0b) },
+        uOpacity: { value: isLightMode ? 0.38 : 0.62 },
+      },
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying vec3 vWorldPos;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          vViewPosition = -mvPosition.xyz;
+          vWorldPos = position;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying vec3 vWorldPos;
+        uniform float uTime;
+        uniform vec3 uBaseColor;
+        uniform vec3 uRimColor1;
+        uniform vec3 uRimColor2;
+        uniform float uOpacity;
+
+        void main() {
+          vec3 normal = normalize(vNormal);
+          vec3 viewDir = normalize(vViewPosition);
+          float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 2.4);
+          float gradientMix = clamp((vWorldPos.x + 1.5) / 3.0, 0.0, 1.0);
+          vec3 rimColor = mix(uRimColor1, uRimColor2, gradientMix * 0.65 + 0.15 * sin(uTime));
+          vec3 col = mix(uBaseColor, rimColor, fresnel * 1.15);
+          float alpha = clamp(uOpacity * (0.35 + fresnel * 0.95), 0.0, 0.92);
+          gl_FragColor = vec4(col, alpha);
+        }
+      `,
+      transparent: true,
+      depthWrite: false,
+    });
+    const innerCoreMesh = new THREE.Mesh(innerCoreGeo, fresnelMat);
+    rootGroup.add(innerCoreMesh);
+
+    // --- 2. MORPHING GEODESIC WIREFRAME SHELL ---
+    const shellGeo = new THREE.IcosahedronGeometry(1.68, 4);
+    const posAttr = shellGeo.attributes.position;
+    const originalPositions = new Float32Array(posAttr.count * 3);
+    for (let i = 0; i < posAttr.count * 3; i++) {
+      originalPositions[i] = posAttr.array[i];
+    }
+
+    const wireframeMat = new THREE.MeshBasicMaterial({
+      color: isLightMode ? 0x0284c7 : 0x00f2fe,
       wireframe: true,
       transparent: true,
-      opacity: 0.25,
+      opacity: isLightMode ? 0.22 : 0.24,
+      depthWrite: false,
     });
+    const cyberSphere = new THREE.Mesh(shellGeo, wireframeMat);
+    rootGroup.add(cyberSphere);
 
-    const innerSphereGeo = new THREE.SphereGeometry(1.75, 32, 32);
-    const innerSphereMat = new THREE.MeshPhongMaterial({
-      color: getSolidColor(isLightMode),
+    // --- 3. MULTI-AXIS GYROSCOPIC ORBITAL RINGS ---
+    const createGyroRing = (radius, tube, colorHex, opacity, rotX, rotY) => {
+      const geo = new THREE.TorusGeometry(radius, tube, 16, 120);
+      const mat = new THREE.MeshBasicMaterial({
+        color: colorHex,
+        transparent: true,
+        opacity,
+        depthWrite: false,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.rotation.x = rotX;
+      mesh.rotation.y = rotY;
+      return { mesh, geo, mat, rotX, rotY };
+    };
+
+    const ringCyan = createGyroRing(
+      2.28,
+      0.012,
+      isLightMode ? 0x0284c7 : 0x00f2fe,
+      isLightMode ? 0.42 : 0.48,
+      Math.PI / 2.8,
+      Math.PI / 7
+    );
+    const ringBlue = createGyroRing(
+      2.58,
+      0.01,
+      isLightMode ? 0x1d4ed8 : 0x3b82f6,
+      isLightMode ? 0.32 : 0.35,
+      -Math.PI / 3.1,
+      -Math.PI / 5
+    );
+    const ringGold = createGyroRing(
+      2.86,
+      0.009,
+      isLightMode ? 0xd97706 : 0xf59e0b,
+      isLightMode ? 0.28 : 0.3,
+      Math.PI / 2.1,
+      -Math.PI / 3.5
+    );
+
+    rootGroup.add(ringCyan.mesh, ringBlue.mesh, ringGold.mesh);
+
+    // Dashed telemetry precision ring (Points along a circle)
+    const tickCount = 96;
+    const tickPositions = new Float32Array(tickCount * 3);
+    for (let i = 0; i < tickCount; i++) {
+      const a = (i / tickCount) * Math.PI * 2;
+      const r = 3.08;
+      tickPositions[i * 3] = Math.cos(a) * r;
+      tickPositions[i * 3 + 1] = Math.sin(a) * r;
+      tickPositions[i * 3 + 2] = 0;
+    }
+    const tickGeo = new THREE.BufferGeometry();
+    tickGeo.setAttribute('position', new THREE.BufferAttribute(tickPositions, 3));
+    const tickMat = new THREE.PointsMaterial({
+      color: isLightMode ? 0x047857 : 0x10b981,
+      size: 0.045,
       transparent: true,
-      opacity: 0.7,
-      shininess: 100,
-      specular: 0x3b82f6,
+      opacity: isLightMode ? 0.55 : 0.65,
+      depthWrite: false,
     });
+    const tickRing = new THREE.Points(tickGeo, tickMat);
+    tickRing.rotation.x = Math.PI / 3.6;
+    tickRing.rotation.y = Math.PI / 9;
+    rootGroup.add(tickRing);
 
-    const cyberSphere = new THREE.Mesh(geometry, wireframeMaterial);
-    const innerSphere = new THREE.Mesh(innerSphereGeo, innerSphereMat);
-    
-    const group3D = new THREE.Group();
-    group3D.add(cyberSphere);
-    group3D.add(innerSphere);
+    // --- 4. ORBITING SATELLITE NODES ---
+    const satellites = [];
+    const satGeo = new THREE.SphereGeometry(0.065, 16, 16);
+    const satColors = [0x00f2fe, 0x3b82f6, 0x10b981, 0xf59e0b, 0x00f2fe, 0xf59e0b];
+    const satRings = [ringCyan, ringBlue, ringCyan, ringGold, ringBlue, ringGold];
 
-    // 2. Outer Orbital Ring with nodes
-    const ringGeometry = new THREE.RingGeometry(2.4, 2.42, 64);
-    const ringMaterial = new THREE.LineBasicMaterial({
-      color: isLightMode ? 0x1d4ed8 : 0x3b82f6,
-      transparent: true,
-      opacity: 0.4,
-    });
-    const orbitalRing = new THREE.LineLoop(ringGeometry, ringMaterial);
-    orbitalRing.rotation.x = Math.PI / 3;
-    orbitalRing.rotation.y = Math.PI / 6;
-    group3D.add(orbitalRing);
-
-    // Floating orbital satellite nodes
-    const nodeCount = 5;
-    const nodes = [];
-    const nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
-    const nodeMaterial = new THREE.MeshPhongMaterial({
-      color: isLightMode ? 0x1d4ed8 : 0x00f2fe,
-      emissive: isLightMode ? 0x0ea5e9 : 0x00f2fe,
-      emissiveIntensity: 0.5,
-    });
-
-    for (let i = 0; i < nodeCount; i++) {
-      const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
-      group3D.add(node);
-      nodes.push({
-        mesh: node,
-        speed: 0.5 + Math.random() * 0.8,
-        angle: (i / nodeCount) * Math.PI * 2,
-        radius: 2.4,
+    for (let i = 0; i < 6; i++) {
+      const mat = new THREE.MeshBasicMaterial({
+        color: satColors[i],
+      });
+      const mesh = new THREE.Mesh(satGeo, mat);
+      rootGroup.add(mesh);
+      satellites.push({
+        mesh,
+        mat,
+        ring: satRings[i],
+        radius: i % 3 === 0 ? 2.28 : i % 3 === 1 ? 2.58 : 2.86,
+        angle: (i / 6) * Math.PI * 2,
+        speed: (i % 2 === 0 ? 1 : -1) * (0.45 + i * 0.08),
       });
     }
 
-    scene.add(group3D);
+    // --- 5. POINTER PARALLAX ---
+    let pointerX = 0;
+    let pointerY = 0;
+    let smoothX = 0;
+    let smoothY = 0;
 
-    // --- THEME UPDATE ---
+    const handlePointerMove = (e) => {
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = -(e.clientY / window.innerHeight) * 2 + 1;
+      pointerX = nx;
+      pointerY = ny;
+    };
+    window.addEventListener('mousemove', handlePointerMove, { passive: true });
+
+    // --- 6. THEME OBSERVER ---
     const observer = new MutationObserver(() => {
       const currentLightMode = document.documentElement.classList.contains('light-mode');
       if (currentLightMode !== isLightMode) {
         isLightMode = currentLightMode;
-        wireframeMaterial.color.setHex(getWireframeColor(isLightMode));
-        innerSphereMat.color.setHex(getSolidColor(isLightMode));
-        ringMaterial.color.setHex(isLightMode ? 0x1d4ed8 : 0x3b82f6);
-        nodeMaterial.color.setHex(isLightMode ? 0x1d4ed8 : 0x00f2fe);
-        nodeMaterial.emissive.setHex(isLightMode ? 0x0ea5e9 : 0x00f2fe);
+        wireframeMat.color.setHex(isLightMode ? 0x0284c7 : 0x00f2fe);
+        wireframeMat.opacity = isLightMode ? 0.22 : 0.24;
+        fresnelMat.uniforms.uBaseColor.value.setHex(isLightMode ? 0xe0f2fe : 0x050b18);
+        fresnelMat.uniforms.uRimColor1.value.setHex(isLightMode ? 0x0284c7 : 0x00f2fe);
+        fresnelMat.uniforms.uRimColor2.value.setHex(isLightMode ? 0xd97706 : 0xf59e0b);
+        fresnelMat.uniforms.uOpacity.value = isLightMode ? 0.38 : 0.62;
+        ringCyan.mat.color.setHex(isLightMode ? 0x0284c7 : 0x00f2fe);
+        ringBlue.mat.color.setHex(isLightMode ? 0x1d4ed8 : 0x3b82f6);
+        ringGold.mat.color.setHex(isLightMode ? 0xd97706 : 0xf59e0b);
+        tickMat.color.setHex(isLightMode ? 0x047857 : 0x10b981);
       }
     });
 
@@ -138,109 +252,142 @@ function ThreeDHeroObject() {
       attributeFilter: ['class'],
     });
 
-    // --- ANIMATION LOOP ---
+    // --- 7. ANIMATION LOOP ---
     const clock = new THREE.Clock();
+    let frameId = 0;
+    const axisX = new THREE.Vector3(1, 0, 0);
+    const axisY = new THREE.Vector3(0, 1, 0);
+    const tempVec = new THREE.Vector3();
 
     const animate = () => {
-      requestAnimationFrame(animate);
-
+      frameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
-      
-      // 1. Update controls
-      controls.update();
 
-      // 2. Vertex Displacement (Morphing Cyber-Sphere)
-      const positions = geometry.attributes.position.array;
-      for (let i = 0; i < positionAttribute.count; i++) {
+      fresnelMat.uniforms.uTime.value = elapsedTime;
+
+      if (controls) {
+        controls.update();
+      }
+
+      smoothX += (pointerX - smoothX) * 0.05;
+      smoothY += (pointerY - smoothY) * 0.05;
+
+      // Morphing geodesic vertices
+      const positions = shellGeo.attributes.position.array;
+      for (let i = 0; i < posAttr.count; i++) {
         const i3 = i * 3;
-        
-        // Fetch original coordinates
         const ox = originalPositions[i3];
         const oy = originalPositions[i3 + 1];
         const oz = originalPositions[i3 + 2];
 
-        // Apply 3D noise/sine deformation based on coordinate and time
-        const wave = Math.sin(ox * 2 + elapsedTime * 2) * Math.cos(oy * 2 + elapsedTime * 2) * 0.15;
-        
-        // Push vertices outwards along normal vector (away from center)
-        const length = Math.sqrt(ox*ox + oy*oy + oz*oz);
-        positions[i3] = ox + (ox / length) * wave;
-        positions[i3 + 1] = oy + (oy / length) * wave;
-        positions[i3 + 2] = oz + (oz / length) * wave;
+        const wave =
+          Math.sin(ox * 2.2 + elapsedTime * 1.8) *
+          Math.cos(oy * 2.2 + elapsedTime * 1.6) *
+          Math.sin(oz * 1.8 + elapsedTime * 1.4) *
+          0.11;
+
+        const len = Math.sqrt(ox * ox + oy * oy + oz * oz) || 1;
+        positions[i3] = ox + (ox / len) * wave;
+        positions[i3 + 1] = oy + (oy / len) * wave;
+        positions[i3 + 2] = oz + (oz / len) * wave;
       }
-      geometry.attributes.position.needsUpdate = true;
+      shellGeo.attributes.position.needsUpdate = true;
 
-      // 3. Rotate the group gently on other axis
-      group3D.rotation.z = elapsedTime * 0.05;
+      // Gyroscopic precession + mouse tilt
+      cyberSphere.rotation.y = elapsedTime * 0.16;
+      cyberSphere.rotation.x = elapsedTime * 0.09;
 
-      // 4. Animate outer nodes moving on orbital ring
-      nodes.forEach((n) => {
-        n.angle += 0.01 * n.speed;
-        // Position on 3D rotated orbit plane
-        const x = Math.cos(n.angle) * n.radius;
-        const y = Math.sin(n.angle) * n.radius;
-        
-        // Rotate points matching orbitalRing orientation: x = rotateX, y = rotateY
-        // Apply matrix or simple Euler rotations
-        const tempVec = new THREE.Vector3(x, y, 0);
-        tempVec.applyAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 3);
-        tempVec.applyAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 6);
-        
-        n.mesh.position.copy(tempVec);
-      });
+      ringCyan.mesh.rotation.z = elapsedTime * 0.22;
+      ringBlue.mesh.rotation.z = -elapsedTime * 0.18;
+      ringGold.mesh.rotation.z = elapsedTime * 0.14;
+      tickRing.rotation.z = -elapsedTime * 0.1;
+
+      rootGroup.rotation.y = smoothX * 0.35 + (!interactive ? elapsedTime * 0.12 : 0);
+      rootGroup.rotation.x = -smoothY * 0.28 + Math.sin(elapsedTime * 0.5) * 0.08;
+
+      // Update satellite positions along their respective tilted rings
+      for (let i = 0; i < satellites.length; i++) {
+        const s = satellites[i];
+        const angle = s.angle + elapsedTime * s.speed;
+        tempVec.set(Math.cos(angle) * s.radius, Math.sin(angle) * s.radius, 0);
+        tempVec.applyAxisAngle(axisY, s.ring.rotY);
+        tempVec.applyAxisAngle(axisX, s.ring.rotX);
+        s.mesh.position.copy(tempVec);
+      }
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // --- RESPONSIVE HANDLER ---
+    // --- 8. RESIZE & VISIBILITY ---
     const handleResize = () => {
-      if (!mountRef.current) return;
-      const w = mountRef.current.clientWidth;
-      const h = mountRef.current.clientHeight;
-      
+      if (!container) return;
+      const w = container.clientWidth || 400;
+      const h = container.clientHeight || 400;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
 
     window.addEventListener('resize', handleResize);
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(container);
+    }
 
-    // --- CLEANUP ---
+    const handleVisibility = () => {
+      cancelAnimationFrame(frameId);
+      if (!document.hidden) animate();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     return () => {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('mousemove', handlePointerMove);
       window.removeEventListener('resize', handleResize);
+      if (resizeObserver) resizeObserver.disconnect();
       observer.disconnect();
-      
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+
+      if (container && renderer.domElement && container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
       }
-      
-      geometry.dispose();
-      innerSphereGeo.dispose();
-      innerSphereMat.dispose();
-      wireframeMaterial.dispose();
-      ringGeometry.dispose();
-      ringMaterial.dispose();
-      nodeGeometry.dispose();
-      nodeMaterial.dispose();
-      controls.dispose();
+
+      innerCoreGeo.dispose();
+      fresnelMat.dispose();
+      shellGeo.dispose();
+      wireframeMat.dispose();
+      ringCyan.geo.dispose();
+      ringCyan.mat.dispose();
+      ringBlue.geo.dispose();
+      ringBlue.mat.dispose();
+      ringGold.geo.dispose();
+      ringGold.mat.dispose();
+      tickGeo.dispose();
+      tickMat.dispose();
+      satGeo.dispose();
+      satellites.forEach((s) => s.mat.dispose());
+      if (controls) controls.dispose();
       renderer.dispose();
     };
-  }, []);
+  }, [interactive]);
 
   return (
-    <div 
-      ref={mountRef} 
-      className="hero-3d-object-mount"
+    <div
+      ref={mountRef}
+      className={`hero-3d-object-mount ${className}`.trim()}
+      aria-hidden="true"
       style={{
         width: '100%',
         height: '100%',
-        minHeight: '380px',
+        minHeight: '360px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        cursor: 'grab'
+        cursor: interactive ? 'grab' : 'default',
+        pointerEvents: interactive ? 'auto' : 'none',
       }}
     />
   );

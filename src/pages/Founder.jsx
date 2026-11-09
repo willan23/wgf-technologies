@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import { getPublicProducts } from '../data/products';
 import PageHero from '../components/PageHero';
+import TiltCard from '../components/TiltCard';
 import { whatsappUrl } from '../lib/forms';
 import { usePageMeta } from '../lib/seo';
 import { routeMeta } from '../lib/routeMeta';
@@ -27,12 +28,14 @@ export default function Founder() {
     <div>
       <PageHero title={t.founder.title} subtitle={t.founder.role} />
       <section className="section-block founder-layout">
-        <div className="founder-photo-card glass-effect">
-          <img src={company.assets.crest} alt="WGF crest" className="founder-crest" />
-          <img src={founder.photo} alt={founder.name} className="founder-photo" />
-          <h2>{founder.name}</h2>
-          <p className="muted">{founder.role}</p>
-        </div>
+        <TiltCard maxTilt={6}>
+          <div className="founder-photo-card glass-effect">
+            <img src={company.assets.crest} alt="WGF crest" className="founder-crest" />
+            <img src={founder.photo} alt={founder.name} className="founder-photo" />
+            <h2>{founder.name}</h2>
+            <p className="muted">{founder.role}</p>
+          </div>
+        </TiltCard>
         <div className="content-stack">
           <article>
             <h3>{t.founder.backgroundTitle}</h3>

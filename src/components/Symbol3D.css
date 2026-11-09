@@ -1,39 +1,296 @@
 .symbol-3d-stage {
-  perspective: 900px;
+  perspective: 1100px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  isolation: isolate;
+}
+
+.symbol-3d-lg {
+  min-height: 440px;
+  padding: 1.5rem 0;
+}
+
+/* Volumetric ambient aura behind the 3D stage */
+.symbol-3d-aura {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 48%,
+      rgba(0, 242, 254, 0.22) 0%,
+      rgba(59, 130, 246, 0.16) 32%,
+      rgba(16, 185, 129, 0.1) 52%,
+      rgba(245, 158, 11, 0.08) 68%,
+      transparent 78%);
+  filter: blur(36px);
+  z-index: 0;
+  pointer-events: none;
+  animation: aura-breathe 6s ease-in-out infinite alternate;
+}
+
+:root.light-mode .symbol-3d-aura {
+  background: radial-gradient(circle at 42% 48%,
+      rgba(14, 165, 233, 0.18) 0%,
+      rgba(29, 78, 216, 0.12) 36%,
+      rgba(217, 119, 6, 0.08) 64%,
+      transparent 78%);
+}
+
+@keyframes aura-breathe {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.72;
+  }
+
+  100% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* WebGL 3D Gyroscopic Core Layer */
+.symbol-3d-webgl-layer {
+  position: absolute;
+  inset: -6%;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+.symbol-3d-rig {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
   display: grid;
   place-items: center;
   width: 100%;
 }
 
 .symbol-3d-card {
+  position: relative;
   transform-style: preserve-3d;
   will-change: transform;
+  display: grid;
+  place-items: center;
 }
 
+/* Volumetric 3D Extrusion Depth Slices */
+.symbol-3d-slice {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.symbol-3d-slice-0 {
+  filter: brightness(0.22) saturate(1.6) drop-shadow(0 28px 36px rgba(0, 0, 0, 0.65));
+  opacity: 0.55;
+}
+
+.symbol-3d-slice-1 {
+  filter: brightness(0.32) saturate(1.5) hue-rotate(-8deg);
+  opacity: 0.65;
+}
+
+.symbol-3d-slice-2 {
+  filter: brightness(0.46) saturate(1.4);
+  opacity: 0.78;
+}
+
+.symbol-3d-slice-3 {
+  filter: brightness(0.65) saturate(1.25);
+  opacity: 0.88;
+}
+
+/* Main Foreground 3D Emblem */
 .symbol-3d-img {
+  position: relative;
   display: block;
   width: 100%;
   height: auto;
   background: transparent;
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 24px rgba(0, 242, 254, 0.18));
+  transform: translateZ(10px);
+  filter:
+    drop-shadow(0 22px 34px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 26px rgba(0, 242, 254, 0.26)) drop-shadow(8px 0 22px rgba(245, 158, 11, 0.14));
   user-select: none;
+  pointer-events: none;
+  transition: filter 0.35s ease;
+}
+
+.symbol-3d-stage:hover .symbol-3d-img {
+  filter:
+    drop-shadow(0 26px 42px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 34px rgba(0, 242, 254, 0.42)) drop-shadow(10px 0 28px rgba(245, 158, 11, 0.25));
+}
+
+/* Dynamic Specular Reflection Overlay */
+.symbol-3d-sheen {
+  position: absolute;
+  inset: -6%;
+  transform: translateZ(16px);
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(0, 242, 254, 0.1) 26%,
+      transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+.symbol-3d-stage:hover .symbol-3d-sheen {
+  opacity: 0.95;
+}
+
+/* 3D CSS Gyroscopic Orbital Rings */
+.symbol-3d-orbit {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.symbol-3d-orbit-1 {
+  width: 108%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 242, 254, 0.22);
+  box-shadow: inset 0 0 24px rgba(0, 242, 254, 0.06);
+  transform: rotateX(68deg) rotateY(-18deg) translateZ(-10px);
+  animation: orbit-spin-1 16s linear infinite;
+}
+
+.symbol-3d-orbit-2 {
+  width: 96%;
+  aspect-ratio: 1;
+  border: 1px dashed rgba(245, 158, 11, 0.22);
+  transform: rotateX(62deg) rotateY(24deg) translateZ(14px);
+  animation: orbit-spin-2 22s linear infinite reverse;
+}
+
+.orbit-node {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.orbit-node-cyan {
+  background: #00f2fe;
+  box-shadow: 0 0 14px 3px rgba(0, 242, 254, 0.85);
+}
+
+.orbit-node-gold {
+  background: #f59e0b;
+  box-shadow: 0 0 14px 3px rgba(245, 158, 11, 0.85);
+}
+
+@keyframes orbit-spin-1 {
+  from {
+    transform: rotateX(68deg) rotateY(-18deg) rotateZ(0deg) translateZ(-10px);
+  }
+
+  to {
+    transform: rotateX(68deg) rotateY(-18deg) rotateZ(360deg) translateZ(-10px);
+  }
+}
+
+@keyframes orbit-spin-2 {
+  from {
+    transform: rotateX(62deg) rotateY(24deg) rotateZ(0deg) translateZ(14px);
+  }
+
+  to {
+    transform: rotateX(62deg) rotateY(24deg) rotateZ(360deg) translateZ(14px);
+  }
+}
+
+/* Holographic 3D Pedestal Base beneath Hero Symbol */
+.symbol-3d-pedestal {
+  position: relative;
+  width: min(320px, 78%);
+  height: 68px;
+  margin-top: -1.25rem;
+  transform: rotateX(74deg) translateZ(-28px);
+  transform-style: preserve-3d;
+  display: grid;
+  place-items: center;
   pointer-events: none;
 }
 
-.symbol-3d-sm .symbol-3d-img {
+.pedestal-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.pedestal-ring-outer {
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid rgba(0, 242, 254, 0.32);
+  box-shadow:
+    0 0 30px rgba(0, 242, 254, 0.22),
+    inset 0 0 24px rgba(59, 130, 246, 0.18);
+  animation: pedestal-pulse 4s ease-in-out infinite alternate;
+}
+
+.pedestal-ring-inner {
+  width: 66%;
+  height: 66%;
+  border: 1px dashed rgba(16, 185, 129, 0.38);
+}
+
+.pedestal-core-glow {
+  width: 48%;
+  height: 48%;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(0, 242, 254, 0.38) 0%,
+      rgba(59, 130, 246, 0.14) 55%,
+      transparent 75%);
+  filter: blur(8px);
+}
+
+@keyframes pedestal-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Size Variants */
+.symbol-3d-sm .symbol-3d-card {
   width: 42px;
 }
 
-.symbol-3d-md .symbol-3d-img {
+.symbol-3d-md .symbol-3d-card {
   width: min(180px, 40vw);
 }
 
-.symbol-3d-lg .symbol-3d-img {
-  width: min(420px, 88%);
+.symbol-3d-lg .symbol-3d-card {
+  width: min(430px, 88%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .symbol-3d-card {
+
+  .symbol-3d-card,
+  .symbol-3d-aura,
+  .symbol-3d-orbit-1,
+  .symbol-3d-orbit-2,
+  .pedestal-ring-outer {
     animation: none !important;
     transform: none !important;
   }
