@@ -22,7 +22,7 @@ const projects = [
     challenge: "Capturar métricas e eventos comportamentais em nível de Kernel Linux com consumo mínimo de CPU e zero interrupção no espaço de utilizador.",
     solution: "Desenvolvimento de sondas eBPF otimizadas em C/Rust para intercetar syscalls, combinadas com um pipeline de streaming em Rust que envia séries temporais para Prometheus e dashboards Grafana.",
     results: "Monitorização de frota com latência sub-milissegundo, zero overhead percetível e proteção proativa contra exploração de vulnerabilidades zero-day.",
-    demoMessage: "Olá William, gostaria de ver uma demonstração do motor ZETE Zero-Trust eBPF."
+    demoMessage: "Olá Willan, gostaria de ver uma demonstração do motor ZETE Zero-Trust eBPF."
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const projects = [
     challenge: "Monitorizar atividades suspeitas ao nível do Kernel do sistema operativo em tempo real, sem prejudicar o desempenho de CPU e consumo de memória.",
     solution: "Criação de sondas eBPF no Linux e um driver personalizado de Ring-0 no Windows que capturam telemetria bruta em tempo de execução. As assinaturas comportamentais são processadas localmente por um motor leve de inteligência artificial.",
     results: "Latência de deteção de ameaças inferior a 1 milissegundo, com um consumo de memória fixado abaixo dos 20MB por endpoint.",
-    demoMessage: "Olá William, gostaria de ver uma demonstração do teu Sistema NGAV e EDR Enterprise."
+    demoMessage: "Olá Willan, gostaria de ver uma demonstração do teu Sistema NGAV e EDR Enterprise."
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ const projects = [
     challenge: "Garantir comunicações cifradas P2P entre nós distribuídos com roteamento dinâmico resiliente a falhas de conectividade e ataques de rede.",
     solution: "Construção de um daemon em Rust com primitivas criptográficas modernas, protocolo de descoberta de nós Mesh e painel NOC em tempo real para monitorização e gestão gráfica de tráfego.",
     results: "Túneis de comunicação Zero-Trust extremamente rápidos com suporte a nós móveis, resiliência a partições de rede e cifragem ponto a ponto.",
-    demoMessage: "Olá William, tenho interesse em conhecer a arquitetura do WGF Protocol Mesh Network."
+    demoMessage: "Olá Willan, tenho interesse em conhecer a arquitetura do WGF Protocol Mesh Network."
   },
   {
     id: 4,
@@ -64,7 +64,7 @@ const projects = [
     challenge: "Validar em segundos se código gerado por ferramentas de IA não contém segredos expostos, CORS inseguro, injeção de prompts ou falhas de supply chain.",
     solution: "Desenvolvimento de uma arquitetura baseada em microserviços assíncronos. A API FastAPI recebe pacotes ZIP ou links do GitHub, insere as tarefas numa fila do Redis gerida pelo Dramatiq e executa uma suite de regras estáticas personalizadas.",
     results: "Scans concluídos em menos de 10s com relatórios completos HTML/JSON e integrações automatizadas para correção imediata do código.",
-    demoMessage: "Olá William, gostaria de conversar sobre a arquitetura e testes do SaaS AI Site Shield."
+    demoMessage: "Olá Willan, gostaria de conversar sobre a arquitetura e testes do SaaS AI Site Shield."
   },
   {
     id: 5,
@@ -78,7 +78,7 @@ const projects = [
     challenge: "Otimizar a computação paralela de pontos na curva elíptica Secp256k1 para testes de estresse e auditoria de vetores criptográficos.",
     solution: "Desenvolvimento de algoritmos de aceleração via GPU/OpenCL e multithreading C++ com gestão de memória de baixo nível sem contenção de locks.",
     results: "Milhões de operações de verificação criptográfica por segundo com alocação zero-copy e máxima eficiência computacional.",
-    demoMessage: "Olá William, gostaria de saber mais sobre o motor criptográfico C++ do BTC Puzzle Solver."
+    demoMessage: "Olá Willan, gostaria de saber mais sobre o motor criptográfico C++ do BTC Puzzle Solver."
   },
   {
     id: 6,
@@ -92,7 +92,7 @@ const projects = [
     challenge: "Coordenar múltiplos agentes de IA especialistas em tarefas complexas mantendo consistência de estado, rastreabilidade e uso eficiente de contexto.",
     solution: "Arquitetura modular de montagem de prompts, compressão de contexto automática, armazenamento persistente de sessões e roteador de LLMs local (Ollama) ou cloud.",
     results: "Automação end-to-end de tarefas complexas de análise de código, pesquisa técnica e geração de relatórios executivos com zero contaminação de contexto.",
-    demoMessage: "Olá William, incrível a arquitetura do Hermes AI Agent System. Podemos agendar uma demonstração?"
+    demoMessage: "Olá Willan, incrível a arquitetura do Hermes AI Agent System. Podemos agendar uma demonstração?"
   },
   {
     id: 7,
@@ -106,7 +106,7 @@ const projects = [
     challenge: "Construir uma IDE extremamente veloz com sincronização em nuvem segura, paleta de comandos offline e chat de IA de grande contexto na máquina local do programador.",
     solution: "Criação de um app multiplataforma usando React Native compilado para desktop (Electron) e mobile (Expo). O assistente de código integra-se localmente com o Ollama e executa um sidecar do agente de IA Hermes em ambiente local.",
     results: "Funciona de forma 100% offline, processando contextos de código de até 64K tokens e garantindo produtividade total sem partilha de dados sensíveis externa.",
-    demoMessage: "Olá William, gostava de saber mais sobre a integração da IA local e o WGF Note."
+    demoMessage: "Olá Willan, gostava de saber mais sobre a integração da IA local e o WGF Note."
   },
   {
     id: 8,
@@ -120,7 +120,7 @@ const projects = [
     challenge: "Consolidar relatórios de conformidade, auditorias de segurança e gestão documental de equipas numa única interface intuitiva e automatizada.",
     solution: "Hub integrado com processamento de PDFs/documentos via IA, dashboards interativos de maturidade de risco e exportação de relatórios auditáveis em formato Excel e PDF.",
     results: "Redução de 60% no tempo de elaboração de auditorias corporativas e visibilidade em tempo real sobre conformidade e riscos.",
-    demoMessage: "Olá William, gostaria de ver os detalhes do Control Hub Enterprise e módulos de IA."
+    demoMessage: "Olá Willan, gostaria de ver os detalhes do Control Hub Enterprise e módulos de IA."
   },
   {
     id: 9,
@@ -134,7 +134,7 @@ const projects = [
     challenge: "Processar volumes massivos de telemetria de campus e otimizar alocação de recursos físicos e digitais em tempo real.",
     solution: "Modelos de machine learning preditivo alimentados por APIs REST/GraphQL com dashboards executivos em tempo real e relatórios de fluxo de pessoas.",
     results: "Otimização de até 30% na ocupação de instalações e automação proativa de alertas operacionais para equipas de gestão.",
-    demoMessage: "Olá William, tenho interesse no projeto DCIP - Digital Campus Intelligence Platform."
+    demoMessage: "Olá Willan, tenho interesse no projeto DCIP - Digital Campus Intelligence Platform."
   },
   {
     id: 10,
@@ -148,7 +148,7 @@ const projects = [
     challenge: "Efetuar contagem e localização tridimensional (eixo vertical Z) de pessoas e queda de idosos com total garantia de privacidade corporal.",
     solution: "Captura de dados de rádio CSI (Channel State Information) de roteadores mesh comuns. Aplicámos filtros de frequência respiratória biológica (0.1-0.5 Hz) e classificação baseada em IA local com Provas de Conhecimento Zero (ZKP).",
     results: "Precisão na deteção de quedas de 98.4% e redução de custos energéticos em até 35% ao integrar com sistemas prediais HVAC de climatização.",
-    demoMessage: "Olá William, achei o WGF SenseOS fantástico. Podes dar-me mais detalhes técnicos?"
+    demoMessage: "Olá Willan, achei o WGF SenseOS fantástico. Podes dar-me mais detalhes técnicos?"
   },
   {
     id: 11,
@@ -162,7 +162,7 @@ const projects = [
     challenge: "Automatizar a configuração, validação e auditoria de topologias de rede complexas eliminando erros manuais de comandos CLI.",
     solution: "Scripts de orquestração com verificação proativa de estado de interfaces, tabelas de encaminhamento e análises de pacotes e tráfego em tempo real.",
     results: "Implementações de rede 80% mais rápidas e visibilidade instantânea sobre gargalos e anomalias na infraestrutura.",
-    demoMessage: "Olá William, vi a tua especialização em Redes Cisco e NetGene OS. Gostaria de conversar."
+    demoMessage: "Olá Willan, vi a tua especialização em Redes Cisco e NetGene OS. Gostaria de conversar."
   },
   {
     id: 12,
@@ -176,7 +176,7 @@ const projects = [
     challenge: "Transmitir alertas de emergência críticos com tempo de resposta instantâneo e coordenação eficiente de equipas no terreno.",
     solution: "Arquitetura orientada a eventos via WebSockets com mapa interativo de ocorrências e distribuição automatizada de tarefas por geolocalização.",
     results: "Tempo de despacho reduzido para segundos com histórico completo auditável de cada intervenção e alerta.",
-    demoMessage: "Olá William, gostaria de conversar sobre a arquitetura do Sistema Emergente."
+    demoMessage: "Olá Willan, gostaria de conversar sobre a arquitetura do Sistema Emergente."
   },
   {
     id: 13,
@@ -190,7 +190,7 @@ const projects = [
     challenge: "Garantir transações transfronteiriças seguras com conversão dinâmica de divisas (EUR, Kz, MT, STN) e verificação rigorosa de KYC em redes com latência variável.",
     solution: "Arquitetura Serverless em Firebase Cloud Functions integrada com Stripe Checkout, autenticação OTP via Twilio e carteira multi-moeda com regras rígidas de segurança no Firestore.",
     results: "Sistema em produção para operações on-network com liquidação instantânea e total rastreabilidade financeira no espaço lusófono.",
-    demoMessage: "Olá William, gostaria de ver uma demonstração da plataforma FinTech Connect CPLP."
+    demoMessage: "Olá Willan, gostaria de ver uma demonstração da plataforma FinTech Connect CPLP."
   },
   {
     id: 14,
@@ -204,7 +204,7 @@ const projects = [
     challenge: "Permitir micropagamentos e transferências bancárias seguras em ambientes com redes móveis de largura de banda muito instável.",
     solution: "Enfileiramento offline no cliente com transações assinadas localmente, integração com o gateway de pagamentos STPway e autenticação multinível com reCAPTCHA e OTP.",
     results: "Disponibilização do primeiro ecossistema de micropagamentos móveis integrados diretamente à rede bancária institucional de São Tomé e Príncipe.",
-    demoMessage: "Olá William, gostaria de conversar sobre o aplicativo STPway Mobile e integração bancária."
+    demoMessage: "Olá Willan, gostaria de conversar sobre o aplicativo STPway Mobile e integração bancária."
   },
   {
     id: 15,
@@ -218,7 +218,7 @@ const projects = [
     challenge: "Oferecer uma experiência de carregamento móvel instantânea para gestão de conta e pagamento de faturas de telecomunicações com máxima segurança de dados.",
     solution: "PWA otimizado com cache inteligente de recursos, autenticação multinível com Firebase e regras rígidas de segurança no Firestore.",
     results: "Aumento significativo na adoção digital de pagamentos e redução nas chamadas presenciais ao centro de atendimento.",
-    demoMessage: "Olá William, gostaria de conhecer a arquitetura PWA e segurança da CST Mobile."
+    demoMessage: "Olá Willan, gostaria de conhecer a arquitetura PWA e segurança da CST Mobile."
   },
   {
     id: 16,
@@ -232,7 +232,7 @@ const projects = [
     challenge: "Digitalizar o acesso a faturas e histórico de consumos para milhares de clientes com uma interface simples e altamente acessível.",
     solution: "Desenvolvimento de app móvel intuitivo com geração estática de faturas em PDF, consulta de leitura de contadores e notificações push automatizadas.",
     results: "Redução das filas presenciais de atendimento e maior transparência nos consumos dos utilizadores.",
-    demoMessage: "Olá William, gostaria de saber mais sobre a app EMAE Mobile Utility Platform."
+    demoMessage: "Olá Willan, gostaria de saber mais sobre a app EMAE Mobile Utility Platform."
   },
   {
     id: 17,
@@ -246,7 +246,7 @@ const projects = [
     challenge: "Disponibilizar um fluxo de reserva de veículos fluido com verificação de documentos e acompanhamento GPS em tempo real.",
     solution: "Aplicação móvel nativa com mapas vetoriais interativos, agendamento em 3 passos e pagamentos digitais integrados.",
     results: "Aumento de 45% nas reservas efetuadas via dispositivos móveis e otimização total na gestão da frota.",
-    demoMessage: "Olá William, vi a app Vrum Mobility e gostaria de discutir uma parceria."
+    demoMessage: "Olá Willan, vi a app Vrum Mobility e gostaria de discutir uma parceria."
   },
   {
     id: 18,
@@ -260,7 +260,7 @@ const projects = [
     challenge: "Refletir a robustez, precisão técnica e sofisticação de grandes obras de engenharia civil num design web interativo e acessível.",
     solution: "Construção de componentes base com Radix UI, estilizados com Vanilla CSS responsivo avançado e físicas de animação fluidas criadas no Framer Motion.",
     results: "Redução de 40% na taxa de rejeição e aumento significativo nas conversões e pedidos de cotação corporativos.",
-    demoMessage: "Olá William, vi o site da CLMA e gostei muito das animações. Podemos falar?"
+    demoMessage: "Olá Willan, vi o site da CLMA e gostei muito das animações. Podemos falar?"
   },
   {
     id: 19,
@@ -274,7 +274,7 @@ const projects = [
     challenge: "Oferecer uma experiência de reserva relaxante e sem fricção com confirmação direta pelo WhatsApp.",
     solution: "Design minimalista e fluido, calendário interativo em tempo real e integração direta de lembretes instantâneos no WhatsApp.",
     results: "Otimização da agenda dos terapeutas com conversão imediata de visitantes em marcações efetuadas.",
-    demoMessage: "Olá William, tenho interesse no sistema de agendamentos web para Spa & Massagens."
+    demoMessage: "Olá Willan, tenho interesse no sistema de agendamentos web para Spa & Massagens."
   },
   {
     id: 20,
@@ -288,7 +288,7 @@ const projects = [
     challenge: "Registar vendas e atualizar inventários em múltiplos terminais em tempo real com funcionamento garantido mesmo com instabilidade de rede.",
     solution: "Arquitetura Serverless em Firebase com sincronização offline no cliente e regras avançadas de acesso aos dados.",
     results: "Tempo de registo de caixas 50% mais rápido com dados consolidados de vendas em dashboards em tempo real.",
-    demoMessage: "Olá William, gostaria de conversar sobre a plataforma Varejo Retail OS."
+    demoMessage: "Olá Willan, gostaria de conversar sobre a plataforma Varejo Retail OS."
   },
   {
     id: 21,
@@ -302,7 +302,7 @@ const projects = [
     challenge: "Automatizar e monitorizar campanhas de SEO e aquisição de leads a fim de otimizar conversões com orçamentos previsíveis.",
     solution: "Criação de scripts em Playwright que rastreiam concorrentes e posições de pesquisa orgânica. Desenvolvimento de checklists de conteúdo otimizados por IA e um dashboard analítico integrado.",
     results: "Estruturou a arquitetura de marketing digital para atingir taxas elevadas de receita e apoiou os lançamentos de produtos SaaS no Product Hunt.",
-    demoMessage: "Olá William, gostava de falar sobre estratégias de crescimento e SEO para os meus produtos."
+    demoMessage: "Olá Willan, gostava de falar sobre estratégias de crescimento e SEO para os meus produtos."
   },
   {
     id: 22,
@@ -316,7 +316,7 @@ const projects = [
     challenge: "Orquestrar múltiplos serviços e pacotes partilhados de uma plataforma SaaS multi-tenant garantindo pipelines limpos de deploy e segurança.",
     solution: "Estrutura monorepo com configurações reutilizáveis de Docker, scripts de hardening de segurança e implantação contínua automatizada.",
     results: "Facilidade de manutenção de múltiplos microsserviços com tempos de deploy reduzidos a minutos e isolamento estrito de ambientes.",
-    demoMessage: "Olá William, gostaria de saber mais sobre a tua arquitetura de Monorepo SaaS em Docker."
+    demoMessage: "Olá Willan, gostaria de saber mais sobre a tua arquitetura de Monorepo SaaS em Docker."
   }
 ];
 
@@ -564,7 +564,7 @@ function Showcase() {
 
               <div className="modal-footer-actions">
                 <a 
-                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá William, gostei do projeto ${selectedProject.title} e tenho interesse em adquirir / comprar o projeto ou ver uma demonstração.`)}`}
+                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá Willan, gostei do projeto ${selectedProject.title} e tenho interesse em adquirir / comprar o projeto ou ver uma demonstração.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"
@@ -574,7 +574,7 @@ function Showcase() {
                 </a>
 
                 <a 
-                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá William, gostaria de propor uma parceria comercial ou investimento para o projeto ${selectedProject.title}.`)}`}
+                  href={`https://wa.me/351939060342?text=${encodeURIComponent(`Olá Willan, gostaria de propor uma parceria comercial ou investimento para o projeto ${selectedProject.title}.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-secondary"

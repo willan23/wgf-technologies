@@ -41,9 +41,9 @@ function Contact() {
     setTimeout(() => setCopiedField(null), 2500);
   };
 
-  const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
+  const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20Willan,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
   const githubUrl = "https://github.com/willan23";
-  const linkedinUrl = "https://linkedin.com/in/william-fernandes-152506244";
+  const linkedinUrl = "https://www.linkedin.com/in/willan-da-graca-fernandes/";
   const emailUrl = "mailto:wgftechnologies@gmail.com";
 
   return (
@@ -100,7 +100,7 @@ function Contact() {
               </div>
               <div className="contact-card-text">
                 <span>{t.contact.linkedinLabel}</span>
-                <strong>William Fernandes</strong>
+                <strong>Willan Fernandes</strong>
               </div>
             </a>
 

@@ -53,7 +53,7 @@ export default function Contact() {
             <Linkedin />
             <div>
               <span>LinkedIn</span>
-              <strong>William Fernandes</strong>
+              <strong>Willan Fernandes</strong>
             </div>
           </a>
           <a className="contact-card glass-effect" href={contacts.github} target="_blank" rel="noreferrer">

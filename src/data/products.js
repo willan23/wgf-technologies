@@ -266,7 +266,7 @@ export const products = [
     problem:
       'Online sellers spend hours writing product titles and descriptions, or reuse supplier text that many other stores also publish, which rarely ranks in search.',
     solution:
-      'EcoSEO generates a title, description and meta description from the product facts the seller provides, within the limits of Shopify, WooCommerce, Etsy, eBay, Amazon and other platforms, in six languages. Sellers review and edit before publishing. Pro adds bulk generation from CSV; Enterprise adds team approvals, an audit log and API access.',
+      'EcoSEO generates a title, description and meta description from the product facts the seller provides, for Shopify and WooCommerce stores, in six languages. Sellers review and edit before publishing. Pro adds bulk generation from CSV; Enterprise adds team approvals, an audit log and API access.',
     technology: [
       'Web application (React and Node.js)',
       'LLM content generation restricted to the facts provided',
@@ -302,7 +302,7 @@ const productTranslations = {
       problem:
         'Quem vende online passa horas a escrever títulos e descrições de produto, ou reutiliza o texto do fornecedor que muitas outras lojas também publicam, o que raramente aparece nas pesquisas.',
       solution:
-        'O EcoSEO gera o título, a descrição e a meta description a partir dos factos do produto indicados pelo lojista, dentro dos limites da Shopify, WooCommerce, Etsy, eBay, Amazon e outras plataformas, em seis idiomas. O lojista revê e edita antes de publicar. O plano Pro acrescenta geração em massa por CSV; o Enterprise acrescenta aprovações em equipa, registo de auditoria e acesso por API.',
+        'O EcoSEO gera o título, a descrição e a meta description a partir dos factos do produto indicados pelo lojista, para lojas Shopify e WooCommerce, em seis idiomas. O lojista revê e edita antes de publicar. O plano Pro acrescenta geração em massa por CSV; o Enterprise acrescenta aprovações em equipa, registo de auditoria e acesso por API.',
       technology: [
         'Aplicação web (React e Node.js)',
         'Geração de conteúdo com LLM restrita aos factos fornecidos',
@@ -329,7 +329,7 @@ const productTranslations = {
       problem:
         'Les vendeurs en ligne passent des heures à rédiger titres et descriptions de produits, ou réutilisent le texte du fournisseur que de nombreuses autres boutiques publient aussi, ce qui ressort rarement dans les recherches.',
       solution:
-        'EcoSEO génère le titre, la description et la méta-description à partir des informations produit fournies par le vendeur, dans les limites de Shopify, WooCommerce, Etsy, eBay, Amazon et d’autres plateformes, en six langues. Le vendeur relit et modifie avant de publier. L’offre Pro ajoute la génération en masse par CSV ; l’offre Enterprise ajoute les validations en équipe, un journal d’audit et l’accès API.',
+        'EcoSEO génère le titre, la description et la méta-description à partir des informations produit fournies par le vendeur, pour les boutiques Shopify et WooCommerce, en six langues. Le vendeur relit et modifie avant de publier. L’offre Pro ajoute la génération en masse par CSV ; l’offre Enterprise ajoute les validations en équipe, un journal d’audit et l’accès API.',
       technology: [
         'Application web (React et Node.js)',
         'Génération de contenu par LLM limitée aux informations fournies',

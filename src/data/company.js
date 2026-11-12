@@ -19,7 +19,7 @@ export const company = {
     phoneDisplay: '+351 939 060 342',
     whatsapp: '351939060342',
     github: 'https://github.com/willan23',
-    linkedin: 'https://linkedin.com/in/william-fernandes-152506244',
+    linkedin: 'https://www.linkedin.com/in/willan-da-graca-fernandes/',
   },
   urls: {
     site: 'https://www.wgf-technologies.site',
