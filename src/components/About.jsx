@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext.jsx';
 
 function About() {
   const { t } = useLanguage();
-  const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
+  const whatsappUrl = "https://wa.me/351939060342?text=Ol%C3%A1%20Willan,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!";
 
   return (
     <section id="about" className="about-section">

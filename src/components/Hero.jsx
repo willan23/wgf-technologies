@@ -42,7 +42,7 @@ function Hero() {
           "  scan      - Executa varredura de segurança defensiva em tempo real",
           "  projects  - Lista o ecossistema de projetos & produtos WGF",
           "  skills    - Exibe a matriz tecnológica (Rust, eBPF, Next.js, Cisco)",
-          "  timeline  - Mostra a jornada 'Zero-Fault' do fundador William Fernandes",
+          "  timeline  - Mostra a jornada 'Zero-Fault' do fundador Willan Fernandes",
           "  cv        - Abrir/Descarregar o Currículo / Biografia (PDF)",
           "  status    - Exibe a telemetria do sistema e estado do Kernel",
           "  contact   - Mostra contactos diretos (WhatsApp, E-mail, LinkedIn)",
@@ -89,7 +89,7 @@ function Hero() {
       case 'timeline':
         response = [
           `> ${inputVal}`,
-          "Jornada 'Zero-Fault' — William Fernandes:",
+          "Jornada 'Zero-Fault' — Willan Fernandes:",
           "  • 2018-2021 | Engenharia Informática (Base de Arquitetura & Redes)",
           "  • 2022-2024 | Técnico de Produção Aeronáutica em Portugal (Rigor Absoluto)",
           "  • 2024-2026 | Gestão de Redes & Certificação Cisco Cybersecurity",
@@ -102,7 +102,7 @@ function Hero() {
           "Contactos Diretos da WGF Technologies:",
           "  - WhatsApp : +351 939 060 342",
           "  - E-mail   : wgftechnologies@gmail.com",
-          "  - LinkedIn : linkedin.com/in/william-fernandes-152506244",
+          "  - LinkedIn : linkedin.com/in/willan-da-graca-fernandes",
           "  - Sede     : Porto, Portugal"
         ];
         break;
@@ -208,7 +208,7 @@ function Hero() {
             <a href="/Curriculo_Willan_Fernandes.pdf" target="_blank" rel="noreferrer" className="btn-secondary">
               <FileText size={18} /> {t.hero.btnCV}
             </a>
-            <a href="https://wa.me/351939060342?text=Ol%C3%A1%20William,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary whatsapp-btn">
+            <a href="https://wa.me/351939060342?text=Ol%C3%A1%20Willan,%20estive%20a%20ver%20o%20teu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noreferrer" className="btn-secondary whatsapp-btn">
               <MessageSquare size={18} /> {t.hero.btnWhatsApp}
             </a>
           </motion.div>
