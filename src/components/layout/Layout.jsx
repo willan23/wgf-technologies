@@ -76,6 +76,9 @@ export default function Layout() {
     ['/contact', t.nav.contact],
   ];
 
+  const desktopLinks = links.filter(([to]) => to !== '/contact');
+  const languageNames = { PT: 'Português', EN: 'English', FR: 'Français' };
+
   return (
     <div className="app-container">
       <a href="#main-content" className="skip-link">
@@ -97,7 +100,7 @@ export default function Layout() {
         </Link>
 
         <nav className="main-nav desktop-nav" aria-label="Primary">
-          {links.map(([to, label]) => (
+          {desktopLinks.map(([to, label]) => (
             <NavLink key={to} to={to} end={to === '/'}>
               {label}
             </NavLink>
@@ -109,18 +112,16 @@ export default function Layout() {
 
         <div className="header-tools">
           <div className="lang-switcher-container" role="group" aria-label="Language">
-            <Globe size={16} className="lang-icon" aria-hidden />
+            <Globe size={15} className="lang-icon" aria-hidden />
             {['PT', 'EN', 'FR'].map((code) => (
               <button
                 key={code}
                 type="button"
                 className={`lang-btn ${lang === code ? 'active' : ''}`}
                 aria-pressed={lang === code}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setLang(code);
-                }}
+                aria-label={`${languageNames[code]} (${code})`}
+                title={languageNames[code]}
+                onClick={() => setLang(code)}
               >
                 {code}
               </button>
@@ -155,10 +156,32 @@ export default function Layout() {
               {label}
             </NavLink>
           ))}
+          <div className="mobile-drawer-footer">
+            <div className="lang-switcher-container mobile-lang-switcher" role="group" aria-label="Language">
+              <Globe size={15} className="lang-icon" aria-hidden />
+              {['PT', 'EN', 'FR'].map((code) => (
+                <button
+                  key={code}
+                  type="button"
+                  className={`lang-btn ${lang === code ? 'active' : ''}`}
+                  aria-pressed={lang === code}
+                  onClick={() => {
+                    setLang(code);
+                    setMenuOpen(false);
+                  }}
+                >
+                  {languageNames[code]}
+                </button>
+              ))}
+            </div>
+            <Link to="/contact" className="btn-primary mobile-drawer-cta" onClick={() => setMenuOpen(false)}>
+              {t.nav.cta}
+            </Link>
+          </div>
         </div>
       )}
 
-      <main id="main-content" className="page-main" key={lang} tabIndex={-1}>
+      <main id="main-content" className="page-main" tabIndex={-1}>
         <Outlet />
       </main>
 

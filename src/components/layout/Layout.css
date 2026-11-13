@@ -1,6 +1,27 @@
+/* ==========================================================================
+   Header, Navigation, Language Switcher & Layout Shell
+   ========================================================================== */
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem clamp(1rem, 2vw, 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(0.65rem, 1.2vw, 1.25rem);
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
 .logo-symbol {
-  height: 48px;
-  width: 48px;
+  height: 44px;
+  width: 44px;
   object-fit: contain;
   background: transparent;
   filter: drop-shadow(0 4px 10px rgba(0, 242, 254, 0.28));
@@ -21,16 +42,155 @@
   flex-shrink: 0;
 }
 
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: clamp(0.65rem, 1.05vw, 1.45rem);
+}
+
+.main-nav a:not(.btn-primary) {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(0.84rem, 0.9vw, 0.94rem);
+  line-height: 1.2;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.main-nav a:not(.btn-primary):hover,
+.desktop-nav a.active:not(.btn-primary) {
+  color: var(--accent-cyan);
+}
+
+.main-nav a:not(.btn-primary)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent-cyan);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px var(--accent-cyan);
+}
+
+.main-nav a:not(.btn-primary):hover::after,
+.desktop-nav a.active:not(.btn-primary)::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .header-tools {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.55rem;
   flex-shrink: 0;
   z-index: 5;
 }
 
-.header-tools .lang-switcher-container {
+/* Multi-Language Selector Pills */
+.lang-switcher-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: rgba(13, 18, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.22rem 0.32rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
   flex-shrink: 0;
+}
+
+:root.light-mode .lang-switcher-container {
+  background: rgba(248, 250, 252, 0.96);
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+.lang-icon {
+  color: var(--accent-cyan);
+  margin: 0 0.2rem 0 0.3rem;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  opacity: 0.72;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  min-width: 34px;
+  min-height: 28px;
+  padding: 0.28rem 0.52rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.lang-btn:hover {
+  opacity: 1;
+  color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.08);
+}
+
+.lang-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.lang-btn.active {
+  opacity: 1;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 242, 254, 0.32);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+  color: var(--accent-cyan);
+  transform: rotate(15deg);
 }
 
 .page-main {
@@ -38,23 +198,15 @@
   padding-top: 5.5rem;
 }
 
-.desktop-nav a.active {
-  color: var(--accent-cyan);
-}
-
-.nav-cta {
-  padding: 0.65rem 1.4rem;
-  font-size: 0.85rem;
-}
-
 .mobile-menu-btn {
   display: none;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -65,23 +217,50 @@
   top: 4.5rem;
   left: 1rem;
   right: 1rem;
+  max-height: calc(100vh - 5.5rem);
+  overflow-y: auto;
   z-index: 120;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.65rem;
   padding: 1.25rem;
   border-radius: 16px;
 }
 
-.mobile-drawer a {
+.mobile-drawer a:not(.btn-primary) {
   color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
-  padding: 0.4rem 0;
+  padding: 0.45rem 0;
 }
 
-.mobile-drawer a.active {
+.mobile-drawer a.active:not(.btn-primary) {
   color: var(--accent-cyan);
+}
+
+.mobile-drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.mobile-lang-switcher {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.3rem 0.4rem;
+}
+
+.mobile-lang-switcher .lang-btn {
+  flex: 1;
+  min-height: 34px;
+  font-size: 0.82rem;
+}
+
+.mobile-drawer-cta {
+  justify-content: center;
 }
 
 .site-footer {
@@ -147,9 +326,8 @@
   font-size: 0.85rem;
 }
 
-@media (max-width: 1100px) {
-
-  /* Extra specificity: index.css (.main-nav { display: flex }) loads after this file. */
+/* Switch to compact drawer menu before desktop links can squeeze language/theme tools */
+@media (max-width: 1260px) {
   .main-header .desktop-nav {
     display: none;
   }
@@ -159,7 +337,7 @@
   }
 
   .main-header {
-    padding: 1rem 1.25rem;
+    padding: 0.85rem 1.25rem;
   }
 
   .logo-symbol {
@@ -173,6 +351,49 @@
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header {
+    padding: 0.75rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .logo-symbol {
+    height: 34px;
+    width: 34px;
+  }
+
+  .header-tools {
+    gap: 0.4rem;
+  }
+
+  .lang-switcher-container {
+    padding: 0.18rem 0.25rem;
+    gap: 0.15rem;
+  }
+
+  .lang-icon {
+    display: none;
+  }
+
+  .lang-btn {
+    min-width: 30px;
+    min-height: 26px;
+    padding: 0.24rem 0.45rem;
+    font-size: 0.74rem;
+  }
+
+  .mobile-lang-switcher .lang-btn {
+    padding: 0.28rem 0.4rem;
+    font-size: 0.76rem;
+  }
+
+  .theme-toggle-btn,
+  .mobile-menu-btn {
+    width: 36px;
+    height: 36px;
   }
 }
 
