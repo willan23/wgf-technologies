@@ -373,7 +373,7 @@ export const developmentServices = [
       PT: {
         title: 'Manutenção e Evolução Tecnológica',
         description:
-          'Disponibilizar serviços de suporte contínuo, mediante contrato.',
+          'Disponibilizamos serviços de suporte contínuo, mediante contrato.',
         items: [
           'Correção de bugs',
           'Atualizações de aplicações',

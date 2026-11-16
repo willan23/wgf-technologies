@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ExternalLink, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company, fundingStageLabels } from '../data/company';
-import { getPublicProducts } from '../data/products';
+import { getPublicProducts, localizeProduct } from '../data/products';
 import PageHero from '../components/PageHero';
 import InvestorForm from '../components/InvestorForm';
 import { trackEvent } from '../lib/analytics';
@@ -13,7 +13,8 @@ import { routeMeta } from '../lib/routeMeta';
 
 export default function Investors() {
   const { t, lang } = useLanguage();
-  const featured = getPublicProducts().find((p) => p.featured) || getPublicProducts()[0];
+  const featuredProduct = getPublicProducts().find((p) => p.featured) || getPublicProducts()[0];
+  const featured = featuredProduct && localizeProduct(featuredProduct, lang);
 
   usePageMeta(routeMeta('/investors', t, lang));
 

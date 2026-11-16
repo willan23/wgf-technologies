@@ -55,10 +55,11 @@ export const translations = {
       cookies: 'Cookie Policy',
     },
     home: {
-      badge: 'Technology Venture Studio',
-      headline: 'Building the next generation of intelligent digital products.',
+      badge: 'Software development & digital products',
+      headline: 'Software and digital products for your business.',
       subheadline:
-        'WGF Technologies builds AI-native platforms, SaaS products and digital infrastructure designed to turn complex problems into scalable technology.',
+        'WGF Technologies designs, builds and maintains web platforms, mobile apps, automation and AI integrations for companies, startups and entrepreneurs — and develops its own SaaS products.',
+      ctaQuote: 'Request a quote',
       ctaPortfolio: 'Explore Our Portfolio',
       ctaPartner: 'Partner With Us',
       ctaInvestor: 'Investor Relations',
@@ -88,7 +89,7 @@ export const translations = {
       viewAll: 'View all',
       visitProduct: 'View product',
       proofPublic: 'public products',
-      proofLive: 'live in production',
+      proofLive: 'in production',
       proofEarly: 'in beta / MVP',
       proofBase: 'Porto, Portugal',
       proofBaseLabel: 'independent venture',
@@ -210,10 +211,10 @@ export const translations = {
       featuredLabel: 'Featured live product',
       opportunityTitle: 'The Opportunity',
       opportunityBody:
-        'WGF Technologies is commercializing a portfolio of digital products across AI, SaaS, cybersecurity, IP protection, Web3 and digital infrastructure. WGF IP Shield is live at wgfipshield.online with authorship certificates, public verification and subscription billing.',
+        'WGF Technologies is commercializing a portfolio of digital products across AI, SaaS, cybersecurity, IP protection, Web3 and digital infrastructure. WGF IP Shield is live at wgfipshield.online with timestamped, verifiable certificates, public verification and subscription billing.',
       whyTitle: 'Why WGF',
       why: [
-        'Multiple working products',
+        'Two products in production (WGF IP Shield and EcoSEO)',
         'Live SaaS product (WGF IP Shield)',
         'Technology ownership',
         'Rapid iteration',
@@ -320,7 +321,7 @@ export const translations = {
       privacyTitle: 'Privacy Policy',
       termsTitle: 'Terms of Use',
       cookiesTitle: 'Cookie Policy',
-      updated: 'Last updated: September 2026',
+      updated: 'Last updated: November 2026',
     },
     cookies: {
       title: 'We use cookies carefully',
@@ -489,10 +490,11 @@ export const translations = {
       cookies: 'Cookies',
     },
     home: {
-      badge: 'Estúdio de ventures tecnológicas',
-      headline: 'A construir a próxima geração de produtos digitais inteligentes.',
+      badge: 'Desenvolvimento de software e produtos digitais',
+      headline: 'Software e produtos digitais para a sua empresa.',
       subheadline:
-        'A WGF Technologies constrói plataformas AI-native, produtos SaaS e infraestrutura digital para transformar problemas complexos em tecnologia escalável.',
+        'A WGF Technologies desenha, desenvolve e mantém plataformas web, aplicações móveis, automação e integrações com IA para empresas, startups e empreendedores — e desenvolve os seus próprios produtos SaaS.',
+      ctaQuote: 'Pedir orçamento',
       ctaPortfolio: 'Explorar o Portfólio',
       ctaPartner: 'Ser Parceiro',
       ctaInvestor: 'Relações com Investidores',
@@ -522,7 +524,7 @@ export const translations = {
       viewAll: 'Ver tudo',
       visitProduct: 'Ver produto',
       proofPublic: 'produtos públicos',
-      proofLive: 'em produção (live)',
+      proofLive: 'em produção',
       proofEarly: 'em beta / MVP',
       proofBase: 'Porto, Portugal',
       proofBaseLabel: 'venture independente',
@@ -641,14 +643,14 @@ export const translations = {
       openBadge: 'Aberto a conversas de investimento',
       openBody:
         'Estamos abertos a conversas com angel investors, parceiros estratégicos e capital focado em tecnologia para comercializar e escalar produtos live — começando pelo WGF IP Shield.',
-      featuredLabel: 'Produto live em destaque',
+      featuredLabel: 'Produto em produção em destaque',
       opportunityTitle: 'A Oportunidade',
       opportunityBody:
-        'A WGF Technologies está a comercializar um portfólio de produtos digitais em IA, SaaS, cibersegurança, proteção de IP, Web3 e infraestrutura digital. O WGF IP Shield está live em wgfipshield.online com certificados de autoria, verificação pública e billing por subscrição.',
+        'A WGF Technologies está a comercializar um portfólio de produtos digitais em IA, SaaS, cibersegurança, proteção de IP, Web3 e infraestrutura digital. O WGF IP Shield está em produção em wgfipshield.online com certificados verificáveis com carimbo temporal, verificação pública e billing por subscrição.',
       whyTitle: 'Porquê a WGF',
       why: [
-        'Múltiplos produtos a funcionar',
-        'Produto SaaS live (WGF IP Shield)',
+        'Dois produtos em produção (WGF IP Shield e EcoSEO)',
+        'Produto SaaS em produção (WGF IP Shield)',
         'Propriedade tecnológica',
         'Iteração rápida',
         'Oportunidades cross-market',
@@ -755,7 +757,7 @@ export const translations = {
       privacyTitle: 'Política de Privacidade',
       termsTitle: 'Termos de Utilização',
       cookiesTitle: 'Política de Cookies',
-      updated: 'Última atualização: setembro 2026',
+      updated: 'Última atualização: novembro 2026',
     },
     cookies: {
       title: 'Utilizamos cookies com cuidado',
@@ -925,10 +927,11 @@ export const translations = {
       cookies: 'Cookies',
     },
     home: {
-      badge: 'Studio de ventures technologiques',
-      headline: 'Construire la prochaine génération de produits numériques intelligents.',
+      badge: 'Développement logiciel et produits numériques',
+      headline: 'Logiciels et produits numériques pour votre entreprise.',
       subheadline:
-        'WGF Technologies construit des plateformes AI-native, des produits SaaS et des infrastructures numériques pour transformer des problèmes complexes en technologie scalable.',
+        'WGF Technologies conçoit, développe et maintient des plateformes web, des applications mobiles, de l’automatisation et des intégrations IA pour les entreprises, les startups et les entrepreneurs — et développe ses propres produits SaaS.',
+      ctaQuote: 'Demander un devis',
       ctaPortfolio: 'Explorer le Portfolio',
       ctaPartner: 'Devenir Partenaire',
       ctaInvestor: 'Relations Investisseurs',
@@ -1077,14 +1080,14 @@ export const translations = {
       openBadge: 'Ouvert aux discussions d’investissement',
       openBody:
         'Nous sommes ouverts aux conversations avec des business angels, partenaires stratégiques et capital technologique pour commercialiser et scaler des produits live — à commencer par WGF IP Shield.',
-      featuredLabel: 'Produit live mis en avant',
+      featuredLabel: 'Produit en production mis en avant',
       opportunityTitle: 'L’Opportunité',
       opportunityBody:
-        'WGF Technologies commercialise un portfolio de produits numériques en IA, SaaS, cybersécurité, protection IP, Web3 et infrastructure numérique. WGF IP Shield est live sur wgfipshield.online avec certificats d’auteur, vérification publique et abonnements.',
+        'WGF Technologies commercialise un portfolio de produits numériques en IA, SaaS, cybersécurité, protection IP, Web3 et infrastructure numérique. WGF IP Shield est en production sur wgfipshield.online avec des certificats horodatés vérifiables, une vérification publique et des abonnements.',
       whyTitle: 'Pourquoi WGF',
       why: [
-        'Plusieurs produits fonctionnels',
-        'Produit SaaS live (WGF IP Shield)',
+        'Deux produits en production (WGF IP Shield et EcoSEO)',
+        'Produit SaaS en production (WGF IP Shield)',
         'Propriété technologique',
         'Itération rapide',
         'Opportunités cross-market',
@@ -1191,7 +1194,7 @@ export const translations = {
       privacyTitle: 'Politique de Confidentialité',
       termsTitle: 'Conditions d’Utilisation',
       cookiesTitle: 'Politique de Cookies',
-      updated: 'Dernière mise à jour : septembre 2026',
+      updated: 'Dernière mise à jour : novembre 2026',
     },
     cookies: {
       title: 'Nous utilisons les cookies avec soin',

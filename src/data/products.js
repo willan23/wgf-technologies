@@ -23,7 +23,7 @@ export const products = [
     slug: 'wgf-ip-shield',
     name: 'WGF IP Shield',
     url: 'https://wgfipshield.online/',
-    category: 'SaaS / IP Protection / Software Authorship',
+    category: 'SaaS / IP Protection / Code Timestamping',
     status: STATUS.LIVE,
     public: true,
     ready: true,
@@ -31,15 +31,15 @@ export const products = [
     markets: ['SaaS', 'Cybersecurity', 'Digital Economy', 'Artificial Intelligence'],
     businessModel: ['SaaS', 'Subscription', 'B2B', 'Freemium'],
     shortDescription:
-      'Proof of authorship for software: timestamped fingerprints, verifiable certificates and protection reports — without uploading your source code.',
+      'Timestamped record that your code existed (SHA-256, verifiable certificate), without uploading your code.',
     valueProposition: 'Your code — timestamped, fingerprinted, owned.',
     problem:
-      'Developers and companies struggle to prove authorship and version history of software without exposing proprietary source code.',
+      'Developers and companies struggle to document when their code and its versions existed without exposing proprietary source code.',
     solution:
-      'WGF IP Shield fingerprints projects in the browser (SHA-256), issues verifiable authorship certificates with timestamps, keeps version history, offers public verification, README badges, CI/CD registration API and AI protection reports. Only fingerprints leave the machine — not the source code.',
+      'WGF IP Shield fingerprints projects in the browser (SHA-256), issues verifiable timestamped certificates, keeps version history, offers public verification, README badges, CI/CD registration API and AI protection reports. Only fingerprints leave the machine — not the source code.',
     technology: [
       'Client-side SHA-256 fingerprinting',
-      'Authorship certificates with version provenance chain',
+      'Timestamped certificates with version provenance chain',
       'Public verification (/verify)',
       'AI protection reports (licenses, secrets, copying/scraping risks)',
       'CI/CD API with hashed API keys',
@@ -50,7 +50,7 @@ export const products = [
       geography: ['Europe', 'Global', 'Lusophone Markets'],
       segments: ['Software developers', 'Startups', 'Agencies', 'Technology companies'],
       opportunity:
-        'Growing need for software authorship proof, IP documentation and version integrity without sacrificing code privacy.',
+        'Growing need for timestamped records of code, IP documentation and version integrity without sacrificing code privacy.',
     },
     roadmap: {
       completed: [
@@ -66,7 +66,7 @@ export const products = [
       future: ['Signed certificates, verified holder identity, selective disclosure tooling'],
     },
     disclaimer:
-      'WGF IP Shield provides evidence of existence, integrity and recorded provenance. No system stops copying entirely. Certificates support authorship and integrity claims; they are not a substitute for legal counsel or registered intellectual-property filings where required.',
+      'WGF IP Shield provides evidence of existence, integrity and recorded provenance. No system stops copying entirely. Certificates are a timestamped record of existence and integrity; they are not legal proof of authorship and are not a substitute for legal counsel or registered intellectual-property filings where required.',
   },
   {
     id: 'connect-cplp',
@@ -74,23 +74,22 @@ export const products = [
     name: 'Connect-CPLP',
     url: 'https://connect-cplp.com',
     category: 'Digital Infrastructure / CPLP / Ecosystem',
-    status: STATUS.LIVE,
+    status: STATUS.BETA,
     public: true,
     ready: true,
     markets: ['Lusophone Markets', 'Emerging Markets', 'Digital Economy'],
-    businessModel: ['Marketplace', 'Transaction fees', 'B2C', 'B2B'],
+    businessModel: ['Marketplace', 'B2C', 'B2B'],
     shortDescription:
-      'A digital platform designed to connect people, businesses, opportunities and services across the Portuguese-speaking world.',
-    valueProposition: 'Transfers and digital connections across the CPLP / PALOP space.',
+      'Digital platform for the CPLP community, in development.',
+    valueProposition: 'Digital connections for people and businesses across the CPLP / PALOP space.',
     problem:
-      'People and businesses across Portuguese-speaking countries need simpler ways to move value, discover opportunities and stay connected across borders.',
+      'People and businesses across Portuguese-speaking countries need simpler ways to discover opportunities and stay connected across borders.',
     solution:
-      'Connect-CPLP provides a digital platform focused on transfers and connectivity for the PALOP / CPLP ecosystem, with a product experience designed for real users in those markets.',
+      'Connect-CPLP is a digital platform for the CPLP / PALOP community, currently in beta and in development, with a product experience designed for real users in those markets.',
     technology: [
       'Web application architecture',
       'Cloud-hosted delivery',
       'Secure authentication flows',
-      'Payment / transfer integrations where enabled',
     ],
     targetMarket: {
       geography: ['CPLP / PALOP countries', 'Lusophone diaspora'],
@@ -98,8 +97,8 @@ export const products = [
       opportunity: 'Growing demand for digital services across Portuguese-speaking markets.',
     },
     roadmap: {
-      completed: ['Public product website', 'Core transfer-oriented experience'],
-      current: ['Product iteration based on real usage'],
+      completed: ['Public product website'],
+      current: ['Beta iteration and product development'],
       next: ['Broader ecosystem features', 'Partnership expansion'],
       future: ['Deeper regional coverage and service layers'],
     },
@@ -186,32 +185,32 @@ export const products = [
     name: 'STPway',
     url: 'https://stpway.st',
     category: 'Digital Platform / Mobility / Services / São Tomé e Príncipe',
-    status: STATUS.LIVE,
+    status: STATUS.BETA,
     public: true,
     ready: true,
     markets: ['Mobility', 'Emerging Markets', 'Digital Economy', 'Lusophone Markets'],
-    businessModel: ['Transaction fees', 'B2C', 'Marketplace'],
+    businessModel: ['B2C', 'Marketplace'],
     shortDescription:
-      'A digital platform designed to connect people, services, mobility and opportunities through a unified digital ecosystem.',
-    valueProposition: 'Mobile payments and digital services for São Tomé e Príncipe.',
+      'Digital platform for São Tomé and Príncipe, in development.',
+    valueProposition: 'Digital services for São Tomé and Príncipe.',
     problem:
-      'Local users need practical digital rails for payments and services in markets where connectivity and banking access can be uneven.',
+      'Local users need practical digital access to services in markets where connectivity can be uneven.',
     solution:
-      'STPway delivers a mobile-oriented payments experience for São Tomé e Príncipe, connecting people to digital payment flows through a unified product interface.',
+      'STPway is a mobile-first digital platform for São Tomé and Príncipe, currently in beta and in development, bringing local digital services together in a unified product interface.',
     technology: [
       'Progressive Web App (PWA)',
-      'Mobile-first payment flows',
+      'Mobile-first interface',
       'Cloud-backed application delivery',
       'Service worker enabled client',
     ],
     targetMarket: {
       geography: ['São Tomé e Príncipe'],
-      segments: ['Consumers', 'Local service users', 'Merchants'],
-      opportunity: 'Digital payment adoption in an emerging market context.',
+      segments: ['Consumers', 'Local service users', 'Local businesses'],
+      opportunity: 'Digital service adoption in an emerging market context.',
     },
     roadmap: {
-      completed: ['Public PWA presence', 'Core mobile payments experience'],
-      current: ['Reliability and local-market iteration'],
+      completed: ['Public PWA presence'],
+      current: ['Beta iteration in the local market'],
       next: ['Broader service connections'],
       future: ['Expanded ecosystem services'],
     },
@@ -295,17 +294,17 @@ export const products = [
 const productTranslations = {
   'wgf-ip-shield': {
     PT: {
-      category: 'SaaS / Proteção de IP / Autoria de Software',
+      category: 'SaaS / Proteção de IP / Registo datado de código',
       shortDescription:
-        'Prova de autoria para software: impressões digitais com carimbo temporal, certificados verificáveis e relatórios de proteção — sem carregar o seu código-fonte.',
+        'Registo datado de que o seu código existia (SHA-256, certificado verificável), sem enviar o código.',
       valueProposition: 'O seu código — com carimbo temporal, impressão digital e titularidade registada.',
       problem:
-        'Programadores e empresas têm dificuldade em comprovar a autoria e o histórico de versões de software sem expor código-fonte proprietário.',
+        'Programadores e empresas têm dificuldade em documentar quando o seu código e as suas versões existiam sem expor código-fonte proprietário.',
       solution:
-        'O WGF IP Shield gera impressões digitais de projetos no navegador (SHA-256), emite certificados de autoria verificáveis com carimbo temporal, mantém o histórico de versões, oferece verificação pública, badges para README, API de registo para CI/CD e relatórios de proteção com IA. Apenas as impressões digitais saem da máquina — nunca o código-fonte.',
+        'O WGF IP Shield gera impressões digitais de projetos no navegador (SHA-256), emite certificados verificáveis com carimbo temporal, mantém o histórico de versões, oferece verificação pública, badges para README, API de registo para CI/CD e relatórios de proteção com IA. Apenas as impressões digitais saem da máquina — nunca o código-fonte.',
       technology: [
         'Geração local de impressões digitais SHA-256 no navegador',
-        'Certificados de autoria com cadeia de proveniência de versões',
+        'Certificados com carimbo temporal e cadeia de proveniência de versões',
         'Verificação pública (/verify)',
         'Relatórios de proteção com IA (licenças, segredos, riscos de cópia/scraping)',
         'API de CI/CD com chaves de API com hash',
@@ -316,7 +315,7 @@ const productTranslations = {
         geography: ['Europa', 'Global', 'Mercados lusófonos'],
         segments: ['Programadores de software', 'Startups', 'Agências', 'Empresas tecnológicas'],
         opportunity:
-          'Necessidade crescente de prova de autoria de software, documentação de propriedade intelectual e integridade de versões sem sacrificar a privacidade do código.',
+          'Necessidade crescente de registos datados de código, documentação de propriedade intelectual e integridade de versões sem sacrificar a privacidade do código.',
       },
       roadmap: {
         completed: [
@@ -332,20 +331,20 @@ const productTranslations = {
         future: ['Certificados assinados, identidade verificada do titular e ferramentas de divulgação seletiva'],
       },
       disclaimer:
-        'O WGF IP Shield fornece evidência de existência, integridade e proveniência registada. Nenhum sistema impede totalmente a cópia. Os certificados apoiam reivindicações de autoria e integridade; não substituem aconselhamento jurídico nem registos formais de propriedade intelectual quando exigidos.',
+        'O WGF IP Shield fornece evidência de existência, integridade e proveniência registada. Nenhum sistema impede totalmente a cópia. Os certificados são um registo datado de existência e integridade; não são prova legal de autoria nem substituem aconselhamento jurídico nem registos formais de propriedade intelectual quando exigidos.',
     },
     FR: {
-      category: 'SaaS / Protection PI / Paternité Logicielle',
+      category: 'SaaS / Protection PI / Horodatage de code',
       shortDescription:
-        'Preuve de paternité pour logiciels : empreintes horodatées, certificats vérifiables et rapports de protection — sans téléverser votre code source.',
+        'Enregistrement horodaté attestant que votre code existait (SHA-256, certificat vérifiable), sans envoyer votre code.',
       valueProposition: 'Votre code — horodaté, signé par empreinte et protégé.',
       problem:
-        'Les développeurs et les entreprises peinent à prouver la paternité et l’historique des versions d’un logiciel sans exposer leur code source propriétaire.',
+        'Les développeurs et les entreprises peinent à documenter quand leur code et ses versions existaient sans exposer leur code source propriétaire.',
       solution:
-        'WGF IP Shield calcule les empreintes des projets dans le navigateur (SHA-256), émet des certificats de paternité vérifiables et horodatés, conserve l’historique des versions, propose une vérification publique, des badges README, une API CI/CD et des rapports de protection par IA. Seules les empreintes quittent la machine — jamais le code source.',
+        'WGF IP Shield calcule les empreintes des projets dans le navigateur (SHA-256), émet des certificats vérifiables et horodatés, conserve l’historique des versions, propose une vérification publique, des badges README, une API CI/CD et des rapports de protection par IA. Seules les empreintes quittent la machine — jamais le code source.',
       technology: [
         'Calcul d’empreintes SHA-256 côté client',
-        'Certificats de paternité avec chaîne de provenance des versions',
+        'Certificats horodatés avec chaîne de provenance des versions',
         'Vérification publique (/verify)',
         'Rapports de protection par IA (licences, secrets, risques de copie/scraping)',
         'API CI/CD avec clés d’API hachées',
@@ -356,7 +355,7 @@ const productTranslations = {
         geography: ['Europe', 'Monde', 'Marchés lusophones'],
         segments: ['Développeurs logiciels', 'Startups', 'Agences', 'Entreprises technologiques'],
         opportunity:
-          'Besoin croissant de preuve de paternité logicielle, de documentation PI et d’intégrité des versions sans compromettre la confidentialité du code.',
+          'Besoin croissant d’enregistrements horodatés du code, de documentation PI et d’intégrité des versions sans compromettre la confidentialité du code.',
       },
       roadmap: {
         completed: [
@@ -372,7 +371,7 @@ const productTranslations = {
         future: ['Certificats signés, identité vérifiée du titulaire et outils de divulgation sélective'],
       },
       disclaimer:
-        'WGF IP Shield fournit des preuves d’existence, d’intégrité et de provenance enregistrée. Aucun système n’empêche totalement la copie. Les certificats appuient les revendications de paternité et d’intégrité ; ils ne remplacent pas un avis juridique ni un dépôt officiel de propriété intellectuelle lorsque requis.',
+        'WGF IP Shield fournit des preuves d’existence, d’intégrité et de provenance enregistrée. Aucun système n’empêche totalement la copie. Les certificats sont un enregistrement horodaté d’existence et d’intégrité ; ils ne constituent pas une preuve légale de paternité et ne remplacent pas un avis juridique ni un dépôt officiel de propriété intellectuelle lorsque requis.',
     },
   },
   ecoseo: {
@@ -435,17 +434,16 @@ const productTranslations = {
     PT: {
       category: 'Infraestrutura digital / CPLP / Ecossistema',
       shortDescription:
-        'Uma plataforma digital pensada para ligar pessoas, empresas, oportunidades e serviços em todo o mundo lusófono.',
-      valueProposition: 'Transferências e ligações digitais no espaço CPLP / PALOP.',
+        'Plataforma digital para a comunidade CPLP, em desenvolvimento.',
+      valueProposition: 'Ligações digitais entre pessoas e empresas no espaço CPLP / PALOP.',
       problem:
-        'Pessoas e empresas nos países de língua portuguesa precisam de formas mais simples de movimentar valor, descobrir oportunidades e manter-se ligadas além-fronteiras.',
+        'Pessoas e empresas nos países de língua portuguesa precisam de formas mais simples de descobrir oportunidades e manter-se ligadas além-fronteiras.',
       solution:
-        'A Connect-CPLP disponibiliza uma plataforma digital focada em transferências e conectividade para o ecossistema PALOP / CPLP, com uma experiência de produto pensada para utilizadores reais nesses mercados.',
+        'A Connect-CPLP é uma plataforma digital para a comunidade CPLP / PALOP, atualmente em beta e em desenvolvimento, com uma experiência de produto pensada para utilizadores reais nesses mercados.',
       technology: [
         'Arquitetura de aplicação web',
         'Entrega alojada na cloud',
         'Fluxos de autenticação seguros',
-        'Integrações de pagamento / transferência quando ativas',
       ],
       targetMarket: {
         geography: ['Países CPLP / PALOP', 'Diáspora lusófona'],
@@ -453,8 +451,8 @@ const productTranslations = {
         opportunity: 'Procura crescente de serviços digitais nos mercados de língua portuguesa.',
       },
       roadmap: {
-        completed: ['Website público do produto', 'Experiência principal orientada para transferências'],
-        current: ['Iteração do produto com base em utilização real'],
+        completed: ['Website público do produto'],
+        current: ['Iteração em beta e desenvolvimento do produto'],
         next: ['Funcionalidades de ecossistema mais amplas', 'Expansão de parcerias'],
         future: ['Maior cobertura regional e novas camadas de serviço'],
       },
@@ -462,17 +460,16 @@ const productTranslations = {
     FR: {
       category: 'Infrastructure numérique / CPLP / Écosystème',
       shortDescription:
-        'Une plateforme numérique conçue pour connecter personnes, entreprises, opportunités et services dans tout le monde lusophone.',
-      valueProposition: 'Transferts et connexions numériques dans l’espace CPLP / PALOP.',
+        'Plateforme numérique pour la communauté CPLP, en développement.',
+      valueProposition: 'Connexions numériques entre personnes et entreprises dans l’espace CPLP / PALOP.',
       problem:
-        'Les personnes et les entreprises des pays lusophones ont besoin de moyens plus simples pour transférer de la valeur, découvrir des opportunités et rester connectées au-delà des frontières.',
+        'Les personnes et les entreprises des pays lusophones ont besoin de moyens plus simples pour découvrir des opportunités et rester connectées au-delà des frontières.',
       solution:
-        'Connect-CPLP propose une plateforme numérique axée sur les transferts et la connectivité pour l’écosystème PALOP / CPLP, avec une expérience produit conçue pour de vrais utilisateurs sur ces marchés.',
+        'Connect-CPLP est une plateforme numérique pour la communauté CPLP / PALOP, actuellement en bêta et en développement, avec une expérience produit conçue pour de vrais utilisateurs sur ces marchés.',
       technology: [
         'Architecture d’application web',
         'Hébergement cloud',
         'Flux d’authentification sécurisés',
-        'Intégrations de paiement / transfert lorsqu’elles sont activées',
       ],
       targetMarket: {
         geography: ['Pays CPLP / PALOP', 'Diaspora lusophone'],
@@ -480,8 +477,8 @@ const productTranslations = {
         opportunity: 'Demande croissante de services numériques sur les marchés lusophones.',
       },
       roadmap: {
-        completed: ['Site public du produit', 'Expérience principale orientée transferts'],
-        current: ['Itération produit basée sur l’usage réel'],
+        completed: ['Site public du produit'],
+        current: ['Itération bêta et développement du produit'],
         next: ['Fonctionnalités d’écosystème élargies', 'Développement des partenariats'],
         future: ['Couverture régionale plus large et nouvelles couches de services'],
       },
@@ -608,26 +605,26 @@ const productTranslations = {
     PT: {
       category: 'Plataforma digital / Mobilidade / Serviços / São Tomé e Príncipe',
       shortDescription:
-        'Uma plataforma digital pensada para ligar pessoas, serviços, mobilidade e oportunidades através de um ecossistema digital unificado.',
-      valueProposition: 'Pagamentos móveis e serviços digitais para São Tomé e Príncipe.',
+        'Plataforma digital para São Tomé e Príncipe, em desenvolvimento.',
+      valueProposition: 'Serviços digitais para São Tomé e Príncipe.',
       problem:
-        'Os utilizadores locais precisam de soluções digitais práticas para pagamentos e serviços em mercados onde a conectividade e o acesso bancário podem ser desiguais.',
+        'Os utilizadores locais precisam de acesso digital prático a serviços em mercados onde a conectividade pode ser desigual.',
       solution:
-        'O STPway oferece uma experiência de pagamentos orientada para mobile em São Tomé e Príncipe, ligando as pessoas a fluxos de pagamento digitais através de uma interface de produto unificada.',
+        'O STPway é uma plataforma digital mobile-first para São Tomé e Príncipe, atualmente em beta e em desenvolvimento, que reúne serviços digitais locais numa interface de produto unificada.',
       technology: [
         'Progressive Web App (PWA)',
-        'Fluxos de pagamento mobile-first',
+        'Interface mobile-first',
         'Entrega suportada por cloud',
         'Cliente com service worker',
       ],
       targetMarket: {
         geography: ['São Tomé e Príncipe'],
-        segments: ['Consumidores', 'Utilizadores de serviços locais', 'Comerciantes'],
-        opportunity: 'Adoção de pagamentos digitais num contexto de mercado emergente.',
+        segments: ['Consumidores', 'Utilizadores de serviços locais', 'Negócios locais'],
+        opportunity: 'Adoção de serviços digitais num contexto de mercado emergente.',
       },
       roadmap: {
-        completed: ['Presença pública como PWA', 'Experiência principal de pagamentos móveis'],
-        current: ['Fiabilidade e iteração no mercado local'],
+        completed: ['Presença pública como PWA'],
+        current: ['Iteração em beta no mercado local'],
         next: ['Ligação a mais serviços'],
         future: ['Serviços de ecossistema alargados'],
       },
@@ -635,26 +632,26 @@ const productTranslations = {
     FR: {
       category: 'Plateforme numérique / Mobilité / Services / Sao Tomé-et-Principe',
       shortDescription:
-        'Une plateforme numérique conçue pour connecter personnes, services, mobilité et opportunités au sein d’un écosystème numérique unifié.',
-      valueProposition: 'Paiements mobiles et services numériques pour Sao Tomé-et-Principe.',
+        'Plateforme numérique pour Sao Tomé-et-Principe, en développement.',
+      valueProposition: 'Services numériques pour Sao Tomé-et-Principe.',
       problem:
-        'Les utilisateurs locaux ont besoin de solutions numériques pratiques pour les paiements et les services sur des marchés où la connectivité et l’accès bancaire peuvent être inégaux.',
+        'Les utilisateurs locaux ont besoin d’un accès numérique pratique aux services sur des marchés où la connectivité peut être inégale.',
       solution:
-        'STPway offre une expérience de paiement pensée pour le mobile à Sao Tomé-et-Principe, en connectant les personnes aux flux de paiement numériques via une interface produit unifiée.',
+        'STPway est une plateforme numérique mobile-first pour Sao Tomé-et-Principe, actuellement en bêta et en développement, qui réunit des services numériques locaux dans une interface produit unifiée.',
       technology: [
         'Progressive Web App (PWA)',
-        'Flux de paiement mobile-first',
+        'Interface mobile-first',
         'Hébergement adossé au cloud',
         'Client avec service worker',
       ],
       targetMarket: {
         geography: ['Sao Tomé-et-Principe'],
-        segments: ['Consommateurs', 'Utilisateurs de services locaux', 'Commerçants'],
-        opportunity: 'Adoption des paiements numériques dans un contexte de marché émergent.',
+        segments: ['Consommateurs', 'Utilisateurs de services locaux', 'Entreprises locales'],
+        opportunity: 'Adoption des services numériques dans un contexte de marché émergent.',
       },
       roadmap: {
-        completed: ['Présence publique en PWA', 'Expérience principale de paiement mobile'],
-        current: ['Fiabilité et itération sur le marché local'],
+        completed: ['Présence publique en PWA'],
+        current: ['Itération bêta sur le marché local'],
         next: ['Connexion à davantage de services'],
         future: ['Services d’écosystème élargis'],
       },

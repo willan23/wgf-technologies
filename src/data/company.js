@@ -35,7 +35,6 @@ export const company = {
   founder: {
     name: 'Willan Da Graça Fernandes',
     role: 'Founder',
-    birthDate: '1997-03-18',
     birthPlace: 'São Tomé e Príncipe',
     photo: '/image.png',
     interests: [

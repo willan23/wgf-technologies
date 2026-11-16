@@ -11,7 +11,7 @@ import { routeMeta } from '../lib/routeMeta';
 
 const founderBio = {
   paragraphs: [
-    'Willan Da Graça Fernandes was born in São Tomé e Príncipe on 18 March 1997. He began Computer Engineering studies (2018–2021), building foundations in systems architecture and networks.',
+    'Willan Da Graça Fernandes was born in São Tomé e Príncipe. He began Computer Engineering studies (2018–2021), building foundations in systems architecture and networks.',
     'In December 2022 he moved to Portugal and trained as an Aeronautical Production Technician (Level 4), working with fiber composites for public transport manufacturing — experience that reinforced precision and process discipline.',
     'He continues specializing in network and computer systems management, including Cisco Networking Academy cybersecurity coursework. He founded WGF Technologies to turn product development into market-ready technology businesses and is seeking partners and investment to scale.',
   ],
