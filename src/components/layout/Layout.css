@@ -299,6 +299,18 @@
   color: var(--text-main);
 }
 
+.footer-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
+.footer-cta-btn {
+  padding: 0.6rem 1.35rem;
+  font-size: 0.85rem;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -327,7 +339,7 @@
 }
 
 /* Switch to compact drawer menu before desktop links can squeeze language/theme tools */
-@media (max-width: 1260px) {
+@media (max-width: 1340px) {
   .main-header .desktop-nav {
     display: none;
   }

@@ -1455,3 +1455,361 @@ h1, h2, h3, h4, .logo-text, .section-title {
     padding: 1.75rem 1.5rem;
   }
 }
+
+/* ==========================================================================
+   Commercial Services, Process, Differentiators, Quote Form & FAQ
+   ========================================================================== */
+
+.home-services-header {
+  margin-bottom: 2rem;
+}
+
+.home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.25rem;
+}
+
+.home-service-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  border-top: 2px solid rgba(0, 242, 254, 0.28);
+}
+
+.home-service-card h3 {
+  font-size: 1.25rem;
+}
+
+.home-service-tags {
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+
+.home-service-tags li {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  opacity: 0.88;
+}
+
+.home-service-tags li::before {
+  content: '• ';
+  color: var(--accent-cyan);
+  font-weight: 800;
+}
+
+.home-service-cta {
+  margin-top: 0.5rem;
+}
+
+.services-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.service-detail-card {
+  padding: 1.75rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+  border-top: 3px solid rgba(0, 242, 254, 0.32);
+}
+
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(0, 242, 254, 0.14));
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 242, 254, 0.22);
+}
+
+.service-number {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  opacity: 0.65;
+  letter-spacing: 0.08em;
+}
+
+.service-detail-card h3 {
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.service-description {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+.service-deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-color);
+  flex: 1;
+}
+
+.service-deliverables-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-cyan);
+}
+
+.service-items-list li {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.service-quote-link {
+  margin-top: 0.75rem;
+  background: none;
+  border: 1px solid rgba(0, 242, 254, 0.28);
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  color: var(--accent-cyan);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.service-quote-link:hover,
+.service-quote-link:focus-visible {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: var(--accent-cyan);
+}
+
+.commercial-process-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.process-step-card {
+  height: 100%;
+}
+
+.process-transparency-note {
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.differentiators-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.15rem;
+  margin-top: 1.75rem;
+}
+
+.differentiator-card {
+  padding: 1.4rem;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  height: 100%;
+}
+
+.differentiator-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.1);
+}
+
+.differentiator-card h3 {
+  font-size: 1.1rem;
+}
+
+.differentiator-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.quote-request-section {
+  scroll-margin-top: 5.5rem;
+}
+
+.quote-request-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.quote-highlights-list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quote-highlights-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.quote-highlight-icon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.project-quote-form {
+  padding: 1.85rem;
+  gap: 1.05rem;
+}
+
+.project-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.field-micro-hint {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+.faq-item {
+  border-radius: 16px;
+  padding: 1.15rem 1.4rem;
+  transition: border-color 0.2s ease;
+}
+
+.faq-item[open] {
+  border-color: rgba(0, 242, 254, 0.35);
+}
+
+.faq-question {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-question::after {
+  content: '−';
+}
+
+.faq-answer {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.tilt-card-shell.is-tilting .home-service-card,
+.tilt-card-shell.is-tilting .service-detail-card,
+.tilt-card-shell.is-tilting .differentiator-card {
+  border-color: rgba(0, 242, 254, 0.36);
+  box-shadow:
+    0 22px 48px var(--shadow-color),
+    0 0 24px rgba(0, 242, 254, 0.12);
+}
+
+.tilt-card-shell .service-icon-box,
+.tilt-card-shell .differentiator-icon {
+  transform: translateZ(16px);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 1100px) {
+  .commercial-process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .differentiators-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quote-request-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-catalog-grid,
+  .home-services-grid,
+  .commercial-process-grid,
+  .differentiators-grid,
+  .form-grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .project-quote-form {
+    padding: 1.35rem;
+  }
+}

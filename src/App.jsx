@@ -5,6 +5,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { ConsentProvider } from './context/ConsentContext';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import ProductDetail from './pages/ProductDetail';
 import Technology from './pages/Technology';
@@ -31,6 +32,7 @@ export default function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="servicos/desenvolvimento-software" element={<Services />} />
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="portfolio/:slug" element={<ProductDetail />} />
               <Route path="technology" element={<Technology />} />

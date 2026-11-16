@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { translations } from '../src/i18n/translations.js';
 import { company } from '../src/data/company.js';
 import { getPublicProducts } from '../src/data/products.js';
+import { developmentServices, servicesFaq } from '../src/data/services.js';
 import { STATIC_PATHS, productMeta, resolveHead, routeMeta } from '../src/lib/routeMeta.js';
 
 // Static HTML is served before the visitor's language is known; English matches index.html.
@@ -60,10 +61,37 @@ function productJsonLd(product) {
   };
 }
 
+function servicesJsonLd(t) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        name: t.services.metaTitle,
+        description: t.services.metaDescription,
+        url: `${company.urls.site}/servicos/desenvolvimento-software`,
+        provider: { '@type': 'Organization', name: company.name, url: company.urls.site },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: servicesFaq.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      },
+    ],
+  };
+}
+
 export function prerenderPages() {
   const t = translations[LANG];
   return [
-    ...STATIC_PATHS.map((path) => ({ path, meta: routeMeta(path, t, LANG) })),
+    ...STATIC_PATHS.map((path) => ({
+      path,
+      meta: routeMeta(path, t, LANG),
+      jsonLd: path === '/servicos/desenvolvimento-software' ? servicesJsonLd(t) : undefined,
+    })),
     ...getPublicProducts().map((p) => ({ path: `/portfolio/${p.slug}`, meta: productMeta(p), jsonLd: productJsonLd(p) })),
   ];
 }

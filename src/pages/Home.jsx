@@ -1,10 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Briefcase, HeartHandshake, LineChart, MessageSquare, Rocket, Users } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Bot,
+  Briefcase,
+  Code2,
+  Globe,
+  HeartHandshake,
+  Layers,
+  LineChart,
+  MessageSquare,
+  Network,
+  Rocket,
+  Smartphone,
+  Users,
+  Wrench,
+} from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import { getPublicProducts, STATUS } from '../data/products';
+import { developmentServices } from '../data/services';
 import { technologyCategories } from '../data/technology';
 import { markets } from '../data/markets';
 import { localizeList } from '../data/localize';
@@ -16,6 +33,7 @@ import { usePageMeta } from '../lib/seo';
 import { routeMeta } from '../lib/routeMeta';
 
 const audienceIcons = { customers: Rocket, partners: HeartHandshake, investors: LineChart };
+const serviceIcons = { Code2, Layers, Globe, Smartphone, Bot, Network, Wrench };
 
 export default function Home() {
   const { t, lang } = useLanguage();
@@ -105,6 +123,66 @@ export default function Home() {
         <div className="section-narrow">
           <h2>{t.home.positioningTitle}</h2>
           <p className="lead muted">{t.home.positioningBody}</p>
+        </div>
+      </section>
+
+      <section className="section-block home-services-section" aria-labelledby="home-services-heading">
+        <div className="home-services-header">
+          <div className="section-narrow">
+            <span className="section-eyebrow">{t.services.homeEyebrow}</span>
+            <h2 id="home-services-heading">{t.services.homeTitle}</h2>
+            <p className="lead muted">{t.services.homeSubtitle}</p>
+            <div className="hero-actions">
+              <Link
+                to="/servicos/desenvolvimento-software#solicitar-projeto"
+                className="btn-primary"
+                onClick={() => trackEvent('service_quote_cta_click', { source: 'home_services_section' })}
+              >
+                {t.services.homeCtaQuote} <ArrowRight size={18} />
+              </Link>
+              <Link
+                to="/servicos/desenvolvimento-software"
+                className="btn-secondary"
+                onClick={() => trackEvent('services_explore_click', { source: 'home_services_section' })}
+              >
+                {t.services.homeCtaExplore}
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="home-services-grid">
+          {localizeList(developmentServices, lang).map((service) => {
+            const ServiceIcon = serviceIcons[service.icon] || Code2;
+            return (
+              <TiltCard key={service.id} maxTilt={7}>
+                <article className="home-service-card glass-effect">
+                  <div className="service-icon-box" aria-hidden="true">
+                    <ServiceIcon size={22} />
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p className="muted">{service.description}</p>
+                  <ul className="home-service-tags">
+                    {service.items.slice(0, 3).map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={`/servicos/desenvolvimento-software?servico=${service.serviceType}#solicitar-projeto`}
+                    className="text-link home-service-cta"
+                    onClick={() =>
+                      trackEvent('service_card_quote_click', {
+                        service: service.id,
+                        source: 'home_services_grid',
+                      })
+                    }
+                  >
+                    {t.services.homeCtaQuote} <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </article>
+              </TiltCard>
+            );
+          })}
         </div>
       </section>
 

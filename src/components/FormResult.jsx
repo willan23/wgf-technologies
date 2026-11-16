@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { whatsappUrl } from '../lib/forms';
 
@@ -12,8 +12,21 @@ export function FormError({ error }) {
   );
 }
 
-export default function FormResult({ status, mailto, onBack, whatsappMessage }) {
+export default function FormResult({ status, mailto, onBack, whatsappMessage, summaryText }) {
   const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (!summaryText || !navigator.clipboard) return;
+    try {
+      await navigator.clipboard.writeText(summaryText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      /* ignore */
+    }
+  };
+
   const whatsapp = (
     <a className="btn-secondary" href={whatsappUrl(whatsappMessage)} target="_blank" rel="noreferrer">
       {t.contact.whatsapp}
@@ -30,6 +43,11 @@ export default function FormResult({ status, mailto, onBack, whatsappMessage }) 
             {t.forms.reopenEmail}
           </a>
           {whatsapp}
+          {summaryText && (
+            <button type="button" className="btn-secondary" onClick={handleCopy}>
+              {copied ? t.forms.copiedSummary : t.forms.copySummary}
+            </button>
+          )}
           <button type="button" className="btn-secondary" onClick={onBack}>
             {t.forms.backToForm}
           </button>
@@ -41,7 +59,14 @@ export default function FormResult({ status, mailto, onBack, whatsappMessage }) 
   return (
     <div className="form-success glass-effect" role="status">
       <p>{t.forms.submitted}</p>
-      {whatsapp}
+      <div className="hero-actions">
+        {whatsapp}
+        {onBack && (
+          <button type="button" className="btn-secondary" onClick={onBack}>
+            {t.forms.backToForm}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -9,6 +9,10 @@ export const NOINDEX = 'noindex, nofollow';
 
 const staticRoutes = {
   '/': (t) => ({ description: t.home.subheadline }),
+  '/servicos/desenvolvimento-software': (t) => ({
+    title: t.services.metaTitle,
+    description: t.services.metaDescription,
+  }),
   '/portfolio': (t) => ({ title: t.nav.portfolio, description: t.portfolio.body }),
   '/technology': (t) => ({ title: t.nav.technology, description: t.technology.body }),
   '/markets': (t) => ({ title: t.nav.markets, description: t.markets.body }),

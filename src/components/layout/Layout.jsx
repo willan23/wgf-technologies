@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { company } from '../../data/company';
 import { whatsappUrl } from '../../lib/forms';
 import { useConsent } from '../../context/ConsentContext';
+import { trackEvent } from '../../lib/analytics';
 import CookieBanner from '../CookieBanner';
 import './Layout.css';
 
@@ -51,8 +52,10 @@ export default function Layout() {
 
   useEffect(() => {
     setMenuOpen(false);
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -66,6 +69,7 @@ export default function Layout() {
 
   const links = [
     ['/', t.nav.home],
+    ['/servicos/desenvolvimento-software', t.nav.services],
     ['/portfolio', t.nav.portfolio],
     ['/technology', t.nav.technology],
     ['/markets', t.nav.markets],
@@ -105,8 +109,12 @@ export default function Layout() {
               {label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn-primary nav-cta">
-            {t.nav.cta}
+          <Link
+            to="/servicos/desenvolvimento-software#solicitar-projeto"
+            className="btn-primary nav-cta"
+            onClick={() => trackEvent('service_quote_cta_click', { source: 'header_nav' })}
+          >
+            {t.nav.quoteCta}
           </Link>
         </nav>
 
@@ -174,8 +182,15 @@ export default function Layout() {
                 </button>
               ))}
             </div>
-            <Link to="/contact" className="btn-primary mobile-drawer-cta" onClick={() => setMenuOpen(false)}>
-              {t.nav.cta}
+            <Link
+              to="/servicos/desenvolvimento-software#solicitar-projeto"
+              className="btn-primary mobile-drawer-cta"
+              onClick={() => {
+                trackEvent('service_quote_cta_click', { source: 'mobile_drawer' });
+                setMenuOpen(false);
+              }}
+            >
+              {t.nav.quoteCta}
             </Link>
           </div>
         </div>
@@ -193,6 +208,18 @@ export default function Layout() {
               <div className="footer-brand">WGF Technologies</div>
             </div>
             <p>{t.footer.tagline}</p>
+            <div className="footer-cta-row">
+              <Link
+                to="/servicos/desenvolvimento-software#solicitar-projeto"
+                className="btn-primary footer-cta-btn"
+                onClick={() => trackEvent('service_quote_cta_click', { source: 'footer' })}
+              >
+                {t.nav.quoteCta}
+              </Link>
+              <Link to="/contact" className="btn-secondary footer-cta-btn">
+                {t.nav.cta}
+              </Link>
+            </div>
           </div>
           <div className="footer-links">
             {links.slice(1).map(([to, label]) => (

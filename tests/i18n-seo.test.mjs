@@ -5,6 +5,12 @@ import { translations } from '../src/i18n/translations.js';
 import { getPublicProducts, localizeProduct, productTranslations, products, tagLabel } from '../src/data/products.js';
 import { markets } from '../src/data/markets.js';
 import { technologyCategories } from '../src/data/technology.js';
+import {
+  commercialProcess,
+  developmentServices,
+  serviceDifferentiators,
+  servicesFaq,
+} from '../src/data/services.js';
 import { capitalDeployment, partnerCategories } from '../src/data/partners.js';
 import { legalContent } from '../src/data/legal.js';
 import { localize } from '../src/data/localize.js';
@@ -50,13 +56,26 @@ test('market / business-model tags translate and unknown tags pass through', () 
 });
 
 test('data lists have PT/FR text wherever EN differs', () => {
-  for (const list of [markets, technologyCategories]) {
+  for (const list of [markets, technologyCategories, developmentServices, commercialProcess, serviceDifferentiators]) {
     for (const item of list) {
       for (const lang of ['PT', 'FR']) {
         const local = localize(item, lang);
         assert.ok(local.description !== item.description, `${item.id} description untranslated in ${lang}`);
       }
     }
+  }
+  assert.equal(developmentServices.length, 7);
+  for (const svc of developmentServices) {
+    assert.equal(svc.items.length, 7, `${svc.id} should have 7 items`);
+    assert.equal(localize(svc, 'PT').items.length, 7, `${svc.id} PT items`);
+    assert.equal(localize(svc, 'FR').items.length, 7, `${svc.id} FR items`);
+  }
+  assert.equal(commercialProcess.length, 5);
+  assert.equal(serviceDifferentiators.length, 8);
+  assert.equal(servicesFaq.length, 5);
+  for (const faq of servicesFaq) {
+    assert.notEqual(localize(faq, 'PT').question, faq.question);
+    assert.notEqual(localize(faq, 'FR').question, faq.question);
   }
   assert.ok(localize(partnerCategories[0], 'PT').title === 'Tecnologia');
   for (const lang of LANGS) assert.equal(capitalDeployment[lang].length, capitalDeployment.EN.length);
@@ -97,5 +116,10 @@ test('prerender writes route-specific head tags and product JSON-LD', () => {
   assert.match(html, /id="product-jsonld"/);
   const dataRoom = pages.find((p) => p.path === '/investor-data-room');
   assert.match(renderHead(shell, dataRoom.meta), /name="robots" content="noindex, nofollow"/);
+  const servicesPage = pages.find((p) => p.path === '/servicos/desenvolvimento-software');
+  assert.ok(servicesPage, 'services route prerendered');
+  const servicesHtml = renderHead(shell, servicesPage.meta, servicesPage.jsonLd);
+  assert.match(servicesHtml, /https:\/\/www\.wgf-technologies\.site\/servicos\/desenvolvimento-software/);
+  assert.match(servicesHtml, /FAQPage/);
   assert.ok(!pages.some((p) => products.some((x) => !x.public && p.path.endsWith(x.slug))), 'private product prerendered');
 });

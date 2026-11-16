@@ -293,6 +293,88 @@ export const products = [
  * any field missing here falls back to it. Translate faithfully — no new claims.
  */
 const productTranslations = {
+  'wgf-ip-shield': {
+    PT: {
+      category: 'SaaS / Proteção de IP / Autoria de Software',
+      shortDescription:
+        'Prova de autoria para software: impressões digitais com carimbo temporal, certificados verificáveis e relatórios de proteção — sem carregar o seu código-fonte.',
+      valueProposition: 'O seu código — com carimbo temporal, impressão digital e titularidade registada.',
+      problem:
+        'Programadores e empresas têm dificuldade em comprovar a autoria e o histórico de versões de software sem expor código-fonte proprietário.',
+      solution:
+        'O WGF IP Shield gera impressões digitais de projetos no navegador (SHA-256), emite certificados de autoria verificáveis com carimbo temporal, mantém o histórico de versões, oferece verificação pública, badges para README, API de registo para CI/CD e relatórios de proteção com IA. Apenas as impressões digitais saem da máquina — nunca o código-fonte.',
+      technology: [
+        'Geração local de impressões digitais SHA-256 no navegador',
+        'Certificados de autoria com cadeia de proveniência de versões',
+        'Verificação pública (/verify)',
+        'Relatórios de proteção com IA (licenças, segredos, riscos de cópia/scraping)',
+        'API de CI/CD com chaves de API com hash',
+        'Faturação por subscrição via Stripe',
+        'Infraestrutura cloud suportada por Supabase',
+      ],
+      targetMarket: {
+        geography: ['Europa', 'Global', 'Mercados lusófonos'],
+        segments: ['Programadores de software', 'Startups', 'Agências', 'Empresas tecnológicas'],
+        opportunity:
+          'Necessidade crescente de prova de autoria de software, documentação de propriedade intelectual e integridade de versões sem sacrificar a privacidade do código.',
+      },
+      roadmap: {
+        completed: [
+          'Produto ativo em wgfipshield.online',
+          'Autenticação, projetos, versões e certificados',
+          'Verificação pública e badges SVG',
+          'Pagamentos Stripe (mensal/anual)',
+          'Relatórios de proteção com IA',
+          'API pública para CI/CD',
+        ],
+        current: ['Comercialização e aquisição de clientes'],
+        next: ['Fluxos de email transacional', 'Ancoragem temporal independente reforçada'],
+        future: ['Certificados assinados, identidade verificada do titular e ferramentas de divulgação seletiva'],
+      },
+      disclaimer:
+        'O WGF IP Shield fornece evidência de existência, integridade e proveniência registada. Nenhum sistema impede totalmente a cópia. Os certificados apoiam reivindicações de autoria e integridade; não substituem aconselhamento jurídico nem registos formais de propriedade intelectual quando exigidos.',
+    },
+    FR: {
+      category: 'SaaS / Protection PI / Paternité Logicielle',
+      shortDescription:
+        'Preuve de paternité pour logiciels : empreintes horodatées, certificats vérifiables et rapports de protection — sans téléverser votre code source.',
+      valueProposition: 'Votre code — horodaté, signé par empreinte et protégé.',
+      problem:
+        'Les développeurs et les entreprises peinent à prouver la paternité et l’historique des versions d’un logiciel sans exposer leur code source propriétaire.',
+      solution:
+        'WGF IP Shield calcule les empreintes des projets dans le navigateur (SHA-256), émet des certificats de paternité vérifiables et horodatés, conserve l’historique des versions, propose une vérification publique, des badges README, une API CI/CD et des rapports de protection par IA. Seules les empreintes quittent la machine — jamais le code source.',
+      technology: [
+        'Calcul d’empreintes SHA-256 côté client',
+        'Certificats de paternité avec chaîne de provenance des versions',
+        'Vérification publique (/verify)',
+        'Rapports de protection par IA (licences, secrets, risques de copie/scraping)',
+        'API CI/CD avec clés d’API hachées',
+        'Facturation par abonnement Stripe',
+        'Infrastructure cloud propulsée par Supabase',
+      ],
+      targetMarket: {
+        geography: ['Europe', 'Monde', 'Marchés lusophones'],
+        segments: ['Développeurs logiciels', 'Startups', 'Agences', 'Entreprises technologiques'],
+        opportunity:
+          'Besoin croissant de preuve de paternité logicielle, de documentation PI et d’intégrité des versions sans compromettre la confidentialité du code.',
+      },
+      roadmap: {
+        completed: [
+          'Produit en ligne sur wgfipshield.online',
+          'Authentification, projets, versions et certificats',
+          'Vérification publique et badges SVG',
+          'Paiements Stripe (mensuel/annuel)',
+          'Rapports de protection par IA',
+          'API publique CI/CD',
+        ],
+        current: ['Commercialisation et acquisition de clients'],
+        next: ['Flux d’e-mails transactionnels', 'Ancrage temporel indépendant renforcé'],
+        future: ['Certificats signés, identité vérifiée du titulaire et outils de divulgation sélective'],
+      },
+      disclaimer:
+        'WGF IP Shield fournit des preuves d’existence, d’intégrité et de provenance enregistrée. Aucun système n’empêche totalement la copie. Les certificats appuient les revendications de paternité et d’intégrité ; ils ne remplacent pas un avis juridique ni un dépôt officiel de propriété intellectuelle lorsque requis.',
+    },
+  },
   ecoseo: {
     PT: {
       category: 'IA / E-commerce / Conteúdo SEO',
