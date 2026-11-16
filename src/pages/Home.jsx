@@ -7,6 +7,7 @@ import {
   Bot,
   Briefcase,
   Code2,
+  FileText,
   Globe,
   HeartHandshake,
   Layers,
@@ -63,11 +64,18 @@ export default function Home() {
           <h1>{t.home.headline}</h1>
           <p className="lead">{t.home.subheadline}</p>
           <div className="hero-actions">
-            <Link to="/portfolio" className="btn-primary">
+            <Link
+              to="/servicos/desenvolvimento-software#solicitar-projeto"
+              className="btn-primary"
+              onClick={() => trackEvent('service_quote_cta_click', { source: 'home_hero' })}
+            >
+              <FileText size={18} /> {t.home.ctaQuote}
+            </Link>
+            <Link to="/portfolio" className="btn-secondary">
               <Briefcase size={18} /> {t.home.ctaPortfolio}
             </Link>
-            <Link to="/partners" className="btn-secondary">
-              <Users size={18} /> {t.home.ctaPartner}
+            <Link to="/partners" className="text-link">
+              <Users size={16} /> {t.home.ctaPartner}
             </Link>
             <Link
               to="/investors"

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { filterProducts, getProductMarkets, getPublicProducts, localizeProduct, tagLabel } from '../data/products';
-import { statusMeta } from '../lib/status';
+import { statusLabel } from '../lib/status';
 import PageHero from '../components/PageHero';
 import ProductCard from '../components/ProductCard';
 import { usePageMeta } from '../lib/seo';
@@ -81,7 +81,7 @@ export default function Portfolio() {
                 <FilterRow
                   label={t.portfolio.status}
                   allLabel={t.portfolio.all}
-                  options={statuses.map((s) => [s, statusMeta[s]?.label || s])}
+                  options={statuses.map((s) => [s, statusLabel(s, lang)])}
                   value={status}
                   onSelect={(v) => update('status', v)}
                 />

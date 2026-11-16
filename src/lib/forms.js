@@ -20,6 +20,15 @@ export const FORM_ENV = {
 
 export const DEFAULT_FORMSPREE_ID = 'xaeqrpqb';
 
+// All forms share one Formspree inbox by default; a distinct `_subject` per form
+// lets each submission be told apart in the inbox.
+export const FORM_SUBJECTS = {
+  [FORM_ENV.contact]: 'Contacto - site',
+  [FORM_ENV.investor]: 'Investidores - site',
+  [FORM_ENV.partner]: 'Parceiros - site',
+  [FORM_ENV.project]: 'Pedido de orçamento - site',
+};
+
 function formspreeEndpoint(envKey) {
   const id =
     import.meta.env?.[envKey] ||
@@ -81,7 +90,7 @@ export async function submitFormspree(envKey, payload) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ _subject: FORM_SUBJECTS[envKey], ...payload }),
       signal: controller.signal,
     });
 

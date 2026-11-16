@@ -1,8 +1,11 @@
 import React from 'react';
-import { statusMeta } from '../lib/status';
+import { useLanguage } from '../context/LanguageContext';
+import { statusLabel, statusMeta } from '../lib/status';
 
 export default function StatusBadge({ status }) {
-  const meta = statusMeta[status] || statusMeta.development;
+  const { lang } = useLanguage();
+  const key = statusMeta[status] ? status : 'development';
+  const meta = statusMeta[key];
   return (
     <span
       className="status-badge"
@@ -12,7 +15,7 @@ export default function StatusBadge({ status }) {
         background: `${meta.color}14`,
       }}
     >
-      <span aria-hidden>{meta.emoji}</span> {meta.label}
+      <span aria-hidden>{meta.emoji}</span> {statusLabel(key, lang)}
     </span>
   );
 }

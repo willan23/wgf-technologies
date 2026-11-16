@@ -8,8 +8,12 @@ export const legalContent = {
         'WGF Technologies ("we") processes limited personal data in accordance with the GDPR when you contact us, request a software development quote, register investor interest, or submit partnership inquiries.',
       sections: [
         [
+          'Data controller',
+          'WGF Technologies — Willan da Graça Fernandes, Porto, Portugal. Contact: wgftechnologies@gmail.com.',
+        ],
+        [
           'Data we collect & minimization',
-          'We collect only the data strictly necessary for your inquiry: name, email, country, message or project description, and optional fields you choose to provide (such as company/organization, phone number, service type, estimated budget, desired timeline, orinvestor/partnership details).',
+          'We collect only the data strictly necessary for your inquiry: name, email, country, message or project description, and optional fields you choose to provide (such as company/organization, phone number, service type, estimated budget, desired timeline, or investor/partnership details).',
         ],
         [
           'Purpose',
@@ -25,7 +29,11 @@ export const legalContent = {
         ],
         [
           'Sharing & security',
-          'We do not sell personal data. Form processors (e.g. Formspree) may process submissions as processors on our behalf when configured, under technical and organizational security measures.',
+          'We do not sell personal data. The forms on this website are processed by Formspree, which acts as a processor on our behalf, under technical and organizational security measures.',
+        ],
+        [
+          'International transfers',
+          'Formspree is based in the United States of America, so the data you submit through our forms is transferred to and processed in the USA. The data protection rules in the USA may differ from those in the European Union. If you prefer that your data is not transferred, contact us directly by email instead of using the forms.',
         ],
         [
           'Your rights (GDPR)',
@@ -73,6 +81,10 @@ export const legalContent = {
         'A WGF Technologies ("nós") trata um conjunto limitado de dados pessoais em conformidade com o RGPD quando nos contacta, solicita um orçamento de desenvolvimento tecnológico, regista interesse como investidor ou envia um pedido de parceria.',
       sections: [
         [
+          'Responsável pelo tratamento',
+          'WGF Technologies — Willan da Graça Fernandes, Porto, Portugal. Contacto: wgftechnologies@gmail.com.',
+        ],
+        [
           'Dados que recolhemos e minimização',
           'Recolhemos apenas os dados estritamente necessários ao seu pedido: nome, email, país, mensagem ou descrição do projeto e os campos opcionais que decida fornecer (como empresa/organização, telefone, tipo de serviço, orçamento estimado, prazo desejado ou dados de investidor/parceria).',
         ],
@@ -90,7 +102,11 @@ export const legalContent = {
         ],
         [
           'Partilha e segurança',
-          'Não vendemos dados pessoais. Os serviços de processamento de formulários (por exemplo, Formspree), quando configurados, podem tratar os envios como subcontratantes em nosso nome sob medidas técnicas e organizativas adequadas.',
+          'Não vendemos dados pessoais. Os formulários deste website são processados pela Formspree, que atua como subcontratante em nosso nome, sob medidas técnicas e organizativas adequadas.',
+        ],
+        [
+          'Transferências internacionais',
+          'A Formspree está sediada nos Estados Unidos da América, pelo que os dados que envia através dos nossos formulários são transferidos e tratados nos EUA. As regras de proteção de dados nos EUA podem ser diferentes das da União Europeia. Se preferir que os seus dados não sejam transferidos, contacte-nos diretamente por email em vez de usar os formulários.',
         ],
         [
           'Os seus direitos (RGPD)',
@@ -138,6 +154,10 @@ export const legalContent = {
         'WGF Technologies (« nous ») traite un ensemble limité de données personnelles conformément au RGPD lorsque vous nous contactez, demandez un devis de développement logiciel, manifestez un intérêt en tant qu’investisseur ou envoyez une demande de partenariat.',
       sections: [
         [
+          'Responsable du traitement',
+          'WGF Technologies — Willan da Graça Fernandes, Porto, Portugal. Contact : wgftechnologies@gmail.com.',
+        ],
+        [
           'Données collectées et minimisation',
           'Nous collectons uniquement les données strictement nécessaires à votre demande : nom, e-mail, pays, message ou description du projet et les champs facultatifs que vous choisissez de fournir (entreprise/organisation, téléphone, type de service, budget estimé, délai souhaité ou détails investisseur/partenariat).',
         ],
@@ -155,7 +175,11 @@ export const legalContent = {
         ],
         [
           'Partage et sécurité',
-          'Nous ne vendons pas de données personnelles. Les services de formulaires (par exemple Formspree), lorsqu’ils sont configurés, peuvent traiter les envois en tant que sous-traitants pour notre compte avec des mesures de sécurité appropriées.',
+          'Nous ne vendons pas de données personnelles. Les formulaires de ce site sont traités par Formspree, qui agit en tant que sous-traitant pour notre compte, avec des mesures de sécurité techniques et organisationnelles appropriées.',
+        ],
+        [
+          'Transferts internationaux',
+          'Formspree est établie aux États-Unis d’Amérique : les données que vous envoyez via nos formulaires sont donc transférées et traitées aux États-Unis. Les règles de protection des données aux États-Unis peuvent différer de celles de l’Union européenne. Si vous préférez que vos données ne soient pas transférées, contactez-nous directement par e-mail plutôt que d’utiliser les formulaires.',
         ],
         [
           'Vos droits (RGPD)',
